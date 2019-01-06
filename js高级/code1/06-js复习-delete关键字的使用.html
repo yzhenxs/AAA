@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.delete关键字.
+
+    //1.1 可以删除没有var声明的变量.
+    // num1 = 10;
+    // delete  num1;
+    // console.log(num1);// num1 is not defined
+
+
+    // function test1(){
+    //   num2 = 100;
+    // }
+    // test1();
+    // delete  num2;
+    // console.log(num2);//num2 is not defined
+
+
+
+    //1.2 对象有动态添加属性和方法的特征.
+    var obj = {};
+    obj.name = "谢丽群";
+    obj.age = 18;
+    //delete 就可以删除 对象的属性和方法.
+    delete  obj.name;
+    console.log(obj);
+
+
+
+    //疑问:
+    //以前学习webapi的时候,学习一个东西叫 removeAttribute();是可以移除属性的.
+    // obj.removeAttribute('age');//报错了 obj.removeAttribute is not a function 原因是obj这个对象没有removeAttribute这个方法. 因为obj不是dom对象.
+
+
+
+
+
+
+//    window.onload = function () {
+//      var div1 = document.getElementById("one");
+//      div1.removeAttribute("two");
+//    }
+
+
+
+
+  </script>
+</head>
+<body>
+<div class="one" id="one"></div>
+</body>
+</html>

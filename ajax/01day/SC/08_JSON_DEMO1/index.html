@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    姓名：<input type="text" id="name">
+    <br>
+    年龄：<input type="text" id="age">
+    <br>
+    <input type="button" value="显示" id="btn">
+</body>
+</html>
+
+<script>
+    document.getElementById('btn').onclick = function(){
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('get','data.php');
+
+        xhr.send();
+
+        //监听响应完成
+        xhr.onreadystatechange = function(){
+
+            if( xhr.readyState == 4 && xhr.status == 200){
+
+                // console.log(xhr.responseText);
+                var obj = JSON.parse(xhr.responseText);
+
+                document.getElementById('name').value = obj.name;
+                document.getElementById('age').value = obj.age;
+            }
+        }
+    }
+</script>

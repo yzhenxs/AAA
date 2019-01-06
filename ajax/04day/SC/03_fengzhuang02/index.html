@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="请求A接口" id="btn1">
+    <input type="button" value="请求B接口" id="btn2">
+    <input type="button" value="请求C接口" id="btn3">
+</body>
+
+</html>
+
+<script>
+
+    /*
+        一坨代码在不同的地方都要使用，可以封装成函数，在需要的地方调用这个函数就行了
+
+        初级封装：
+                直接把相同的代码作为函数体，写在函数里
+
+
+        第一重封装：
+                不同的值不能写死，要当做参数传递进来
+        
+        解决了：可以发不同方式的请求，和不同的路径
+
+        存在问题：没有发请求提交的参数的问题
+
+        第二重封装：
+                要解决参数的问题
+
+        解决步骤：多一个参数data
+            然后在函数里做判断，如果是get，那么要拼接url
+
+            并且在设置完请求行后面还要判断，是不是get，如果是get,直接发送请求
+            否则，先设置请求头，再发送请求，发送请求里面要带参数（多写一个请求体）
+
+            有可能接口不需要参数，所以在判断的时候还要多加一个data!=undefined 才给你拼接
+
+            另外有可能别人写请求方式的时候写的是大写，所以你干脆统一转成小写再来判断
+
+        存在的问题：拿到响应体后，仅仅只是打印响应体，写死了
+
+        解决： 
+            把处理响应体的代码当做回调函数传进来，拿到响应体后调用这个回调函数，并且传入响应体就行了
+    */
+
+    function ajax(type, url, data,success) {
+
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //既要满足是get请求，又要满足data不为空，才给你拼接url
+        //type无论你给的是大写还是小写，我都统一转为小写来判断
+        if (type.toLowerCase() == 'get' && data != undefined) {
+
+            url += "?" + data;
+        }
+ 
+        //2. 设置请求行
+        xhr.open(type, url);
+
+        if (type.toLowerCase() == "get") {
+            //4. 发送请求
+            xhr.send();
+
+        } else {
+            //肯定是post请求
+
+            //3. 设置请求头（get不用设置）
+            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+            //4. 发送请求
+            xhr.send(data);
+        }
+
+        //5. 监听响应完成
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                //只是打印了响应体
+                //你这个函数私下里把响应体给打印了
+                //而我拿到响应体可能是为了做其他操作
+                //能不能私下打印？肯定不能
+                // console.log(xhr.responseText);
+                //每个调用者的需求是不一样的
+                //调用者A：想把响应体展现到table上
+                //调用者B：想把响应体展现到p标签上
+                //调用者C：想把响应体只是打印出来
+
+                //每个调用者拿到响应体后要执行的代码是不一样的
+                //能在这里把处理响应体的代码写死吗？不能
+                //封装的思想：不一样的东西当做参数传递进来
+                //要把代码传进来！那么怎么传递代码？？传递一个函数，因为函数里面就保存了代码
+                //只要别人把函数传进来，你在这调用，就行了
+                success( xhr.responseText );
+            }
+        }
+    }
+
+
+    document.getElementById('btn1').onclick = function () {
+
+        ajax('GET', 'a.php','name=jack',function(obj){
+
+           //主要是为了处理响应体！在这里有响应体吗？没有！
+
+           //你想拿响应体干嘛就干嘛
+           alert(obj);
+            
+        });
+    }
+
+    document.getElementById('btn2').onclick = function () {
+
+        ajax('post', 'b.php',"name=rose",function(obj){
+
+            console.log(obj);
+            
+        });
+
+        // //1. 创建请求对象
+        // var xhr = new XMLHttpRequest();
+
+        // //2. 设置请求行
+        // xhr.open('post', 'b.php');
+
+        // //3. 设置请求头（get不用设置）
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // //4. 发送请求
+        // xhr.send('name=rose');
+
+        // //5. 监听响应完成
+        // xhr.onreadystatechange = function () {
+
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+
+        //         console.log(xhr.responseText);
+
+        //     }
+        // }
+    }
+
+    document.getElementById('btn3').onclick = function(){
+
+        ajax('post','c.php');
+    }
+</script>

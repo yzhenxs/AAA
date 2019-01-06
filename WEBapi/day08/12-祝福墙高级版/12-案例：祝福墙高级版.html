@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url("images/bg.gif");
+            font: 12px "simsun";
+        }
+
+        .content {
+            width: 960px;
+            height: 627px;
+            margin: 0 auto;
+            background: url("images/content_bg.jpg");
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: '';
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .tip {
+            width: 227px;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
+
+        .tip-h {
+            padding-top: 50px;
+            background: url("images/tip1_h.gif") no-repeat;
+            cursor: default;
+        }
+
+        .text {
+            float: left;
+            padding-left: 10px;
+        }
+
+        .close {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .tip-m {
+            min-height: 40px;
+            padding: 0 10px;
+            padding-top: 10px;
+            background: url("images/tip1_c.gif");
+        }
+
+        .tip-f {
+            height: 53px;
+            background: url("images/tip1_f.gif");
+            padding-top: 20px;
+        }
+
+        .icon {
+            float: left;
+            padding-left: 10px;
+        }
+
+        .name {
+            float: right;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="content">
+    <!--<div class="tip" id="tip">-->
+    <!--<div class="tip-h clearfix" title="双击关闭纸条">-->
+    <!--<div class="text">第[49568]条 2017-05-14 22:51:52</div>-->
+    <!--<div class="close" title="关闭纸条">x</div>-->
+    <!--</div>-->
+    <!--<div class="tip-m">努力学习，高薪就业</div>-->
+    <!--<div class="tip-f clearfix">-->
+    <!--<div class="icon">-->
+    <!--<img src="images/bpic_1.gif" alt=""/>-->
+    <!--</div>-->
+    <!--<div class="name">林哥</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+<script>
+
+    //这里messages是一个数组，数组中每一个元素都是json对象
+    //每一个json对象对应的就是一张纸条中的所有数据
+    var messages = [ {
+        "id" : 1, "name" : "mahu", "content" : "今天你拿苹果支付了么", "time" : "2016-02-17 00:00:00"
+    }, { "id" : 2, "name" : "haha", "content" : "今天天气不错，风和日丽的", "time" : "2016-02-18 12:40:00" }, {
+        "id" : 3, "name" : "jjjj", "content" : "常要说的事儿是乐生于苦", "time" : "2016-03-18 12:40:00"
+    }, {
+        "id" : 4, "name" : "9.8的妹纸", "content" : "把朋友家厕所拉堵了 不敢出去 掏了半小时了都", "time" : "2016-03-18 12:40:00"
+    }, { "id" : 5, "name" : "雷锋ii.", "content" : "元宵节快乐", "time" : "2016-02-22 12:40:00" }, {
+        "id" : 666,
+        "name" : "哎呦哥哥.",
+        "content" : "据说今晚央视的元宵晚会导演和春晚导演是同一个人，真是躲得过初一，躲不过十五。",
+        "time" : "2016-02-22 01:30:00"
+    }, {
+        "id" : 7,
+        "name" : "没猴哥，不春晚",
+        "content" : "班主任:“小明，你都十二岁了，还是三年级，不觉得羞愧吗”？。小明:“一点也不觉得，老师你都四十多岁了，不也是年年在三年级混日子吗？羞愧的应该是你”。老师:……",
+        "time" : "2016-02-22 01:30:00"
+    }, {
+        "id" : 8, "name" : "哎呦杰杰.", "content" : "真搞不懂你们地球人，月亮有什么好看的，全是坑，还是对面那哥们好看，", "time" : "2016-02-22 01:30:00"
+    }, { "id" : 9, "name" : "哎呦哎呦", "content" : "今天哪里的烟花最好看！！？答：朋友圈。。。", "time" : "2016-02-22 02:30:00" } ]
+
+    /*需求分析
+        1.将数组中所有的对象的数据生成纸条添加到页面（位置是随机的）
+        2.点击xx，隐藏纸条
+        3.双击头部区域，隐藏纸条
+        4.单击纸条，纸条置顶（层级提高）
+     思路分析：
+        1.获取元素
+        2.遍历数组生成纸条
+        3.注册事件
+        4.事件处理
+
+     */
+
+    //1.获取元素
+    var content = document.getElementById('content');//祝福墙盒子
+   // 2.遍历数组生成纸条
+    for(var i = 0;i<messages.length;i++){
+        //2.1 创建元素:  (1)空标签  （2）在内存中需要手动添加到页面
+        var tip = document.createElement('div');
+
+        var message = messages[i];//获取数组中的每一个元素，是一个json对象
+        console.log ( message );
+        //设置纸条的内容
+        tip.innerHTML = '<div class="tip" id="tip">' +
+            '<div class="tip-h clearfix" title="双击关闭纸条">' +
+            '<div class="text">' + message.time + '</div>' +
+            '<div class="close" title="关闭纸条">x</div>' +
+            '</div>' +
+            '<div class="tip-m">' + message.content + '</div>' +
+            '<div class="tip-f clearfix">' +
+            '<div class="icon">' +
+            '<img src="images/bpic_1.gif" alt=""/>' +
+            '</div>' +
+            '<div class="name">' + message.name + '</div>' +
+            '</div>' +
+            '</div>' ;
+
+        //添加纸条样式
+        tip.className = 'tip';
+        //修改id，避免重复
+        tip.id = 'tip' + i;
+
+        //设置纸条随机位置
+        tip.style.left = Math.random()*500 + 200 + 'px';
+        tip.style.top = Math.random()*400  +  'px';
+        //2.2 将纸条添加到页面
+        content.appendChild(tip);
+
+        //3.注册事件
+        var index = 0;
+        //3.1 单击纸条执行
+        tip.onclick = function (  ) {
+            index++;
+            this.style.zIndex = index;
+        }
+        
+        //3.2 点击xx事件
+        var closeList = document.getElementsByClassName('close');
+        for(var j = 0;j<closeList.length;j++){
+            closeList[j].onclick = function (  ) {
+                //需求：点击xx,移除tip
+                console.log ( this.parentNode );//xx的父亲是头部title
+                console.log ( this.parentNode.parentNode );//xx的爷爷是tip
+                //让xx的曾爷爷杀死爷爷
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+            }
+        }
+        
+        //3.3 双击头部区域事件
+        var titleList = document.getElementsByClassName('tip-h');
+        for(var j = 0;j<titleList.length;j++){
+            titleList[j].ondblclick = function (  ) {
+                //点击头部移除tip
+                console.log ( this.parentNode );//头部父亲就是tip
+                //让头部的爷爷（tip的父亲）杀死头部的父亲（tip）
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            }
+        }
+        
+
+        
+    }
+    
+</script>
+</body>
+</html>
+
+
+<!--'<div class="tip" id="tip">' +-->
+<!--'<div class="tip-h clearfix" title="双击关闭纸条">' +-->
+<!--'<div class="text">第[49568]条 2017-05-14 22:51:52</div>' +-->
+<!--'<div class="close" title="关闭纸条">x</div>' +-->
+<!--'</div>' +-->
+<!--'<div class="tip-m">努力学习，高薪就业</div>' +-->
+<!--'<div class="tip-f clearfix">' +-->
+<!--'<div class="icon">' +-->
+<!--'<img src="images/bpic_1.gif" alt=""/>' +-->
+<!--'</div>' +-->
+<!--'<div class="name">林哥</div>' +-->
+<!--'</div>' +-->
+<!--'</div>' ;-->

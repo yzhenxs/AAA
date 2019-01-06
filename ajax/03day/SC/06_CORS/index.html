@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        浏览器不允许跨域访问接口，因为出于安全的考虑，保护接口的目的不允许跨域访问
+
+        除非这个接口自己用了JSONP方案，也能让别人用了
+
+        或者方案二：CORS
+                告诉浏览器说：哥们，我这个接口所有人都能访问，你不要保护了！
+                CORS就是一套告诉浏览器说不用你保护的方案
+
+                所以这应该是后端接口的代码，后端告诉浏览器说，我这个大家都能访问，不要保护！
+
+     -->
+</head>
+<body>
+    <input type="button" id="btn" value="点我">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('btn').onclick = function(){
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('get','127.0.0.1/ajx/03day/SC/06_CORS/data.php');
+        xhr.send();
+
+        xhr.onload =  function(){
+
+            console.log(xhr.responseText);
+            
+        }
+    }
+</script>

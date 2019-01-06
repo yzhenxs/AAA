@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    /*setTimeout
+        * 与setInterval唯一的区别：只会执行一次后自动清除
+    * 1.如果定时器代码需要隔一段之间反复执行，setInterval
+    * 2.如果定时器代码只需要隔一段时间之后执行一次，setTimeout
+     */
+
+    /*一次定时器：隔一段之间之后执行代码，完毕后定时器自动清除
+    @parma : handler :一段代码
+    @parma:timeOUT:时间间隔
+    @return：timeID：一般不用
+        * timeID主要作用是识别定时器来清除的，而setTimeout会自动清除
+
+     */
+    var timeID = setTimeout(function (  ) {
+        console.log ( "我爱班长" );
+    },5000);
+
+    //清除timeout定时器
+   // clearTimeout(timeID);
+</script>
+</body>
+</html>

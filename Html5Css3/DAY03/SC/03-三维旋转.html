@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+          如果要让变换看起来更加效果好一点，或者说立体一点
+
+          我们还需要加一个属性叫：视点
+
+          视点：就是模拟一个镜头看物体的距离
+
+          既然是模拟一个镜头看物体的距离，那么意味着也遵从近大远小的视觉规则
+
+          距离越近效果越明显
+          距离越远效果越不明显
+
+          加视点的时候，值越小，效果越明显，值越大，效果越不明显
+
+          但是具体加多少？看自己的需求，你随便给一个值，觉得效果看起来差不多了就可以了
+
+     -->
+
+    <style>
+        ul{
+            width: 800px;
+            height: 120px;
+            /* border: 1px solid #000; */
+            margin: 100px auto;
+
+            padding: 0;
+            list-style: none;
+            
+     
+        }
+
+        li{
+
+            width: 150px;
+            height: 150px;
+            float: left;
+            background-color: yellowgreen;
+            margin-left: 80px;
+            transition: all 1s;
+
+            /* 默认先加一个视点 */
+            transform: perspective(1000px);
+        }
+
+        li:first-child:hover{
+
+            transform:perspective(1000px) rotateX(45deg);
+        }
+
+        li:nth-child(2):hover{
+
+            transform:perspective(1000px) rotateY(45deg);
+        }
+
+        li:last-child:hover{
+
+            /* transform: rotateZ(45deg); */
+
+            /* 下面一句和上一句是一样的 */
+            transform:perspective(100px) rotate(45deg);
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>x轴旋转</li>
+        <li>y轴旋转</li>
+        <li>z轴旋转</li>
+    </ul>
+</body>
+</html>

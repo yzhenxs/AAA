@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<style>
+		.container{
+			height: 100px;
+		}
+		.row div{
+			height: 100px;
+			border:1px solid green;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+<!-- 	1. 栅格系统由 行row 和 列col-xs-12组成
+	2. 一行最多分为12列 超出部分换行
+	3. row必须包含在容器中
+	4. 内容一般写col列中 -->
+
+
+	<!-- row必须写在容器中 是为了和容器的padding抵消 
+	如果不放到container 就会把自己拉伸超过整个屏幕宽度出现滚动条-->
+	<!-- col-xx-1  col-xx-12 只有整数而且是有1-12之间的整数 也可以让多个列拼接起来成12  但是超过12的部分会换行
+	常见栅格系统的划分
+		1. 分为能够被12整除的列数
+		比如分1列  12/1 == 12
+		分2列  12/2== 6
+		分3列 12/3 == 4
+		分4列  12/4==3
+		分6列  12/6 = 2
+	-->
+	<!-- 档次
+	xs  超小生效
+	sm  小生效
+	md  中生效
+	lg  大生效 -->
+	<!-- <div class="container"> -->
+		<div class="row">
+			<div class="col-xs-6">1</div>
+			<div class="col-xs-4">2</div>
+			<div class="col-xs-3">2</div>
+			<div class="col-xs-5">3</div>
+			<div class="col-xs-1">1</div>
+			<div class="col-xs-1">2</div>
+			<div class="col-xs-1">3</div>
+			<div class="col-xs-1">1</div>
+			<div class="col-xs-1">2</div>
+			<div class="col-xs-1">3</div>
+			<div class="col-xs-1">1</div>
+			<div class="col-xs-1">2</div>
+			<div class="col-xs-1">3</div>
+			<div class="col-xs-1">1</div>
+			<div class="col-xs-1">2</div>
+			<div class="col-xs-1">3</div>
+		</div>
+	<!-- </div> -->
+</body>
+</html>

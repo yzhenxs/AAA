@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入内容" id="words">
+    <input type="button" value="搜索" id="search">
+
+    <ul id="history"></ul>
+
+</body>
+
+</html>
+
+<script>
+
+    //找到文本框
+    var words = document.getElementById('words');
+    //找到ul
+    var ul = document.getElementById('history');
+
+    //声明一个数组,应该取出上一次的内容
+    var res = localStorage.getItem('history');
+
+    var arr;
+    if (res) {
+
+         //证明原来有值，就取出来
+         arr = JSON.parse(res);
+
+         for( var i = 0; i < arr.length; i++ ){
+
+            //每次循环都创一个li
+            var li = document.createElement('li');
+            li.innerHTML = arr[i];
+            ul.appendChild(li);
+         }
+
+    }else{
+
+        //如果是第一次访问就实例化成空数组
+        arr = [];
+    }
+
+    //搜索的点击事件
+    document.getElementById('search').onclick = function () {
+
+        //拿到输入的内容，存到本地存储里面
+        //应该用数组来存，不然的话每次都会覆盖
+        //先把输入的内容存到数组里
+        arr.push(words.value);
+
+        //先转成JSON
+        var jsonStr = JSON.stringify(arr);
+
+        localStorage.setItem('history', jsonStr);
+
+        // location = "http://www.itcast.cn";
+    }
+</script>

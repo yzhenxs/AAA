@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        .one {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            /*设置auto可以添加滚动条，如果此时div没有设置宽高，就会变成和内容一样大小*/
+            overflow: auto;
+            /*这样设置的情况下会有滚动条事件*/
+        }
+
+        img {
+            vertical-align: top;
+            /*width: 400px;*/
+            /*height: 400px;*/
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="one" id="box">
+    <img src="1.jpg" alt=""/>
+</div>
+
+</body>
+
+
+<script>
+    /*1.复习offset家族：获取元素自身的真实宽高和位置（a.获取number类型 b.只能获取不能设置）
+        * offsetWidth/Height:获取元素自身真实的宽高（width + border + padding）
+        * offsetParent: 获取元素最近的定位父级
+        * offfsetLeft/Top：获取元素自身的左/上外边框与定位父级的左/上内边框的距离
+
+      2.scroll家族：获取元素内容的真实宽高、滚动出去的距离
+         scrollWidth/Height:获取元素内容的真实宽高
+          scrollLeft/Top:获取左/上滚动出去的距离
+      3.滚动条事件：  onscroll
+
+
+     */
+    var box = document.getElementById('box');
+    //1.offset家族
+    //获取元素自身的真实宽高
+    console.log ( box.offsetWidth, box.offsetHeight );//202 202  width(200) + border(1) * 2
+
+    //2.scroll家族
+    //获取元素内容的真实宽高
+    console.log ( box.scrollWidth, box.scrollHeight );
+
+
+
+    //3.给box注册一个滚动条事件
+    box.onscroll = function (  ) {
+        console.log ( "有人动了滚动条" );
+        //获取元素滚动出去的距离
+        console.log ( box.scrollLeft, box.scrollTop );
+    }
+
+</script>
+</html>

@@ -1,0 +1,421 @@
+/* 第一屏开始 */
+
+.section1{
+
+    /* 先写的层级最高，后写的层级最低 */
+    background: url('../images/01/products.png') no-repeat center,
+                url('../images/01/bg.png') no-repeat center;
+}
+
+
+.section1 .sofa{
+
+    position: absolute;
+    left:50%;
+    margin-left: -190px;
+    bottom:50%;
+    animation: shake infinite .5s alternate;
+}
+
+.section1 .ball{
+
+    position: absolute;
+    right:30px;
+    top:100px;
+
+    animation: shake infinite .5s alternate;
+}
+
+
+@keyframes shake{
+
+    from{}
+
+    to{
+        transform: translate(0,-50px);
+    }
+}
+
+
+/*   第二屏开始   */
+.section2{
+    /* 记得不要平铺，那样的话，多余部分就用背景颜色填充的 */
+    background: url('../images/02/bg.png') no-repeat center bottom;
+}
+
+.section2 .search{
+
+    position: absolute;
+    right:50%;
+    margin-right:-600px;
+    top:50%;
+    margin-top: -22px;
+}
+
+.section2 .sofas{
+
+    position: absolute;
+    width:0;
+    height:0;
+    right:50%;
+    bottom: 50%;
+    margin-right:-220px;
+    margin-bottom: -109px;
+}
+
+
+
+
+/*  第三屏开始  */
+.section3 {
+
+    background: url('../images/03/bg.png') center center;
+}
+
+.section3 .sofa{
+
+    position: absolute;
+    left:50%;
+    margin-left: -240px;
+    bottom: 50%;
+    margin-bottom: -50px;
+}
+
+.section3 .color{
+
+    width: 296px;
+    height: 131px;
+    position: absolute;
+    left: 50%;
+    margin-left: 40px;
+    bottom: 50%;
+    margin-bottom: -100px;
+    background: url('../images/03/color01.gif');
+}
+
+.section3 .add{
+
+    width: 218px;
+    height: 58px;
+    position: absolute;
+    left: 50%;
+    margin-left: 40px;
+    bottom: 50%;
+    margin-bottom: -160px;
+    background: url('../images/03/add01.gif');
+}
+
+
+.section3.animation .color{
+
+    transition: all 1s;
+    background: url('../images/03/color02.gif');
+}
+
+.section3.animation .add{
+
+    transition: all 1s;
+    background: url('../images/03/add02.gif');
+}
+
+
+
+/*  第四屏 */
+.section4{
+
+    background: url('../images/04/bg.png') no-repeat center bottom;
+}
+
+.section4 .cloud{
+
+    position: absolute;
+    right:0;
+    top:20px;
+    animation: cloud 50s infinite;
+}
+
+@keyframes cloud{
+
+    from{}
+    to{
+
+        transform: translate(-1200px);
+    }
+}
+
+.section4>div{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+
+.section4 .keyboard{
+
+    width: 283px;
+    height: 270px;
+    background: url('../images/04/keyboard.png');
+    position: relative;
+    opacity: 0;
+}
+
+.section4 .address{
+
+    position: absolute;
+    left:60px;
+    top:55px;
+}
+
+
+.section4 .carBox{
+
+
+    position: absolute;
+    bottom:50px;
+    width: 407px;
+    height: 346px;
+    /* border: 1px solid #000; */
+}
+
+.section4 .carBox img{
+    /* 两个都需要脱标，不然沙发会盖在购物车的上面 */
+    position: absolute;
+}
+
+.section4 .sofa{
+
+    position: absolute;
+    top:-30px;
+    left:120px;
+}
+
+
+/* 第五屏 */
+.section5{
+
+    background: url('../images/05/bg.png');
+}
+
+.section5 .cardBox{
+
+    width: 358px;
+    height: 221px;
+    position: absolute;
+    right:50%;
+    top:260px;
+}
+
+.section5 .cardBox img{
+
+    position: absolute;
+}
+
+.section5 .bill{
+
+    left:120px;
+    top: 0;
+}
+
+.section5 .mouse{
+
+    width: 205px;
+    height: 400px;
+    background: url('../images/05/mouse01.png') no-repeat center bottom;
+
+    position: absolute;
+    left:50%;
+    margin-left: 240px;
+    top:0;
+}
+
+.section5 .hand{
+
+    width: 170px;
+    height: 375px;
+    background: url('../images/05/hand.png');
+    position: absolute;
+    left:50%;
+    margin-left: 210px;
+    bottom: -100px;
+}
+
+.section5>div{
+
+    perspective: 800px;
+}
+
+.section5 .words{
+    position: absolute;
+    left: 50%;
+    margin-left: -270px;
+    top:50px;
+    opacity: 0;
+}
+
+
+
+.section5.animation .hand{
+
+    transition: all 1s;
+    bottom: 0;
+}
+
+.section5.animation .mouse{
+
+    transition: all .5s 1s;
+    background: url('../images/05/mouse02.png') no-repeat center bottom;
+}
+
+.section5.animation .bill{
+
+    transition: all 1s 1.5s;
+    top: -130px;
+}
+
+.section5.animation .words{
+
+    transition: all 1s 2.5s;
+    opacity: 1;
+    transform: rotateY(360deg) scale(1.5);
+}
+
+
+/*  第六屏开始 */
+
+.section6{
+
+    background: url('../images/06/bg.png') no-repeat -220px bottom;
+}
+
+
+.section6 .carBox{
+    width: 221px;
+    height: 122px;
+
+    position: absolute;
+    left:515px;
+    bottom:85px;
+}
+
+
+
+.section6 .box{
+
+    width: 123px;
+    height: 100px;
+    position: absolute;
+    /* left:515px; */
+    
+    bottom:350px;
+}
+
+.section6 .box img{
+
+    position: absolute;
+}
+
+.section6 .box .sofa{
+
+    left:20px;
+    top:-18px;
+    width: 80px;
+    height: 70px;
+}
+
+.section6 .carBox .car{
+
+    position: absolute;
+}
+
+.section6 .carBox .man{
+    /* 默认为0，用动画效果放大 */
+    height:0;
+    position: absolute;
+    right:10px;
+    bottom: 10px;
+}
+
+.section6 .door{
+
+    position: absolute;
+    left:930px;
+    bottom:116px;
+    display: none;
+}
+
+.section6 .girl{
+
+    height:120px;
+    position: absolute;
+    left:980px;
+    bottom:116px;
+    display: none;
+}
+
+/*   第七屏   */
+.section7{
+
+    background: url('../images/07/bg.png') center bottom;
+}
+
+.section7 .star{
+    width: 105px;
+    height: 17px;
+    background: url('../images/07/stars3.png');
+    position: absolute;
+    left:50%;
+    margin-left: -298px;
+    top:156px;
+
+    width:0;
+}
+
+.section7.animation .star{
+
+    transition: all 1s steps(5);
+    width:105px;  
+}
+
+.section7 .good{
+
+    position: absolute;
+    left:50%;
+    margin-left: -260px;
+    top:200px;
+    opacity: 0;
+}
+
+.section7.animation .good{
+    transition: all 1s 1s;
+    opacity: 1;
+}
+
+/* 第八屏 */
+.section8{
+
+    background: url('../images/08/bg.png') repeat;
+}
+
+.section8 .begin{
+
+    position: absolute;
+    left:50%;
+    margin-left: -195px;
+    top:50px;
+}
+
+.section8 .hand{
+
+    position: absolute;
+    left:50%;
+    bottom: 0;
+}
+
+.section8 .again{
+
+    position: absolute;
+    right:80px;
+    bottom: 80px;
+}

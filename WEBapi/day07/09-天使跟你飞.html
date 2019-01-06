@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        body {
+            width: 3000px;
+            height: 3000px;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<img src="tianshi.gif" alt="" id="img"/>
+
+<script src="common.js"></script>
+<script>
+    /*1.鼠标移动事件: onmousemove
+       2.给页面添加鼠标移动事件： window.onmousemove（存在兼容性问题）
+            * docuemnt.onmousemove没有兼容性问题
+
+       3.关于页面事件兼容性总结
+        * a.页面滚动： window.onscroll
+        * b.页面大小变化：  window.onresize
+        * c.页面鼠标移动：   docuemnt.onmousemove
+     */
+
+    var tianshi = id('img');
+    //1.给页面注册一个鼠标移动事件
+    document.onmousemove = function ( e ) {
+        e = e || window.event;
+//        兼容性处理
+        console.log ( getPagePoint ( e ).pageX, getPagePoint ( e ).pageY );
+        //2.修改天使的位置为鼠标触发点相对于页面左上角的距离
+        tianshi.style.left =  getPagePoint ( e ).pageX + 'px';
+        tianshi.style.top =  getPagePoint ( e ).pageY + 'px';
+    }
+
+    //IE8不支持事件对象的pageX属性，并且也没有其他替代属性
+    //IE8中，只能手动计算   触发点距离页面左上角距离 =  距离可视区域左上角距离 + 页面滚动出去的距离
+    //pageX = clientX + scrollLeft
+
+    /**
+     * 获取事件对象触发点相对于页面左上角的距离
+     * @param e 事件对象
+     * @return {*}
+     */
+    function getPagePoint ( e ) {
+
+        if ( e.pageX ) {//非IE8浏览器
+            return {
+                pageX : e.pageX, pageY : e.pageY
+            }
+        } else {//IE8浏览器
+            return {
+                pageX: e.clientX + getScroll().scrollLeft,
+                pageY: e.clientY + getScroll().scrollTop
+            }
+        }
+    }
+
+</script>
+</body>
+
+
+</html>

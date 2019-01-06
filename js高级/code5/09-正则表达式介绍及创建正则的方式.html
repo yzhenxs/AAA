@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.正则表达式
+    //数据类型
+    //基本数据类型: number string boolean null undefined
+    //复杂数据类型: Array Function Object Math Date RegExp(正则表达式) String Number Boolean
+
+    //2.Regular Expression    简写: RegExp  RegEx
+    //正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。
+
+
+    //4.正则对象的test()方法.
+    //语法: 正则对象.test(需要检测/过滤的字符串);
+    //返回值布尔类型.
+    //如果  需要检测/过滤的字符串  满足当前这个正则对象的过来规则,那么就返回true,否则就返回false.
+
+
+    //3.如何创建正则对象?
+    //3.1 使用构造函数来创建.
+     var reg1 = new RegExp(/男/);  //这个正则用来判断你 需要检测的字符串里面包含不包含男这个字.
+     var result = reg1.test('志强是男的吗?是的');
+     console.log(result);
+
+
+    //3.2 使用正则字面量来创建. /内容/
+     var reg2 = /男|女/;
+     var result = reg2.test('志强是女的吗?是的');
+     console.log(result);
+
+
+
+    //console.log(/男|女/.test('志强是男的吗?是的'));
+
+
+
+
+
+
+
+    //var arr1 = new Array();
+    //var arr2 = [];
+
+
+
+  </script>
+</head>
+<body>
+<h1>哈哈哈哈</h1>
+</body>
+</html>

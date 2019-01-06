@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>我是隔壁老王1</li>
+    <li>我是隔壁老王2</li>
+    <li>我是隔壁老王3</li>
+    <li>我是隔壁老王4</li>
+    <li>我是隔壁老王5</li>
+    <li>我是隔壁老王6</li>
+</ul>
+</body>
+
+
+<script src="common.js"></script>
+<script>
+    /*1.事件冒泡的好处：
+        * 如果需要给父元素所有的子元素注册同名事件，只需要给父元素注册同名事件
+
+       2.关于事件对象的几个属性
+        * a.  this :谁调用这个方法this就代表谁
+        * b . e.currentTarget:就是this，只不过有浏览器兼容性，一般不用，使用this
+        * c.  e.target:事件源（到底是哪一个元素触发的这个事件）
+
+     */
+
+    //需求：给ul元素的所有li标签都注册点击事件
+
+    var ul1 = id('ul1');
+    //遍历ul1的子元素，逐个注册点击事件
+    // for(var i = 0;i<ul1.children.length;i++){
+    //     ul1.children[i].onclick = function (  ) {
+    //         alert(this.innerText);
+    //     }
+    // }
+
+    //借助事件冒泡的特点，给父元素注册点击事件
+    ul1.onclick = function ( e ) {
+        e = e || window.event;
+        alert(this.nodeName);//ul
+        //this:谁调用这个方法，this就代表谁
+        //1.this:谁调用这个方法，this就代表谁
+        //如何知道到底点击的是哪一个li标签？
+        //2.e.currentTarget : 完全等价于this，与this是同一个东西
+        //但是开发中不用，因为有兼容性
+        alert(e.currentTarget === this);
+        //3.e.target:触发这个事件的源头
+        alert ( e.target.innerText );
+    }
+</script>
+</html>

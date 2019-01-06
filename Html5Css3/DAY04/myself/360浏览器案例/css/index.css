@@ -1,0 +1,26 @@
+/* 第一屏 */
+/* 让子元素全部居中并上下排列 */
+.section1 div{
+    /* 应用伸缩布局 */
+    display: flex;
+    /* 用y轴作为主轴 */
+    /* flex-direction: column; */
+    /* 俩边对齐,并且之间有同等间距 */
+    justify-content: space-around;
+    /* 在负轴方向居中 */
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

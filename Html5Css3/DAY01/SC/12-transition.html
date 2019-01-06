@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        总结：
+            transition是代表让元素有过渡（动画）效果
+            参数1：参与过渡的属性，写一个all代表所有都参与,还可以指定某个属性参与过渡例如：写一个width，就只有宽参与过渡
+
+            参数2：动画的持续时间
+
+            参数3：动画的延迟时间
+
+            参数4：运动曲线（动画效果） linear匀速 steps(步数)：代表分几步完成
+
+       写在默认情况下和写在hover里的区别：
+            写在默认情况下：代表移入移出都有动画效果
+            写在hover里：代表只有移入有动画效果，移出时是立刻闪现复原
+
+     -->
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+
+            /* 
+            参数1：参与过渡的属性，写一个all代表所有都参与,还可以指定某个属性参与过渡例如：写一个width，就只有宽参与过渡
+
+            参数2：动画的持续时间
+
+            参数3：动画的延迟时间
+
+            参数4：运动曲线（动画效果） linear匀速 steps(步数)：代表分几步完成
+            
+             */
+            transition: all 2s 0s linear;
+
+        }
+
+        .box:hover{
+            /* transition: all 2s 0s linear; */
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

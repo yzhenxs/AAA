@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        JSON本质上是一套按规则写的字符串
+
+        作用：解决不同语言之间数据传输或者说数据交换的
+
+        规则：
+            内容里如果用 {} 包起来 ，这个字符串就表示一个对象
+
+            注意：如果表示对象的时候，键必须用双引号包起来
+
+            如果用 [] 包起来， 这个字符串就表示一个数组
+
+
+
+        PHP里把PHP数据转成JSON字符串
+                json_encode();
+
+
+        JS里把JSON字符串转JS对象
+                JSON.parse();
+
+     -->
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //表示数组
+    var str = '[10,20,30,40]';
+
+    //表示的是对象
+    var str = '{"name":"jack","age":16}';
+
+    // 表示一个数组，只不过数组中每个元素又是一个对象
+    var str = '[{ "name":"jack","age":16 },{ "name":"rose","age":18 }]';
+
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('get','data.php');
+
+    xhr.onreadystatechange = function(){
+
+        if( xhr.readyState == 4 && xhr.status == 200){
+
+            // console.log(xhr.responseText);
+            // console.log(xhr.responseText.name);
+
+            //在JS里把JSON格式的字符串转化为JS数据
+            var obj = JSON.parse(xhr.responseText);
+            
+            console.log(obj);
+            
+        } 
+    }
+
+    xhr.send();
+</script>

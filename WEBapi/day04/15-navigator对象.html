@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    /*navigator:获取浏览器信息（浏览器版本/类型）
+    开发中应用场景：统计用户信息（使用的是什么浏览器)
+     */
+    console.log ( window.navigator );
+    console.log ( navigator.appVersion );//当前浏览器版本信息
+    console.log ( navigator.platform );//当前浏览器硬件平台 通常都是Win32
+    console.log ( navigator.userAgent );//获取当前浏览器型号信息
+
+    if(navigator.userAgent.indexOf('Chrome') != -1){
+        alert('谷歌浏览器');
+    }else if(navigator.userAgent.indexOf('Firefox') != -1){
+        alert('火狐浏览器');
+    }else {//IE浏览器
+        alert('IE浏览器')
+    }
+</script>
+</html>

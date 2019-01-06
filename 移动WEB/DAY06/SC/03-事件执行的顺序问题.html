@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: #0f0;
+    }
+    
+    .inner {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="inner">
+            <input type="text" value="哈哈哈">
+        </div>
+    </div>
+    <script>
+    var box = document.querySelector('.box');
+    // 第一个参数是事件名 第二个是事件的处理回调函数 第三个事件的执行顺序(冒泡和捕获)
+    // 默认为false就表示冒泡的顺序执行 从里面往外面执行
+    // true表示以事件捕获的顺序执行  从外面往里面执行
+    box.addEventListener('click', function() {
+        console.log(1 + "父元素");
+    }, true);
+    var inner = document.querySelector('.inner');
+    inner.addEventListener('click', function() {
+        console.log(2 + "子元素");
+    }, false);
+    var input = document.querySelector('input');
+    input.addEventListener('change', function() {
+    	 //获取你一开始在标签上写的value属性值
+        console.log(input.getAttribute('value'));
+        //获取一开始在标签上写的type属性的值
+        console.log(input.getAttribute('type'));
+        // 但是表单输入的时候没有改变input标签上的value 改的是input js对象上的value 
+        // 取表单输入的值使用input.value 不能使用getAttribute
+        console.dir(input.value);
+        // $(input).val()
+        // $(input).attr('value')
+    });
+    </script>
+</body>
+
+</html>

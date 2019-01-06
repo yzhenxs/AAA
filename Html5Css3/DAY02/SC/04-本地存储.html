@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+
+    把数据存在浏览器
+    
+    cookie：也可以存在浏览器，首先要经过服务器，而且有有效期，而且访问时会自动把cookie发送过去
+
+    本地存储：localStorage
+            也是存在浏览器
+            但是可以不用经过服务器，没有有效期（只要自己不删就一直在）
+
+    如果用localStorage存的是一个复杂类型，那么在存的时候会调用这个复杂类型的toString方法
+
+    如果要存复杂类型，记得先把复杂类型转成JSON字符串
+    取出来的时候再把JSON字符串转成JS数据
+-->
+</head>
+
+<body>
+
+    <input type="button" value="存储" id="btn1">
+    <input type="button" value="读取" id="btn2">
+    <input type="button" value="删除" id="btn3">
+    <input type="button" value="存数组" id="btn4">
+    <input type="button" value="存对象" id="btn5">
+    <input type="button" value="取数组" id="btn6">
+    <input type="button" value="取对象" id="btn7">
+    <input type="button" value="清空" id="btn8">
+
+
+</body>
+
+</html>
+<script>
+
+    //存储
+    document.getElementById('btn1').onclick = function () {
+
+        //参数1：key，参数2：value
+        localStorage.setItem("name", "jack");
+    }
+
+    //读取
+    document.getElementById('btn2').onclick = function () {
+
+        //参数：key
+        var res = localStorage.getItem("name");
+        console.log(res);
+
+    }
+
+    //删除
+    document.getElementById('btn3').onclick = function () {
+
+        //根据key来删除
+        localStorage.removeItem('age');
+    }
+
+
+    //存数组
+    document.getElementById('btn4').onclick = function () {
+
+        var nums = [10, 20, 30, 40, 50];
+
+        //先把数组转成JSON字符串
+        var json = JSON.stringify(nums);
+
+        localStorage.setItem('arr', json);
+
+    }
+
+    //存对象
+    document.getElementById('btn5').onclick = function () {
+
+        var obj = { name: "jack", age: 16 };
+
+        var json = JSON.stringify(obj);
+
+        localStorage.setItem('obj',json);
+    }
+
+    //取数组
+    document.getElementById('btn6').onclick = function () {
+
+        var res = localStorage.getItem('arr');
+        
+        var arr = JSON.parse(res);
+
+        console.log(arr);
+
+    }
+
+    //取对象
+    document.getElementById('btn7').onclick = function () {
+
+        var res = localStorage.getItem('obj');
+        // console.log(res);
+        var xxoo = JSON.parse(res);
+
+        console.log(xxoo);
+        
+
+    }
+
+
+    document.getElementById('btn8').onclick = function(){
+
+        //清除所有
+        localStorage.clear();
+    }
+
+</script>

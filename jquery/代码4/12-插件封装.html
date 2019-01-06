@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+
+  <script src="jquery-1.12.4.js"></script>
+  <script src="jQuery-bgColor.js"></script>
+  <script src="jQuery-add.js"></script>
+  <script>
+    $(function () {
+      //需求:给div设置宽高和背景色.
+      // $('div').width(100).height(100).css('backgroundColor','red');
+      //给div设置背景色用到了css('backgroundColor','red')这么长的代码,我觉得麻烦,如果有一个bgColor()这种方法直接可以设置背景颜色多好啊.
+      //$('div').width(100).height(100).bgColor('green'); //jQuery没有提供bgColor这么一个方法,所以报错了.
+
+
+
+      //要给jQuery写插件,目的就是给jQuery添加方法.如何添加呢? 就是给jQuery对象的原型添加方法.
+      //$('div').width(100).bgColor('pink').height(100);
+
+
+
+      //console.log($.add(100, 200)); //静态方法.
+
+      //封装插件的好处:那里要用到这个功能,就在那里引入插件文件,调用插件方法.
+      $('p').width(100).height(100).bgColor('pink');
+
+
+    });
+  </script>
+</head>
+<body>
+<div></div>
+<p></p>
+</body>
+</html>

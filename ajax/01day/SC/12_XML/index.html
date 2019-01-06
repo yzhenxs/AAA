@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    XML也是一种数据交换格式
+        也是用来解决各种语言之间传递数据的问题
+
+    现在用XML的比较少，但是也会遇到
+
+    所有的数据都是用标签形式来存储的
+
+    如果响应体是XML文件，应该用 responseXML来获取，就不用转换了
+    操作XML，可以直接用以前dom的那一套方法
+
+ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" id="btn" value="获取">    
+</body>
+</html>
+
+<script>    
+
+    document.getElementById('btn').onclick = function(){
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('get','data.xml');
+        xhr.send();
+
+        xhr.onload = function(){
+
+            //如果拿到的是XML数据，那么就用xhr.responseXML来获取
+            // console.log(xhr.responseXML);
+
+            var list =  xhr.responseXML.getElementsByTagName('item');
+
+            console.log(list);
+
+            var myName = list[0].getElementsByTagName('name')[0];
+            console.log(myName.innerHTML);
+            
+            
+        }
+
+    
+    }
+</script>

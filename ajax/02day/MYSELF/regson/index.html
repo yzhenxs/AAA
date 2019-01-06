@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        select {
+            width: 130px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <select name="" id="sheng">
+        <!-- <option value="">北京</option>
+        <option value="">河南</option> -->
+    </select>
+    <select name="" id="shi"></select>
+    <select name="" id="qu"></select>
+
+</body>
+
+</html>
+
+<script>
+
+    //这个是做省市联动
+    //找到省的下拉框
+    var sheng = document.getElementById('sheng');
+    //找到市的下拉框
+    var shi = document.getElementById('shi');
+    //找到区的下拉框
+    var qu = document.getElementById('qu');
+    //页面一打开就应该可以直接查询到省级地区
+    //创建响应体
+    var xhr = new XMLHttpRequest();
+    //设置访问行
+    xhr.open('get', 'data.php?region_parent_id=1');
+    //设置访问头,因为是get传输数据,所以访问头不需要写
+
+    //设置访问体
+    xhr.send();
+
+    //拿到响应体,监听响应完成
+    xhr.onload = function () {
+
+        console.log(JSON.parse(xhr.responseText));//因为得到的是json格式的,所以需要转换格式
+        //根据结果得到的是一个对象
+        //创建option
+        var arr = JSON.parse(xhr.responseText);
+        //console.log(arr[0].REGION_NAME);
+
+        // var option = "<option>"++"</option>";
+        //采用一个for循环
+        for (var i = 0; i < arr.length; i++) {
+            // //创建标签的第一种方式
+            // var option = "<option>" + arr[i].REGION_NAME + "</option>";
+            // sheng.innerHTML += option;
+
+            //创建标签的第二种方式
+
+            //创建option标签
+            var option = document.createElement('option');
+            //option的元素内容是?
+            option.innerHTML = arr[i].REGION_NAME;
+            option.value = arr[i].REGION_ID;
+            //将新创建的元素显示在sheng标签上
+            sheng.appendChild(option);
+        }
+        //拿到省的之后,要根据省在市的下拉框中显示各个市的
+        sheng.onchange();
+    }
+
+
+    // 值改变事件, 一旦值发生改变就会来调用事件
+    // 对于下拉框而言, 就是选中项发生改变就触发的事件
+    sheng.onchange = function () {
+        //在查一个省新的市之前应该把之前的数据全部清空
+        shi.innerHTML = "";
+        //console.log(sheng.value);
+        //通过这个省的id,再去发一个请求,得到它的市
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data.php?region_parent_id=' + sheng.value);
+        //因为是get取值方式,所以不需要设置访问头
+        xhr.send();
+        xhr.onload = function () {
+            //console.log(xhr.responseText);
+            var arr = JSON.parse(xhr.responseText);
+            console.log(arr);
+            for (var i = 0; i < arr.length; i++) {
+                // var option = "<option>" + arr[i].REGION_NAME + "</option>";
+                // shi.innerHTML += option;
+
+                //创建option标签
+                var option = document.createElement('option');
+                //option的元素内容是?
+                option.innerHTML = arr[i].REGION_NAME;
+                option.value = arr[i].REGION_ID;
+                //将新创建的元素显示在sheng标签上
+                shi.appendChild(option);
+            }
+            //循环完了后就有所有的市了，手动调用市的值改变事件去查区
+            shi.onchange();
+        }
+    }
+
+    shi.onchange = function () {
+        //在查一个省新的市之前应该把之前的数据全部清空
+        qu.innerHTML = "";
+        //console.log(sheng.value);
+        //通过这个省的id,再去发一个请求,得到它的市
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data.php?region_parent_id=' + shi.value);
+        //因为是get取值方式,所以不需要设置访问头
+        xhr.send();
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            var arr = JSON.parse(xhr.responseText);
+            console.log(arr);
+            for (var i = 0; i < arr.length; i++) {
+                // var option = "<option>" + arr[i].REGION_NAME + "</option>";
+                // qu.innerHTML += option;
+
+                //创建option标签
+                var option = document.createElement('option');
+                //option的元素内容是?
+                option.innerHTML = arr[i].REGION_NAME;
+                option.value = arr[i].REGION_ID;
+                //将新创建的元素显示在sheng标签上
+                qu.appendChild(option);
+            }
+        }
+    }
+
+
+</script>

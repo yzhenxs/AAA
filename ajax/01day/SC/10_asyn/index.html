@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+
+    同步：
+        一堆任务，要一个一个的按顺序完成，上一个任务没做完，不能做下一个任务
+
+    异步：
+        一堆任务，“同时”进行
+
+
+    ajax：我们说它是局部请求或者异步请求
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="button" id="async" value="异步请求">
+    <input type="button" id="sync" value="同步请求">
+</body>
+
+</html>
+
+<script>
+
+    /*
+        console.log('1111111111111');
+    
+        for(var i = 0; i < 10000;i++){
+    
+            console.log(i);
+            
+        }
+    
+        console.log('2222222222222');
+    */
+
+
+    document.getElementById('async').onclick = function () {
+
+        var xhr = new XMLHttpRequest();
+
+        //这是个异步请求：意思就是说请求没完成，但是不会影响后面代码的执行
+        xhr.open('get', 'data.php');
+
+        xhr.onload = function () {
+
+            alert(xhr.responseText);
+
+        }
+
+        xhr.send(); //发送请求了，需要2秒
+
+
+        alert('我在send后面');
+    }
+
+    document.getElementById('sync').onclick = function () {
+
+        var xhr = new XMLHttpRequest();
+
+        //其实这里有个参数3，但一般不用
+        //参数3是否异步执行，为true代表异步，为false代表同步，不给默认就是true
+        xhr.open('get', 'data.php', false);
+
+
+        xhr.onload = function () {
+
+            alert(xhr.responseText);
+
+        }
+
+        xhr.send(); //发送请求了，需要5秒
+
+
+        alert('我在send后面');
+    }
+
+
+</script>

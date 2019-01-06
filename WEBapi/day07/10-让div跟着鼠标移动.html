@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+<script src="common.js"></script>
+<script>
+    /*1.给页面添加鼠标移动事件
+    2.获取鼠标触发点相对于页面左上角距离
+    3.修改元素的位置
+
+     */
+    var box = id('box');
+    document.onmousemove = function ( e ) {
+       e =  e || window.event;
+       //默认情况下：元素的定位是根据左上角来定位
+        //要想鼠标在元素中心，应该减去宽高的一半
+       box.style.left = getPagePoint(e).pageX - box.offsetWidth/2 + 'px';
+        box.style.top = getPagePoint(e).pageY - box.offsetHeight/2 + 'px';
+    }
+</script>
+</body>
+
+
+
+</html>

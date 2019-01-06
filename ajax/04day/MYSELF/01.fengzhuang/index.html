@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="请求A接口" id="btnA">
+    <input type="button" value="请求B接口" id="btnB">
+    <input type="button" value="请求C接口" id="btnC">
+</body>
+
+</html>
+<script>
+    //分别点击三个按钮,在控制台打印不同的东西
+
+    //点击按钮A
+    document.getElementById('btnA').onclick = function () {
+        //     //建立访问对象
+        //     var xhr = new XMLHttpRequest();
+        //     //设置访问行
+        //     xhr.open('get', 'A.php?name=jack')
+        //     //设置访问头(get访问,不需要设置)
+
+        //     //设置访问体
+        //     xhr.send();
+
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState == 4 && xhr.status == 200) {
+        //             console.log(xhr.responseText);
+
+        //         }
+        //     }
+        ajax('get', 'A.php', 'name=jack', function (obj) {
+            alert(obj);
+
+        })
+
+    }
+
+
+    //点击按钮B
+    document.getElementById('btnB').onclick = function () {
+        // //建立访问对象
+        // var xhr = new XMLHttpRequest();
+        // //设置访问行
+        // xhr.open('post', 'B.php')
+        // //设置访问头(POST访问,需要设置)
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // //设置访问体
+        // xhr.send('name=rose');
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         console.log(xhr.responseText);
+
+        //     }
+        // }
+        ajax('post', 'B.php', 'name=rose', function (obj) {
+            console.log(obj);
+        });
+    }
+
+
+    //点击按钮C
+    document.getElementById('btnC').onclick = function () {
+        // //建立访问对象
+        // var xhr = new XMLHttpRequest();
+        // //设置访问行
+        // xhr.open('get', 'C.php')
+        // //设置访问头
+
+        // //设置访问体
+        // xhr.send();
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         console.log(xhr.responseText);
+
+        //     }
+        // }
+        ajax('get', 'C.php', "", function (obj) {
+            console.log(obj);
+
+        });
+       
+    }
+
+
+
+        //可以发现上面每次使用就需要写一遍,是很麻烦的,所以对函数做一个封装,用的时候可以直接调用
+        function ajax(type, url, data, success) {
+            //建立访问对象
+            var xhr = new XMLHttpRequest();
+            //因为是get访问还是post访问,所需要设置的不一样,所以需要判断
+            if (type.toLowerCase() == 'get' && data != undefined) {//因为type方式有可能是大写post或者大写get,一律给它转为小写
+                //访问行内的需要拼接url
+                //设置访问行
+                xhr.open(type, url + '?' + data);
+                //设置访问头(get访问,不需要设置)
+
+                //设置访问体
+                xhr.send();
+            } else {
+                //设置访问行
+                xhr.open(type, url)
+                //设置访问头(POST访问,需要设置)
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                //设置访问体
+                xhr.send(data);
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    //console.log(xhr.responseText);//每个调用者对监听返回的数据使用情况不同,所以这里也可以封装成一个函数
+                    success(xhr.responseText);
+                }
+            }
+        }
+
+    
+
+
+
+
+
+
+
+
+</script>

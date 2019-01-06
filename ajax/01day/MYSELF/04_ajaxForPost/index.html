@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    账号:<input type="text" id="name" placeholder="请输入你的姓名"><span id="span"></span>
+    <br>
+    密码:<input type="pwd" id="name" placeholder="请输入你的密码">
+
+</body>
+<script>
+//这次要求链接数据库检查这个名字是否存在
+document.getElementById('name').onblur=function(){
+if(this.value==""){
+return;
+}
+//不为空的时候
+//创建访问对象
+var xhr=new XMLHttpRequest();
+//创建请求行
+xhr.open('post','data.php');
+//创建请求头
+xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+//创建请求体
+xhr.send("username="+this.value);
+// 
+
+xhr.onload=function(){
+document.getElementById('span').innerHTML=xhr.responseText;
+}
+
+
+
+}
+
+
+
+
+
+
+</script>
+
+
+
+</html>

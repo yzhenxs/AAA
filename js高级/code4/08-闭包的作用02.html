@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.闭包的作用02
+    //提供有限的访问权限.
+    // function outer(){
+    //   var age = 18;
+    //   function setAge(value){
+    //     //因为这里是函数,就可以写一些代码了, 过滤逻辑代码.
+    //     if(value > 0 && value <= 140){
+    //       age = value;
+    //     }
+    //   }
+    //   function getAge(){
+    //     return age;
+    //   }
+    //   return {
+    //     setAge:setAge,
+    //     getAge:getAge
+    //   }
+    // }
+//
+    // //调用outer();得到一个返回值是一个对象,这个对象里面包含2个函数,一个getAge,一个setAge.
+    // var obj1 =  outer();
+    // obj1.setAge(28);
+    // console.log(obj1.getAge());
+
+
+
+    //eg:2---------------------------------------------------
+    //程序员A
+    function outer(){
+      var name = "帅帅的林";
+      var yanZhi = 9999;
+      //使用闭包让外面可以访问这个函数中的局部变量.
+      return {
+        getName: function () {
+          return name;
+        },
+        setName: function (value) {
+          //提供过滤型的代码,提供有限的访问权限
+          if(value.indexOf('狗') == -1){
+            name = value;
+          }
+        },
+        getYanZhi: function () {
+          return yanZhi;
+        },
+        setYanZhi: function (value) {
+          //提供过滤型的代码,提供有限的访问权限
+          if(value >= 999){
+            yanZhi = value;
+          }
+        }
+      }
+    }
+
+    //程序员B
+    var obj1 =  outer(); //调用outer()函数,得到一个返回值是对象,这个对象中包含了4个方法.
+    obj1.setName("帅帅蛋");
+    console.log(obj1.getName());
+    obj1.setYanZhi(1000);
+    console.log(obj1.getYanZhi());
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

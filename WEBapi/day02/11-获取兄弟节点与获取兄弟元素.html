@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li id="li2">隔壁老王2</li>
+    <li>隔壁老王1</li>
+    <!--asfhksfh-->
+    非空文本内容
+
+    <li>隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <!--我是注释-->
+    <li id="li5">隔壁老王5</li>
+</ul>
+
+</body>
+
+<script>
+    /*1.获取兄弟节点: 兼容性一致
+        *  非IE8:文本（包含空文本）  注释  元素
+        *  IE8：非空文本  注释  元素
+     * 上一个节点：元素.previousSibling
+     * 下一个节点：元素.nextSibling
+
+     2.获取兄弟元素（常用）：IE8不支持
+        * 上一个元素： 元素.previousElementSibling
+        * 下一个元素： 元素.nextElementSibling
+     */
+
+    var li2 = document.getElementById('li2');
+    //1.获取上一个节点
+    /*非IE8：文本（包含空文本）  注释  元素节点
+    IE8：非空文本  注释  元素节点
+
+     */
+    console.log ( li2.previousSibling );
+
+    //1.2.获取下一个节点（兼容性与上一个节点一致）
+    console.log ( li2.nextSibling );
+
+    //2.获取兄弟元素(IE8不支持)
+
+    //2.1 获取上一个元素
+    console.log ( li2.previousElementSibling );
+    //2.2 获取下一个元素
+    console.log ( li2.nextElementSibling );
+
+    //测试浏览器兼容性
+    console.log ( getPrevbiousElementSibling ( li2 ) );
+    console.log ( getNextElementSibling ( li2 ) );
+
+    /*兼容性封装：IE8不支持获取兄弟元素的API，只能通过兄弟节点去寻找
+    ele.previousSibling: 这个方法返回值    非空文本  注释  元素   null（第一个节点没有上一个节点）
+    循环次数不固定：while循环
+        * 循环结束的条件： node == null || node.nodeType == 1
+        * 循环成立的条件： node != null && node.nodeType != 1
+     */
+
+    /**
+     * 获取上一个兄弟元素
+     * @param ele   元素
+     * @return 上一个兄弟元素/null
+     */
+    function getPrevbiousElementSibling ( ele ) {
+       var node =  ele.previousSibling;//1.先获取上一个兄弟节点
+        //2.如果不是null 并且节点类型不是1，就继续找上一个兄弟节点
+      while(node != null && node.nodeType != 1 ){
+          node = node.previousSibling;
+      }
+      return node;
+    }
+
+    /**
+     * 获取下一个兄弟元素
+     * @param ele  元素
+     * @return 下一个兄弟元素/null
+     */
+    function getNextElementSibling ( ele ) {
+            var node = ele.nextSibling;//获取下一个节点
+            while (node != null && node.nodeType != 1){//只要下一个节点不是null并且节点类型不是1，则继续往下找
+                node = node.nextSibling;
+            }
+            return node;
+    }
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color: black;
+        }
+
+        p{
+
+            font-size: 200px;
+            text-align: center;
+            color:white;
+
+            transition: all 1s;
+            /* 
+                注意：它比box-shadow少一个参数（阴影大小），文字阴影的大小永远都是跟文字一样
+                参数1：水平偏移，正数代表右边，负数左边
+                参数2：垂直偏移，正数代表下，负数上
+                参数3：阴影模糊度
+                参数4：阴影颜色
+
+            如果多个阴影，用逗号隔开
+            */
+            /* text-shadow: -5px -5px 5px yellow,-10px -10px 5px green,-15px -15px 5px red; */
+        }
+
+        p:hover{
+            text-shadow: -5px -5px 5px yellow,-10px -10px 5px green,-15px -15px 5px red;
+        }
+    </style>
+</head>
+<body>
+    <p>抽利群</p>
+</body>
+</html>

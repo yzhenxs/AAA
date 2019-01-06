@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+
+    //1.
+    // setTimeout(function () {
+    //   console.log(0);
+    // },2000);
+    // setTimeout(function () {
+    //   console.log(1);
+    // },2000);
+    // setTimeout(function () {
+    //   console.log(2);
+    // },2000);
+
+
+    //上面的代码基本一样,想到了for循环.
+    //结果是2秒钟后,输出了10个10,而不是0123456789
+    //原因是什么?
+    //js是单线程的,代码分为主要代码和次要代码,先做主要代码,再做次要代码.
+    //for循环就是主要代码, 计时器的回调函数就是次要代码,要后执行.
+    // for(var i = 0 ; i < 10; i++){
+    //    setTimeout(function () {
+    //      console.log(i);
+    //    },2000);
+    // }
+
+
+
+     //我们想要的不是10个10,而是2秒钟后输出0123456789
+     for(var i = 0 ; i < 10; i++){
+       //思路是:把循环for的每一个i的取值给存起来.后面用计时器取出来.
+       function outer(){
+         var num = i;
+         function inner(){
+           console.log(num);
+         }
+         return inner;
+       }
+
+       //设置计时器.
+       setTimeout(outer(),2000);
+       //设置计时器的时候就已经调用了outer函数,实际上就是把outer函数的返回值inner函数赋值给这个计时器.
+       //2秒钟后,执行的计时器应该调用inner函数.
+     }
+
+
+
+
+
+    //----------------------------------------------------------------------------
+    //复习下setTimeout.
+    //a. 直接执行了这个输出1的代码,2秒后执行这个console.log(1)的返回值.
+    //setTimeout(console.log(1),2000);
+
+    //b.直接执行了test1(),把这个返回值交给这个计时器.
+    // function test1(){
+    //   console.log(1);
+    // }
+    // setTimeout(test1(),2000);
+
+
+    //c.2秒钟后执行test1.
+    // function test1(){
+    //   console.log(1);
+    // }
+    // setTimeout(test1,2000);
+
+
+    //d.设置计时器的时候,就已经调用了test1, 把test1执行后的结果test2赋值给了计时器.
+    //2秒钟后执行test2.
+    // function test1(){
+    //   function test2(){
+    //     console.log("3");
+    //   }
+    //   return test2;
+    // }
+    // setTimeout(test1(),2000);
+
+
+    //e.直接输出3.不会等待2秒.
+    // function test1(){
+    //   function test2(){
+    //     console.log("3");
+    //   }
+    //   return test2;
+    // }
+    // setTimeout(test1()(),2000);
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

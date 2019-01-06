@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            background-color: hotpink;
+            position: relative;
+        }
+
+        #son{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+
+            left: 350px;
+            top: 350px;
+
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="点我" id="btn"/>
+
+    <div id="son"></div>
+</div>
+
+<script>
+    /*1.事件冒泡： 如果一个元素的事件被触发，先执行自己的事件，父元素一级一级往上一次触发
+        * 冒泡顺序： 元素 -> 父元素 ->body ->HTML->document->window(顶级对象)
+      2.事件捕获：如果元素事件被触发，先看最顶级父元素有没有同名事件，如果有就触发，然后依次往下一级一次触发
+        * 捕获顺序： window ->document->HTML->body->父元素->子元素
+      3.事件捕获与事件冒泡完全相反的过程
+      4.事件捕获只有addEventListener()这个方式并且第三个参数是true才是捕获，其他一切方式都是冒泡
+        * 点语法，     addEventListener第三个参数false都是冒泡
+      5.IE8没有捕获
+
+      6.阻止冒泡的同时，也会阻止捕获
+     */
+
+   document.getElementById('btn').addEventListener('click',function (  ) {
+       alert('我是小按钮');
+   },true);
+
+    document.getElementById('box').addEventListener('click',function ( e ) {
+       alert('我是骚粉大盒子');
+       //阻止冒泡的同时也会阻止捕获
+       e.stopPropagation();
+   },true);
+
+    document.body.addEventListener('click',function (  ) {
+        alert('我是body');
+    },true);
+
+   document.documentElement.addEventListener('click',function (  ) {
+       alert('我是HTML');
+   },true);
+
+   document.addEventListener('click',function (  ) {
+       alert('我是document');
+   },true);
+
+    window.addEventListener('click', function (  ){
+        alert("这是window");
+    },true);
+
+    window.addEventListener('click',function (  ) {
+        alert('1111');
+    },true);
+
+</script>
+</body>
+</html>

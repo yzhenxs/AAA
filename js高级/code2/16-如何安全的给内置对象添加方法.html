@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.虽然可以直接的给内置对象构造函数的原型他添加方法,但是我们不推荐直接给内置对象原型添加方法.,因为这样不安全.
+    //程序员A
+    // Array.prototype.sayHi = function () {
+    //   console.log("哈哈哈哈,我是程序员A,我很帅...");
+    // }
+    // //程序员B
+    // Array.prototype.sayHi = function () {
+    //   console.log("你帅你M啊...");
+    // }
+    // //程序员A回来了,声明了一个数组对象,调用sayHi看看
+    // var arr1 = [10,20,30];
+    // arr1.sayHi();
+
+
+
+    (function () {
+      //2.如何安全的给内置对象原型添加方法.
+      function MyArray(){
+
+      }
+      //修改原型. 让我们自定义的这个构造函数的原型指向一个空数组.
+      //目的: 是让我们自定义的这个构造函数实例化的对象们,拥有数组的方法.
+      MyArray.prototype = [];
+
+      //扩展方法.
+      MyArray.prototype.sayHi = function () {
+        console.log("我是程序员A,我很帅...");
+      }
+
+      //实例化对象
+      var arr1 = new MyArray();
+      //arr1.push(10);
+      //console.log(arr1);
+      arr1.sayHi();
+
+    }());
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

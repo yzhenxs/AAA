@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            border: 1px solid black;
+            /* solid表示的是实线,dashed表示的是虚线 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>把图片拖拽到边框内</h1>
+</body>
+
+</html>
+<script>
+    //这个事件是为了让ondrop可以被触发
+    document.ondragover = function (e) {
+        e = e || window.event;
+        e.preventDefault();
+    }
+    //这个事件默认是不会被触发的
+    document.ondrop = function (e) {
+        e = e || window.event;
+        e.preventDefault();
+        var url = URL.createObjectURL(e.dataTransfer.files[0]);
+        document.body.style.background = "url(" + url + ") no-repeat";
+    }
+
+
+</script>

@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .wrapper {
+            width: 1000px;
+            height: 475px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        .tab {
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            height: 36px;
+            width: 320px;
+        }
+        .tab li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+            border-top: 4px solid #fff;
+        }
+        .tab span {
+            position: absolute;
+            right: 0;
+            top: 10px;
+            background: #ddd;
+            width: 1px;
+            height: 14px;
+            overflow: hidden;
+        }
+        .products {
+            width: 1002px;
+            border: 1px solid #ddd;
+            height: 476px;
+        }
+        .products .main {
+            float: left;
+            display: none;
+        }
+        .products .main.selected {
+            display: block;
+        }
+        .tab li.active {
+            border-color: red;
+            border-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <ul class="tab">
+        <li class="tab-item active">国际大牌<span>◆</span></li>
+        <li class="tab-item">国妆名牌<span>◆</span></li>
+        <li class="tab-item">清洁用品<span>◆</span></li>
+        <li class="tab-item">男士精品</li>
+    </ul>
+    <div class="products">
+        <div class="main selected">
+            <a href="###"><img src="images1/guojidapai.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/guozhuangmingpin.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/qingjieyongpin.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/nanshijingpin.jpg" alt=""/></a>
+        </div>
+    </div>
+</div>
+<script>
+    /*需求:点击上方盒子,自身样式发生变化,下方盒子显示相对应的图片*/
+    /*整理思路:
+    * 1.获取上方li数组,获取下方盒子数组
+    * 2.遍历给每个li添加事件和属性下标
+    * 3.改变自己的样式,排他使其他的样式为默认
+    * 4.设置相对应的盒子display为block,排他其他盒子为none*/
+    var liList=document.getElementsByTagName("li");
+    var mainList=document.getElementsByClassName("main");
+    for(var i=0;i<liList.length;i++){
+        liList[i].setAttribute("index",i);
+        liList[i].onclick=function(){
+            var index=this.getAttribute("index")
+            for(var j=0;j<liList.length;j++){
+                if(liList[j]==this){
+                    liList[j].className="active";
+                }else{
+                    liList[j].className="";
+                }
+            }
+            for(var k=0;k<mainList.length;k++){
+                if(k==index){
+                    mainList[k].style.display="block";
+                }else{
+                    mainList[k].style.display="none";
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

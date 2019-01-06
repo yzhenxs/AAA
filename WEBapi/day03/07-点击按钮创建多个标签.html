@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn">点我啊</button>
+<div id="box"></div>
+<script>
+    //测试innerHTML添加元素与createElement方式的性能
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+
+
+
+
+
+   btn.onclick = function (  ) {
+//       1.innerHTML： 900ms
+//        var date = new Date();
+//        // console.time():专门用来测试代码耗时的    参数：当前时间
+//        console.time(date);
+//        for(var i = 1;i<=1000;i++){
+//            box.innerHTML += '<p>我是第' + i + '个p标签</p>';
+//        };
+//        //作用：会自动输出从 console.time()到console.timeEnd（）之间的这段代码编译耗时
+//        console.timeEnd(date);
+
+       //2.createElement:2ms
+       var date = new Date();
+       // console.time():专门用来测试代码耗时的    参数：当前时间
+       console.time(date);
+       for(var i = 1;i<=1000;i++){
+           var p = document.createElement('p');//默认在内存中创建一个空标签
+           p.innerText = '我是第' + i + '个p标签';//需要手动赋值属性
+           box.appendChild(p);//需要使用appendChild添加到页面中
+       };
+       //作用：会自动输出从 console.time()到console.timeEnd（）之间的这段代码编译耗时
+       console.timeEnd(date);
+   }
+
+
+</script>
+</body>
+</html>

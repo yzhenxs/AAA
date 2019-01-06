@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.函数的三种调用模式;函数调用,方法调用,构造函数调用
+    //这三种调用有一个特点:就是this无法更改.
+
+    //lvalue左值: 就是赋值运算符左边的. 比如变量..
+    //rvalue右值: 就是赋值运算符右边的.
+    // var obj = {
+    //   name:"欧阳"
+    // }
+    // function test1(){
+    //   //this = obj;
+    //   console.log(this);
+    // }
+    // test1();
+
+
+    //2.有需求就是要修改函数内部的this的指向,怎么办?
+    //使用函数的第四种调用模式: 上下文调用模式.
+    //call();  apply();  bind();
+
+
+
+    //3.call();
+    //语法: 函数名.call(修改this的指向,args1,arg2,arg3.....);
+    // var obj = {
+    //   name:"欧阳"
+    // }
+    // function getSum(a,b){
+    //   console.log(this);
+    //   console.log(a+b);
+    // }
+    // //getSum(10,20); //如果这样调用,this肯定就是window.
+    //  getSum.call(obj,100,200);
+
+
+
+    //4. apply();
+    //语法:函数名.apply(this修改后的指向,数组或者伪数组);
+    // var obj = {
+    //   name:"欧阳"
+    // }
+    // function getSum(a,b){
+    //   console.log(this);
+    //   console.log(a+b);
+    // }
+    // getSum.apply(obj,[10,20]); //把第二个参数数组里面的元素依次的交给形参.
+
+
+
+    //5.bind();
+    //语法: 函数名.bind(this修改后的指向,参数1,参数2....);
+    //特点: 不会执行这个函数,而是会返回一个修改了this之后的函数.
+     var obj = {
+       name:"欧阳"
+     }
+     function getSum(a,b){
+       console.log(this);
+       console.log(a+b);
+     }
+
+    var fn = getSum.bind(obj); //这里的fn其实就相当于是修改了this之后的getSum.
+    fn(10,20);
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

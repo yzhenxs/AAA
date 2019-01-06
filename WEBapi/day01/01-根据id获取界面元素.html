@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="aaa" style="background-color: red;width: 100px;height: 100px;">我是div</div>
+<script>
+
+    /**1.根据id来获取元素
+     * @param 元素的id（字符串）
+     * @type {HTMLElement | null}   界面元素/null
+     */
+    //获取到的box是一个对象，（dom对象）
+   var box = document.getElementById('aaa');//如果找不到这个id，则返回null
+   console.log ( box );
+   console.log ( typeof box );
+
+
+   //2.了解即可：HTML中id具有唯一性，所以可以直接用元素的id来代表元素，
+    // 但是这种用法很少用,因为有的浏览器不支持
+    //console.log ( aaa );
+</script>
+</body>
+</html>

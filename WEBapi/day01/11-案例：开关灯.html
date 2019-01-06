@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn">关灯</button>
+</body>
+
+<script>
+    /*本小节知识点：如何获取body元素
+    复习一个按钮实现两个功能
+
+     */
+    //第一种方式：标签名获取（返回的是数组，需要通过下标获取body）
+    //var body = document.getElementsByTagName('body')[0];
+    //console.log ( body );
+    //第二种方式：最常用 ： document.body
+    //console.log ( document.body );
+
+    //1.获取元素
+    var btn = document.getElementById('btn');
+    //2.注册事件
+    btn.onclick = function (  ) {
+        //3.事件处理
+        if(btn.innerText == '关灯'){
+            //修改body的背景颜色为黑色
+            document.body.style.backgroundColor = 'black';
+            //自己的文本变成开灯
+            this.innerText = '开灯';
+        }else{
+            //修改body的背景颜色为默认颜色
+            //设置一个元素的属性为空字符串，这个元素的样式就会变成默认样式
+            document.body.style.backgroundColor = '';
+            //自己的文本变成关灯
+            this.innerText = '关灯';
+        }
+    }
+
+</script>
+</html>

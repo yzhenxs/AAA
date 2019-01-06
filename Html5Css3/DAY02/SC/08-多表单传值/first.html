@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" placeholder="请输入姓名" id="name">
+        <input type="text" placeholder="请输入身份证号" id="id">
+        <input type="button" value="点我继续补全资料" id="btn">
+    </form>
+</body>
+</html>
+
+<script>
+
+    var userName = document.getElementById('name');
+    var id = document.getElementById('id');
+
+    document.getElementById('btn').onclick = function(){
+        
+        //把自己的资料临时存起来
+        sessionStorage.setItem('userName',userName.value);
+        sessionStorage.setItem('id',id.value);
+
+
+        //跳转到第二张去
+        location = "second.html";
+    }
+</script>

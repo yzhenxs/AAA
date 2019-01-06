@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .wrap {
+      width: 330px;
+      height: 30px;
+      margin: 100px auto 0;
+      padding-left: 10px;
+      background-image: url(images/bg.jpg);
+    }
+
+    .wrap li{
+      background-image: url(images/libg.jpg);
+    }
+
+    .wrap > ul > li {
+      float: left;
+      margin-right: 10px;
+      position: relative;
+    }
+
+    .wrap a {
+      display: block;
+      height: 30px;
+      width: 100px;
+      text-decoration: none;
+      color: #000;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .wrap li ul {
+      position: absolute;
+      top: 30px;
+      display: none;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //需求: 给三个一级菜单li,设置鼠标移入事件,让他下面的ul显示;  鼠标离开,下面的ul隐藏.
+
+
+      //鼠标移入事件
+      $('.wrap>ul>li').mouseenter(function () {
+        $(this).children('ul').show();
+        console.log("鼠标进来了..");
+      });
+
+      //鼠标移出事件
+      $('.wrap>ul>li').mouseleave(function () {
+        $(this).find('ul').hide();
+        console.log("鼠标离开了");
+      });
+
+
+      //mouseover 事件在鼠标移动到选取的元素及其子元素上时触发 。
+      //mouseenter 事件只在鼠标移动到选取的元素上时触发。
+
+      //so,以后写鼠标移入事件就不要写mouseover了,写mouseenter事件.
+      //   以后写鼠标离开事件就不要写mouseout了,写mouseleave事件.
+
+
+
+    });
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <ul>
+    <li>
+      <a href="javascript:void(0);">一级菜单1</a>
+      <ul>
+        <li><a href="javascript:void(0);">二级菜单1</a></li>
+        <li><a href="javascript:void(0);">二级菜单2</a></li>
+        <li><a href="javascript:void(0);">二级菜单3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:void(0);">一级菜单1</a>
+      <ul>
+        <li><a href="javascript:void(0);">二级菜单1</a></li>
+        <li><a href="javascript:void(0);">二级菜单2</a></li>
+        <li><a href="javascript:void(0);">二级菜单3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:void(0);">一级菜单1</a>
+      <ul>
+        <li><a href="javascript:void(0);">二级菜单1</a></li>
+        <li><a href="javascript:void(0);">二级菜单2</a></li>
+        <li><a href="javascript:void(0);">二级菜单3</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

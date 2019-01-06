@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        IE8和IE8之前的浏览器不支持
+
+        怎么兼容呢？
+
+        直接导入插件，就可以兼容了
+     -->
+
+     <!-- 只要是在使用那些标签之前导入就行了，只要导入就解决了兼容问题 -->
+
+    <!-- 要用CSS hack来让我们的网页更合理，因为IE8以后的浏览器不需要导入，只有IE8以前才要你导入 -->
+    <!--[if lte IE 8]>
+         <script src="html5shiv.js"></script>
+    <![endif]-->
+    
+
+
+     <!-- JSON.parse有兼容性问题，导入json2.js就解决，只要导入就解决 -->
+
+     <style>
+            header{
+    
+                height:200px;
+                background: red;
+            }
+    
+            nav{
+    
+                height:80px;
+                background-color: blue;
+            }
+    
+            main{
+                margin-top: 20px;
+                height:800px;
+                background-color: orange;
+            }
+    
+            section{
+    
+                margin-bottom: 10px;
+                background-color: orangered;
+                height:260px;
+            }
+    
+            aside{
+                background-color: hotpink;
+                height: 100%;
+                width:30%;
+                float: left;
+            }
+    
+            article{
+                background-color: brown;
+                height:100%;
+                width:70%;
+                float: left;
+            }
+    
+            footer{
+    
+                margin-top: 20px;
+                height:100px;
+                background-color: skyblue;
+            }
+        </style>
+</head>
+
+<body>
+
+    <!-- 头部标签 -->
+    <header>
+        <!-- 导航标签 -->
+        <nav></nav>
+    </header>
+
+    <!-- 主体标签 -->
+    <main>
+        <!-- 主体里的小区域 -->
+        <section>
+            <!-- 边栏 -->
+            <aside></aside>
+            <!-- 右侧正文 -->
+            <article></article>
+        </section>
+        <!-- 主体里的小区域 -->
+        <section>
+            <!-- 边栏 -->
+            <aside></aside>
+            <!-- 右侧正文 -->
+            <article></article>
+        </section>
+
+        <!-- 主体里的小区域 -->
+        <section>
+            <!-- 边栏 -->
+            <aside></aside>
+            <!-- 右侧正文 -->
+            <article></article>
+        </section>
+    </main>
+
+
+    <footer></footer>
+    
+</body>
+
+</html>

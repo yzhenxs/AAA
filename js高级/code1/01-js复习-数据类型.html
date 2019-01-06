@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.数据类型
+    // 基本数据类型: number string boolean undefined null
+    // 复杂数据类型: Array Function Object Date Math RegExp(正则表达式) Number String Boolean
+
+    //2.数据类型检测
+    //2.1 typeof
+    //作用:可以检测所有的基本数据类型(null除外),还有function
+    //语法: typeof 需要检测的数据类型
+    //      typeof (需要检测的数据类型);
+    // var num = 123; //number
+    // console.log(typeof  10 + 20); //'number20'
+    // console.log(typeof (10 + 20)); //number
+    // console.log(typeof  null);//object
+    // function test1(){
+    //   console.log("test1");
+    // }
+    // console.log(typeof  test1);//function
+
+    //2.2 检测数组
+    //a. isArray
+    // var arr1 = [10,20,30];
+    // console.log(Array.isArray(arr1)); //true
+    //b.instanceof.
+    //用instanceof来检测数组的数据类型不是很严谨,至于他真正的作用是什么? 等讲完原型链之后再说.
+    // var arr2 = new Array(100,200,300);
+    // console.log(arr2 instanceof  Array); //true
+    // console.log(arr2 instanceof  Object); //true
+
+
+    //2.3 toString();
+    //Object.prototype.toString.call(需要检测数据类型的数据);
+    // console.log(Object.prototype.toString.call(123)); //'[object Number]'
+    // console.log(Object.prototype.toString.call("abc"));//'[object String]'
+    // console.log(Object.prototype.toString.call(true));//'[object Boolean]'
+    // console.log(Object.prototype.toString.call(undefined));//'[object Undefined]'
+    // console.log(Object.prototype.toString.call(null));//'[object Null]'
+    // console.log(Object.prototype.toString.call([10,20,30]));//'[object Array]'
+    // console.log(Object.prototype.toString.call(new Object()));//'[object Object]'
+    // console.log(Object.prototype.toString.call(function () {//'[object Function]'
+    //   console.log("呵呵");
+    // }));
+
+
+    //3.NaN    not a number 不是一个数字.
+    //不是一个类型,是一个数值, 是number数据类型中的一个数值.
+    //isNaN(); 用来判断一个数值是否是数字.
+    //如果你是一个数字,就不是一个NaN,那么isNaN就是一个false.
+    // console.log(isNaN(100)); //false
+    //如果你是不是一个数字,就是一个NaN,那么isNaN就是一个true
+    // console.log(isNaN('abc'));//true
+    //检测的时候,会有一个隐式类型转换
+    // console.log(isNaN('100'));//false
+
+
+    //4.基本包装类型
+    //4.1 Number
+    // var num = 123;
+    // num.toString() //为什么num是一个基本数据类型,能点出方法来?
+    //系统会做一个事情.
+    // var num = new Number(123);
+    // console.log(num);
+    // console.log(num.toString()); //'123'
+    // //如果要取到基本包装类型中的真实的数值,使用valueOf;
+    // console.log(num.valueOf()); //123
+
+
+    //4.2 Boolean
+    // var b1 = true;
+    // b1.toString();
+
+    var b1 = new Boolean(true);
+    console.log(b1);
+    console.log(b1.valueOf());//true
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        select {
+            width: 130px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <select name="" id="sheng">
+
+    </select>
+    <select name="" id="shi"></select>
+    <select name="" id="qu"></select>
+
+</body>
+
+</html>
+
+<script>
+
+    //找到省的下拉框
+    var sheng = document.getElementById('sheng');
+    //找到市的下拉框
+    var shi = document.getElementById('shi');
+    //找到区的下拉框
+    var qu = document.getElementById('qu');
+
+    //页面一打开就应该先把所有的省给查出来再显示到界面上
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'region.php?region_parent_id=1');
+    xhr.send();
+
+    //拿到响应体，先监听响应完成
+    xhr.onload = function () {
+
+        // console.log(xhr.responseText);
+        // 转成JS数组
+        var arr = JSON.parse(xhr.responseText);
+        // console.log(arr);
+
+
+        //遍历数组，数组有多少个元素就创建多少个option
+        for (var i = 0; i < arr.length; i++) {
+
+            //创建option
+            var opt = document.createElement('option');
+
+            opt.innerHTML = arr[i].REGION_NAME;
+            opt.value = arr[i].REGION_ID;
+            //就要调用父元素的appendChild方法才会加到界面上
+            sheng.appendChild(opt);
+        }
+
+        //循环结束后，就有所有省的数据了，直接手动调用一下省的值改变事件就行了
+        sheng.onchange();
+    }
+
+
+    // 值改变事件，一旦值发生改变就会来调用的事件
+    // 对于下拉框而言，就是选中项发生改变就触发的事件
+    sheng.onchange = function () {
+
+        //在查新的市之前把上一次查到的市的结果清空
+        shi.innerHTML = "";
+
+        //我们要拿到选中的这个省的id，再去发一个请求
+        //怎么取id？
+        //下拉框(select)有个属性叫value，它能获取到当前被选中的option的value值
+        //如果被选中的option没有value，那么获取到的是被选中option的innerHTML
+         console.log(sheng.value);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'region.php?region_parent_id=' + sheng.value);
+        xhr.send();
+        //拿到响应体
+        xhr.onload = function () {
+            
+             console.log(xhr.responseText);
+            //转成数组
+            var arr = JSON.parse(xhr.responseText);
+            console.log(arr);
+            for (var i = 0; i < arr.length; i++) {
+
+                //创建option
+                var opt = document.createElement('option');
+                
+                opt.innerHTML = arr[i].REGION_NAME;
+                opt.value = arr[i].REGION_ID;
+                //加到市的下拉框
+                shi.appendChild(opt);
+            }
+            //循环完了后就有所有的市了，手动调用市的值改变事件去查区
+            shi.onchange();
+        }
+    }
+
+    shi.onchange = function(){
+
+        //查新的区之前清掉原来的区
+        qu.innerHTML = "";
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'region.php?region_parent_id=' + shi.value);
+        xhr.send();
+        //拿到响应体
+        xhr.onload = function () {
+
+            // console.log(xhr.responseText);
+            //转成数组
+            var arr = JSON.parse(xhr.responseText);
+
+            for (var i = 0; i < arr.length; i++) {
+
+                //创建option
+                var opt = document.createElement('option');
+                
+                opt.innerHTML = arr[i].REGION_NAME;
+                opt.value = arr[i].REGION_ID;
+                //加到市的下拉框
+                qu.appendChild(opt);
+            }
+        }
+    }
+
+</script>

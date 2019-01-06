@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="box"></div>
+
+</body>
+
+<script src="common.js"></script>
+
+<script>
+    var box = id('box');
+
+    box.onclick = function ( e ) {
+        e = e || window.event;
+
+        //获取鼠标触发点相对于元素自身的位置
+        var x = getPagePoint(e).pageX - this.offsetLeft;
+        var y = getPagePoint(e).pageY - this.offsetTop;
+
+        this.innerText = 'x:' + x  + '  y:' + y;
+    }
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #box{
+        width: 200px;
+        height: 200px;
+        /*border: 5px solid black;*/
+        /*padding: 5px;*/
+        background-color: red;
+        /*border: 10px solid black;*/
+        /*border-top: 20px solid blue;*/
+        overflow: auto;
+    }
+</style>
+
+<body>
+
+<div id="box">
+    <img src="1.jpg" alt="">
+</div>
+
+</body>
+
+<script>
+    /*client家族：获取元素可视区域的大小
+        clientWidth/Height
+        clientLeft/Top
+     */
+    var box = document.getElementById('box');
+    //1.clientLeft/Top:用的不多      其实就是左边框的大小（border-left）  与上边框的大小(border-top)
+    console.log ( box.clientLeft, box.clientTop );
+
+    //2.clientWidth/Height：获取元素可视区域的大小
+    console.log ( box.clientWidth, box.clientHeight );//183      width(200) - 滚动条（17px）
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    .one {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //回忆一下原生js中如何解绑事件的.
+      // document.getElementById("one").onclick = function () {
+      //   console.log("哈哈");
+      // };
+      // document.getElementById("one").onclick = null;
+      // document.getElementById("one").addEventListener();
+      // document.getElementById("one").removeEventListener();
+      // document.getElementById("one").attachEvent();
+      // document.getElementById("one").detachEvent();
+
+
+
+      //jQuery中用on()的方式注册事件,就用off()来解绑事件.
+      //注册事件
+      $('#btn1').on('click', function () {
+        //点击按钮,给div注册事件
+        $('div').on({
+          click: function () {
+            console.log("我是单击事件");
+          },
+          mouseenter: function () {
+            console.log("我是鼠标移入事件");
+          }
+        });
+      });
+
+      //解绑事件.
+      $('#btn2').on('click', function () {
+        //点击按钮,给div解绑事件.
+        //a.如果off()不给参数,解绑所有事件
+        // $('div').off();
+        //b.给参数就解绑指定的事件.
+        $('div').off('mouseenter');
+      });
+
+
+
+    });
+  </script>
+</head>
+<body>
+<input type="button" value="注册事件" id="btn1"/>
+<input type="button" value="解绑事件" id="btn2"/> <br/><br/>
+<div class="one" id="one"></div>
+</body>
+</html>

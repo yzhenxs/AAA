@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!-- 如果只是使用样式是不需要引入js的 -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<style>
+		/*固定宽度且居中的容器 并且跟屏幕宽度的变化而变化  
+		容器会随着屏幕变化 4种屏幕 容器是不一样的
+		大屏幕 1170
+		中 970
+		小 750 
+		超小 自动（100%）
+		容器有一个左右15px的padding
+		容器真实内容宽度 减掉30px 
+		什么时候使用容器： 在PC端需要固定宽度居中的时候就需要使用到这个容器 在PC大量使用*/
+		.container{
+			height: 100px;
+			border:1px solid red;
+		}
+		/*也是和container一样有padding但是盛满全屏的容器*/
+		.container-fluid{
+			height: 100px;
+			border:1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">container</div>
+	<!-- 最大1170px,中屏是970px,小屏是750,超小的话会和设备的屏幕尺寸一样大小 -->
+	<div class="container-fluid">container-fluid</div>
+	<!-- 永远都和屏幕的尺寸大小一样大 -->
+</body>
+</html>

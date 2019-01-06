@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    我是文本
+    <p>我是p标签</p>
+</div>
+<script src="common.js"></script>
+<script>
+    var box = id('box');
+/*
+innerText:只是获取文本（不可以识别标签）
+innerHTML:获取文本及子元素（可以识别标签）
+ */
+    console.log ( box.innerText );
+    console.log ( box.innerHTML );
+
+    //分别修改一个元素的innerText与innerHTML来了解它们的区别
+
+    //innerText会将所有的内容都当成文本（无法识别标签）
+   // box.innerText = '<a>我是a标签</a><div>我是班长</div>';
+
+    //innerHTML可以识别标签
+    box.innerHTML = '<a>我是a标签</a><div>我是班长</div>';
+</script>
+</body>
+</html>

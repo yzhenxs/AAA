@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" value="创建文本框" id="text">
+<input type="button" value="创建密码框" id="password">
+<br>
+</body>
+
+<script>
+    //表单元素默认情况下，type属性是text
+    document.getElementById('text').onclick = function (  ) {
+       var input = document.createElement('input');
+       document.body.appendChild(input);
+    }
+
+    document.getElementById('password').onclick = function (  ) {
+        //表单元素默认情况下type类型是text
+        var input = document.createElement('input');
+        //如果想要修改其他样式，则需要手动设置
+        input.type = 'password';
+        document.body.appendChild(input);
+    }
+</script>
+</html>

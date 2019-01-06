@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <style>
+    .container {
+        height: 100px;
+    }
+    
+    .row div {
+        height: 100px;
+        border: 1px solid green;
+        font-size: 20px;
+        background-color: yellow;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 当你只写了小的但是没有写大的  使用小的 向上兼容大的 -->
+    <!-- 区分的方式 如果同时写了多个类名 大 中 小 超小  该什么屏幕生效就什么屏幕生效
+    但是 如果只写了1个或者2个类名  小 和 超小 在中和大没写 使用小屏幕的样式 -->
+    <div class="container">
+    	<div class="row">
+    		<!-- <div class="col-md-3 col-xs-6">1</div>
+    		<div class="col-md-3 col-xs-6">2</div>
+    		<div class="col-md-3 col-xs-6">3</div>
+    		<div class="col-md-3 col-xs-6">4</div> -->
+
+<!-- 
+            <div class=" col-xs-6">1</div>
+            <div class=" col-xs-6">2</div>
+            <div class=" col-xs-6">3</div>
+            <div class=" col-xs-6">4</div> -->
+
+             <div class=" col-xs-12">1</div>
+            <div class=" col-xs-12">2</div>
+            <div class=" col-xs-12">3</div>
+            <div class=" col-xs-12">4</div>
+    	</div>
+    </div>
+</body>
+
+</html>

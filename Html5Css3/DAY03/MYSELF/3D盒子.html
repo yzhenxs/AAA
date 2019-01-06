@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            /* 以后如果效果不理想，那么把视点往父级加，这一级，再加上一级 */
+            perspective: 1200px;
+            /* 这个加的是视距 */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            height: 200px;
+            width: 200px;
+            position: relative;
+            margin: 220px auto;
+
+            transition: all 30s;
+            transform-style: preserve-3d;
+        }
+
+        ul:hover {
+            /* 这个是变化的快慢速度 */
+            transform: rotateX(3000deg) rotateY(3000deg);
+        }
+
+        li {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+        }
+
+        li:nth-child(1) {
+            background-color: red;
+            left: -200px;
+            transform-origin: right;
+            transform: rotateY(90deg);
+        }
+
+        li:nth-child(2) {
+            background-color: blue;
+            left: 200px;
+            transform-origin: left;
+            transform: rotateY(-90deg);
+        }
+
+        li:nth-child(3) {
+            background-color: pink;
+            top: -200px;
+            transform-origin: bottom;
+            transform: rotateX(-90deg);
+        }
+
+        li:nth-child(4) {
+            background-color: green;
+            top: 200px;
+            transform-origin: top;
+            transform: rotateX(90deg);
+        }
+
+        li:nth-child(5) {
+            background-color: gold;
+
+        }
+
+        li:nth-child(6) {
+            background-color: orangered;
+            transform: translateZ(200px);
+
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

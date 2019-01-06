@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 1.注意引入less的时候不能像传统的CSS一样引入 他要带rel="stylesheet/less" 告诉浏览器当前引入文件是less文件不是CSS文件 -->    
+    <link rel="stylesheet/less" href="demo.less">
+    <!-- 2.引入less.js包 由于这个JS对页面渲染有影响 需要放到head中 但是也要放到less文件后面-->
+    <script src="less/less.js"></script>
+    <!-- 3.要使用服务器打开页面 -->
+</head>
+
+<body>
+    <div>文字</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <a href="#" class="active">
+                    <span>超链接</span>
+                </a>
+                <a href="#">
+                    <span>超链接</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

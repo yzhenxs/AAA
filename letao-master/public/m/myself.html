@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的乐淘项目</title>
+    <!-- 1. 引入mui的CSS -->
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <!--2. 引入字体图标的css文件 -->
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <!-- 3. 引入主页的less rel="stylesheet/less"-->
+    <link rel="stylesheet/less" href="less/index.less">
+    <!-- 4. 引入less.js编译器文件 -->
+    <script src="lib/less/less.js"></script>
+    <style>
+        #main {
+            overflow: hidden;
+        }
+
+        #main div {
+            font-size: 20px;
+        }
+
+        .top {
+            width: 100%;
+            height: 50px;
+            background-color: red;
+            overflow: hidden;
+        }
+
+        .top li {
+            display: block;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <h4>我的乐淘云购</h4>
+        <a href="search.html">
+            <i class="fa fa-search"></i>
+            <!-- 这里运用的是字体图标 -->
+        </a>
+    </header>
+    <!-- 主体区域 -->
+    <main id="main">
+        <div class="mui-scroll-wrapper">
+            <!-- 区域滚动的子容器内容容器 -->
+            <div class="mui-scroll">
+                <div class="top">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                        <li>11</li>
+                        <li>12</li>
+                        <li>13</li>
+                        <li>14</li>
+                        <li>15</li>
+                        <li>16</li>
+                        <li>17</li>
+                        <li>18</li>
+                        <li>19</li>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                        <li>11</li>
+                        <li>12</li>
+                        <li>13</li>
+                        <li>14</li>
+                        <li>15</li>
+                        <li>16</li>
+                        <li>17</li>
+                        <li>18</li>
+                        <li>19</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域滚动的父容器 -->
+        <div class="mui-scroll-wrapper">
+            <!-- 区域滚动的子容器内容容器 -->
+            <div class="mui-scroll">
+                <!-- 这个时候发现就有滑动效果了 -->
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>10</div>
+                <div>11</div>
+                <div>12</div>
+                <div>13</div>
+                <div>14</div>
+                <div>15</div>
+                <div>16</div>
+                <div>17</div>
+                <div>18</div>
+                <div>19</div>
+                <div>20</div>
+                <div>21</div>
+                <div>22</div>
+                <div>23</div>
+                <div>24</div>
+                <div>25</div>
+                <div>26</div>
+                <div>27</div>
+                <div>28</div>
+                <div>29</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>10</div>
+                <div>11</div>
+                <div>12</div>
+                <div>13</div>
+                <div>14</div>
+                <div>15</div>
+                <div>16</div>
+                <div>17</div>
+                <div>18</div>
+                <div>19</div>
+                <div>20</div>
+                <div>21</div>
+                <div>22</div>
+                <div>23</div>
+                <div>24</div>
+                <div>25</div>
+                <div>26</div>
+                <div>27</div>
+                <div>28</div>
+                <div>29</div>
+            </div>
+        </div>
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <div class="mui-row">
+            <!-- .mui-col-xs-3*4>a[href="#"]>i.fa.fa-home+span{首页} -->
+            <div class="mui-col-xs-3">
+                <a href="index.html">
+                    <i class="fa fa-home"></i>
+                    <span>首页</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="category.html">
+                    <i class="fa fa-bars"></i>
+                    <span>分类</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="cart.html">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>购物车</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="user.html">
+                    <i class="fa fa-user"></i>
+                    <span>会员中心</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 5. 引入zepto.js -->
+    <script src="lib/zepto/zepto.min.js"></script>
+    <!-- 6. 引入mui.js -->
+    <script src="lib/mui/js/mui.js"></script>
+    <!-- 7. 引入模板引擎的JS 注意引入template-web.js-->
+    <script src="lib/artTemplate/template-web.js"></script>
+    <!-- 8. 引入主页自己的JS文件 -->
+    <script src="js/index.js"></script>
+</body>
+
+</html>

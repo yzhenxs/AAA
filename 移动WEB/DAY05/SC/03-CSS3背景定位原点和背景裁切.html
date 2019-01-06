@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    .box {
+        width: 500px;
+        height: 500px;
+        padding: 100px;
+        border:50px solid rgba(0,0,0,0.1);
+        background-color: red;
+        background-image: url(images/sprites.png);
+        
+        /*背景图的定位起点 使用背景图 参照的也是内容区域的左上角*/
+        background-origin: content-box;	
+        /*改变背景图的裁切 只有content-box范围内有背景图*/
+        background-clip: content-box;
+    }
+    .inner{
+    	width: 100%;
+    	height: 100%;
+    	/*background-color: #0f0;*/
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+    	 文字
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="移动到400" id="move400"/>
+<input type="button" value="移动到800" id="move800"/>
+
+<div id="box"></div>
+
+</body>
+
+<script>
+    var box = document.getElementById('box');
+    /*目前我们的代码存在哪些问题“：
+    1.代码冗余
+    2.移动的距离写死的
+    3.移动得元素写死的
+    4.移动方向写死的（只能从左往右不能从右往左）
+     */
+
+    var timeID = null;
+    //移动到四百
+    document.getElementById('move400').onclick = function (  ) {
+        //每一次移动之前，无条件清除上一次定时器(避免其他定时器造成干扰)
+       clearInterval(timeID);
+        timeID =     setInterval(function (  ) {
+                //1.获取元素当前位置
+                var currentLeft = box.offsetLeft;
+                //2.计算本次移动的距离
+                currentLeft += 10;
+                //3.边界检测
+                if(currentLeft < 400){
+                    box.style.left = currentLeft + 'px';
+                }else{//到达目的地
+                    clearInterval(timeID);//清除定时器
+                    box.style.left = '400px';
+                }
+            },50);
+    }
+
+    //移动到八百
+    document.getElementById('move800').onclick = function (  ) {
+
+        /*正常情况下：如果用户点击移动到800，此时第一次应该是先结束上一次移动，清除之前的定时器
+         */
+        //每一次移动之前，先结束上一次的定时器
+        clearInterval(timeID);
+
+        timeID =     setInterval(function (  ) {
+            //1.获取元素当前位置
+            var currentLeft = box.offsetLeft;
+            //2.计算本次移动的距离
+            currentLeft += 10;
+            //3.边界检测
+            if(currentLeft < 800){
+                box.style.left = currentLeft + 'px';
+            }else{//到达目的地
+                clearInterval(timeID);//清除定时器
+                box.style.left = '800px';
+            }
+        },50);
+    }
+</script>
+
+</html>

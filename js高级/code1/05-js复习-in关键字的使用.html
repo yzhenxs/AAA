@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.in关键字的使用.
+    //1.1 forin用来遍历对象和数组.
+//     var obj = {
+//       name:'欧阳冬萍',
+//       age:18
+//     };
+//     for(var key in obj){
+//       console.log(key);
+    //key在这里代表的是对象所拥有的属性
+//       console.log(obj[key]);
+//     }
+
+
+//     var arr = [10,20,30,40,50];
+//     console.log(arr);
+//     for(var key in arr){
+//       console.log(key);
+//      console.log(arr[key]);
+//     }
+
+
+
+
+    //1.2 判断一个对象能否调用某个属性或者方法.
+    //语法: '属性' in 对象.
+//     var obj = {
+//       name:'谢丽群',
+//       age :18
+//     };
+//     console.log('name' in obj); //true
+//     console.log('age' in obj); //true
+//     console.log('toString' in obj); //true
+//     console.log('gender' in obj);//false
+
+
+
+    //判断数组中有没有某个下标.
+//     var arr = [1,2,3,4,5,6];
+//     console.log(0 in arr); //true
+//     console.log(1 in arr); //true
+//     console.log(2 in arr); //true
+//     console.log(6 in arr); //false
+
+
+    //稀疏数组.
+//    var arr1 = [1,2,3];
+//    arr1[6] = 10;
+//    console.log(4 in arr1);//false
+//    console.log(arr1);
+
+
+    //思考题:
+    //判断数组中有没有某个值用什么? indexOf
+//    console.log(arr1.indexOf(10)); //返回10这个值在数组中对应的下标6.
+//    console.log(arr1.indexOf(100)); //没有这个元素,就返回-1.
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

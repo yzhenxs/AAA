@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.闭包的作用01
+    //延长变量的声明周期.
+
+    // function test1(){
+    //   var num  = 10;
+    // }
+    // //函数内部的局部变量在函数外面访问不了,原因是他已经被回收了.
+    // //局部变量的生命周期: 局部变量在声明他的这个函数被调用完后就会回收.
+    // test1();
+    // console.log(num);//报错了,为什么.
+
+
+    //----------------------------
+    function outer(){
+      var num = 100;
+      function inner(){
+        console.log(num);
+      }
+      return inner;
+    }
+    var fn = outer();
+    fn(); //本来outer函数执行完毕,局部变量num就应该被回收,但是现在有一个inner函数在指向这个num,所以不能回收,延长了num变量的生命周期.
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

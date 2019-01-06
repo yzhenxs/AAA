@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    /*location:记录浏览器地址栏信息
+protocol:协议名  http https
+host:主机  域名（ip地址）hostname+端口号port
+hostname：域名（ip）
+port:端口号
+href:完整的地址栏路径
+hash:资源定位符（瞄点定位）
+     */
+    console.log ( window.location.protocol );//http
+    console.log ( location.host );
+    console.log ( location.hostname );
+    console.log ( location.port );
+
+    console.log ( location.href );//http://localhost:63342/%E4%B8%8A%E8%AF%BE%E4%BB%A3%E7%A0%81/day04/12-location%E5%AF%B9%E8%B1%A1.html?_ijt=id93db1p1sr26r8f159cui5ca5
+    console.log ( location.hash );//#
+</script>
+</html>

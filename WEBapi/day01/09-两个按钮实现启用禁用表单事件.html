@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--表单元素有一个特殊的属性叫做disable，这个属性只要写上去的就生效
+原理：disable属性只有两个值true和false   ，默认情况下不写就是false，写了就是true
+如果想用js来改变这个属性，只需要赋值true和false即可
+类型这种属性还有一些：   selected(option)   checked(radio)
+-->
+<div>
+    <input type="text"><br>
+    <input type="button" value="我是表单按钮"><br>
+    <input type="radio"><br>
+</div>
+
+<button id="qy">启用</button>
+<button id="jy">禁用</button>
+
+<script>
+    /*1.需求分析：（1）点击启用，页面所有input标签可用 （2）点击禁用，页面所有的input标签不可用
+    2.思路分析
+        * （1）获取元素（按钮）
+        * （2）注册事件（点击）
+        * （3）事件处理
+            * 如果点击启用按钮，获取所有的input元素设置disable属性为false
+            * 如果点击禁用按钮，获取所有的input元素设置disable属性为true
+     */
+
+    //1.获取元素
+    var qy = document.getElementById('qy');//启用按钮
+    var jy = document.getElementById('jy');//禁用按钮
+    var inputList = document.getElementsByTagName('input');//input元素数组
+
+    //2.注册事件
+
+    //启用按钮
+    qy.onclick = function (  ) {
+        //3.事件处理
+        //设置inputList数组中所有的input元素的disable属性为false
+        for(var i = 0;i<inputList.length;i++){
+            inputList[i].disabled = false;
+        }
+    }
+    //禁用按钮
+    jy.onclick = function (  ) {
+        //3.事件处理
+        //设置inputList数组中所有的input元素的disable属性为true
+        for(var i = 0;i<inputList.length;i++){
+            inputList[i].disabled = true;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.闭包
+    //可以访问函数内部的局部变量的函数,称为闭包.  函数内部声明的函数.
+    //闭包就是能够读取其他函数内部变量的函数， 由于在 Javascript 语言中，只有函数内部的子函数才能读取局部变量， 因此可以把闭包简单理解成 “定义在一个函数内部的函数”。 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。
+    // function test1(){
+    //   var num = 10;
+    //   function test2(){
+    //     console.log(num);
+    //   }
+    // }
+
+
+
+    function test1(){
+      var num = 10;
+      function test2(){
+        console.log(num);
+      }
+      return test2; //在函数test1中有一个返回值,返回值是函数test2本身.
+    }
+
+    //闭包作用:就是为了在函数外部访问函数内部的局部变量用的.
+    var fn = test1(); //调用test1函数,就会返回test2,此时fn其实就相当于test2.
+    fn(); //那我在这里调用fn,其实就相当于调用test2函数.
+
+
+
+
+
+    //------------------------------------------
+    // var fn1 = (function () {
+    //   var num = 100;
+    //   function inner(){
+    //     console.log(num);
+    //   }
+    //   return inner;
+    // }());
+    //
+    // //由于这是一个自执行函数,不需要手动调用.此时fn1就相当于inner函数.
+    // fn1(); //调用fn1函数,就相当于调用inner函数,就可以访问num的值了.
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

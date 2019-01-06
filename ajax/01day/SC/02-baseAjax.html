@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        请求三大部分：
+                请求行：指定了请求的方式和请求的路径
+                请求头：发请求时的具体环境信息
+                请求体：发送给服务器的内容，一般get请求没有请求体，post请求有请求体
+
+
+        ajax也是一套发送局部请求的技术，只要是发请求，也得包含这三大部分
+
+     -->
+</head>
+
+<body>
+
+    <input type="button" value="点我啊" id="btn">
+
+    <div id="box" style="color:red;"></div>
+</body>
+
+</html>
+
+<script>
+
+    //找到div
+    var box = document.getElementById('box');
+
+    document.getElementById('btn').onclick = function () {
+
+        //1.创建请求对象,一般我们会把XMLHttpRequest这个对象简称为xhr
+        var xhr = new XMLHttpRequest();
+
+        //2. 设置请求行
+        //参数1：请求的方式
+        //参数2：请求的路径
+        //理解为打电话中的拨号
+        xhr.open('get', 'data.php');
+
+
+        //3. 设置请求头(get请求不用设置请求头，post请求才需要设置)
+
+        //发请求的目的是为了拿到响应体
+        //监听一个事件，叫响应完成事件
+        //一般规范写法是把事件写在send的前面，但是写在后面也没有影响（在不可能用的那种环境下有影响）
+        xhr.onload = function () {
+
+            //当响应完成会调用这个函数
+            //    console.log('....');
+            // console.log(xhr.responseText);
+
+            box.innerHTML = xhr.responseText;
+
+        }
+
+
+        //4. 设置请求体&发送请求,因为现在这个请求不需要提交数据，所以，请求体为空
+        //按下拨号键 发送请求是一个网络操作
+        xhr.send();
+
+    };
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+    /*
+    1.获取页面可视区域兼容性封装
+
+    2.获取页面大小变化的事件
+        window.onresize:没有兼容性问题
+     */
+    // //1.谷歌火狐
+    // console.log ( window.innerWidth, window.innerHeight );
+    // //2.IE8:
+    // console.log ( document.documentElement.clientWidth, document.documentElement.clientHeight );
+    // //3.其他情况
+    // console.log ( document.body.clientWidth, document.body.clientHeight );
+
+    window.onresize = function (  ) {
+        console.log ( "网页大小发生变化" );
+        console.log ( getClient ().clientWidth, getClient ().clientHeight );
+    }
+
+    //获取网页可视区域兼容性封装
+    function getClient (  ) {
+        var x = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0;
+        var y = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+        return {
+            clientWidth : x,
+            clientHeight : y
+        }
+    }
+</script>
+</html>

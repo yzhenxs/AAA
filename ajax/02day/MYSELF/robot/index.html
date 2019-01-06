@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .chatBox {
+
+            width: 400px;
+            border: 1px solid gainsboro;
+            margin: 50px auto;
+        }
+
+        .container {
+            width: 100%;
+            height: 550px;
+            background-color: #fff;
+            padding: 0;
+            list-style: none;
+            overflow: auto;
+        }
+
+        .sendBox {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .robot {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .chat-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border-radius: 20px;
+        }
+
+        .robot .text {
+            border-radius: 8px;
+            background-color: #f4f7f9;
+            margin-left: 10px;
+            max-width: 210px;
+            line-height: 20px;
+            word-break: break-all;
+            word-wrap: break-word;
+            display: inline-block;
+            padding: 5px 0px 5px 5px;
+        }
+
+        .chat-icon {
+            background: url('./微信图片_20180728231136.jpg') 0% 0% / 100% 100% no-repeat;
+        }
+
+        .user {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .user p {
+
+            border-radius: 8px;
+            background-color: #f4f7f9;
+            margin-right: 10px;
+            max-width: 210px;
+            line-height: 20px;
+            word-break: break-all;
+            word-wrap: break-word;
+            display: inline-block;
+            padding: 5px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chatBox">
+
+        <!-- 聊天记录区域 -->
+        <ul class="container">
+            <li class="robot">
+                <span class="chat-icon"></span>
+                <p class="text">我是黑马机器人，小主人，快来聊天吧！</p>
+            </li>
+
+            <!-- <li class="user">
+                <p>你好！</p>
+            </li> -->
+        </ul>
+
+        <!-- 输入文字区域 -->
+        <div class="sendBox">
+            <input type="text" id="msg">
+            <input type="button" value="发送" id="send">
+        </div>
+    </div>
+</body>
+
+<script src="./myAjax.js"></script>
+
+<script>
+    var msg = document.getElementById('msg');
+    var container = document.getElementsByClassName('container')[0];
+    //var container =document.querySelector('.container');
+    //先创建一个点击事件
+    document.getElementById('send').onclick = function () {
+        //将输入的内容显示在用户页面那边
+        var userli = '<li class="user"><p>' + msg.value + '</p></li>';
+        container.innerHTML += userli;
+
+        //可以直接调用封装好的函数来用
+        ajax('post', 'http://www.tuling123.com/openapi/api', "key=d5f1bab6345047cf8a1b6b72ecccc51b&userid=110&info=" + msg.value, function (obj) {
+            var res = JSON.parse(obj);
+            //需要把这个值显示在李标签中
+            var robot = '<li class="robot"><span class="chat-icon"></span> <p class="text">' + res.text + '</p></li>';
+
+            container.innerHTML += robot;
+            //然后发现bug,就是每次点击发送完后,文本框里面内容不能自己清空
+            //需要在点击后清空文本框
+
+            //发现聊天内容多的时候,聊天框不会自动向上滚动,达不到想要的效果
+            var height = 0;
+            for (var i = 0; i < container.children.length; i++) {
+                height += container.children[i].offsetHeight;
+            }
+            container.scrollTop = height;
+           
+        });
+        msg.value = "";
+
+        // //创建访问对象
+        // var xhr = new XMLHttpRequest();
+        // //设置访问行
+        // xhr.open('post', 'http://www.tuling123.com/openapi/api');
+        // //设置访问头
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // //设置访问体
+        // xhr.send("key=d5f1bab6345047cf8a1b6b72ecccc51b&userid=110&info=" + msg.value);
+
+        // xhr.onreadystatechange = function () {
+
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+
+        //         //console.log(xhr.responseText);//返回的是一个json语句
+        //         //转换成为了一个js语句
+        //         //console.log(JSON.parse(xhr.responseText));
+
+        //         var obj = JSON.parse(xhr.responseText);
+        //         //需要把这个值显示在李标签中
+        //         var robot = '<li class="robot"><span class="chat-icon"></span> <p class="text">' + obj.text + '</p></li>';
+
+        //         container.innerHTML += robot;
+        //         //然后发现bug,就是每次点击发送完后,文本框里面内容不能自己清空
+        //         //需要在点击后清空文本框
+
+        //         //发现聊天内容多的时候,聊天框不会自动向上滚动,达不到想要的效果
+        //         var height = 0;
+        //         for (var i = 0; i < container.children.length; i++) {
+        //             height += container.children[i].offsetHeight;
+        //         }
+        //         container.scrollTop = height;
+        //     }
+        //     //加载记录后,需要把文本框中的内容清除掉
+        //     msg.value = "";
+        // }
+
+    }
+
+    //用键盘上的enter键发送应该同点击鼠标达到同样的效果
+    msg.onkeypress = function (e) {
+        e = e || window.event;
+        var code = e.keyCode || e.charCode;
+        console.log(code);
+
+        //这时得出结果按下enter时候打印的是13
+        //所以13的值就是13
+        if (code == 13) {
+            //代表你按下的是enter键
+            //可以手动调用发送按钮来执行点击事件
+            document.getElementById('send').onclick();
+        }
+    }
+
+
+//今天这个终于全部搞定了,太他妈有意思了
+
+
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 2000px;
+      height: 2000px;
+    }
+    div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      overflow: auto;
+    }
+    img {
+      vertical-align: top;
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //1.原生js中三大家族 scroll家族  scrollLeft  scrollTop 原生中代表滚出去的内容.
+
+
+      //2.jQuery中也有scrollTop()和scrollLeft();他们代表的意义是否和原生js中的一样呢? 是一样
+      //都是代表滚出去的内容宽高.
+      $('#btn').on('click', function () {
+        console.log($('div').scrollLeft() + ":" + $('div').scrollTop());
+      });
+
+
+      //3.scroll方法  滚动事件.
+      $('div').on('scroll', function () {
+        console.log($(this).scrollLeft() + ":" + $(this).scrollTop());
+      });
+
+
+      //4.有些时候,我们要获取页面滚出去的部分.
+      // 获取页面被卷曲的高度  $(window).scrollTop();
+      // 获取页面被卷曲的宽度  $(window).scrollLeft();
+      $(window).on('scroll', function () {
+        console.log($(this).scrollLeft() + ":" +$(this).scrollTop());
+      });
+
+
+    });
+  </script>
+
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<div>
+  <img src="1.jpg" alt=""/>
+</div>
+</body>
+</html>

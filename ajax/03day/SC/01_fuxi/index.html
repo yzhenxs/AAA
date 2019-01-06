@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="sel">
+        <!-- <option value="">苹果</option>
+        <option value="">香蕉</option>
+        <option value="">西瓜</option>
+        <option value="">牛奶</option> -->
+
+        <option >苹果</option>
+        <option >香蕉</option>
+        <option >西瓜</option>
+        <option >牛奶</option>
+    </select>
+</body>
+</html>
+
+<script>
+    var sel =  document.getElementById('sel');
+    // onchange事件：当它选中的值发生改变就会触发
+    document.getElementById('sel').onchange = function(){
+
+        //获得是被选中的option的value值，如果没有value这个类，那么获得的是被选中的option的innerHTML的值
+        console.log(sel.value);//发现如果option标签里面有value类名属性时候,你得到的是它的值,如果标签
+        //没有这个类名,你得到的就是标签的innerHTML的值,是有差别的
+
+    }
+
+</script>

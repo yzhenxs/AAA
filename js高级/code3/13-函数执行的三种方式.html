@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.函数的三种执行方式- 理解函数中的this的指向.
+    //不要看函数是如何声明的.要看他是如何调用的; 谁调用这个函数,那么这个函数中的this就是谁.
+
+
+
+    //1.1 作为普通函数调用.
+    //this的指向是window.
+    function test1(){
+      console.log("哈哈");
+      console.log(this);
+    }
+    //test1();
+
+
+    //1.2 作为方法调用.
+    //谁点出这个方法调用,那这个方法中的this就是谁.
+    var name = "我是window中的name";
+    var obj = {
+      name:'欧阳冬萍',
+      sayHi: function () {
+        console.log("哈哈,我是"+this.name);
+      }
+    }
+    //obj.sayHi();
+
+
+    //1.3  下面这句话是对test1这个函数重新赋值. 赋obj.sayHi这个函数体.
+    // test1 = obj.sayHi;
+    // test1(); //window下的name
+    // //不要看函数是如何声明的.要看他是如何调用的; 谁调用这个函数,那么这个函数中的this就是谁.
+
+
+    //1.4  下面这句话是对obj.sayHi这个方法重新赋值,赋test1的函数体.
+    // obj.sayHi = test1;
+    // obj.sayHi(); //方法是obj点出来调用的,所以方法中的this就是obj这个对象.
+
+
+
+    //1.5 作为构造函数调用.
+    //配合new关键字使用,构造函数中的this就是new关键字创建出来的对象.
+    function Student(name,age){
+      this.name = name;
+      this.age = age;
+      console.log(this);
+    }
+    //var s1 =  new Student("区志玲",16);
+
+
+    //把构造函数作为普通函数调用,this就是window.
+    //Student("区志玲",16);
+
+
+
+    //1.6
+    function test2(xx){
+      console.log("哈哈");
+      this.xx = xx;
+      console.log(this);
+    }
+    //把普通函数当做构造函数配合new关键字使用,那这个函数中的this就是new关键字创建出来的对象.
+    var t1 = new test2(55);
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

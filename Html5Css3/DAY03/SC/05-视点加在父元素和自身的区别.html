@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        如果视点加在每个元素身上，那么看起来的效果是：每个镜头都拍了一次元素的变换再展现
+
+        如果视点加在父元素身上，那么看起来的效果是：中间正对镜头的元素效果要正一点，两边的偏一点
+            原因：只有一个镜头，那么两边的元素用余光看的，所以会有一点点偏
+        
+        以后用视点加在父元素身上这一种，因为这一种才能营造现实中真正的3D视觉效果
+     -->
+
+    <style>
+        ul{
+            list-style: none;
+            padding: 0;
+
+            width: 620px;
+            height:200px;
+            border: 1px solid #000;
+
+            margin: 50px auto;
+        }
+
+        li{
+
+            width: 180px;   
+            height: 180px;
+            margin-left: 20px;
+            margin-top: 10px;
+            float: left;
+
+            background-color:greenyellow;
+
+            transition: all 1s;
+        }
+
+        ul:first-child li{
+
+            transform: perspective(500px);
+        }
+        
+        /* 移入到第一个ul的时候改变它里面的li */
+        ul:first-child:hover li{
+
+            transform: perspective(500px) rotateY(90deg);
+        }
+
+
+        ul:last-child{
+
+            /* 如果视点加在父元素，不能用transform，而是直接用perspective属性 */
+            perspective: 500px;
+
+            /* transform: perspective(500px); */
+        }
+
+        ul:last-child:hover li{
+
+            transform: rotateY(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 每个li都加了一个视点 -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- 只加一个视点，加在父元素（ul） -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

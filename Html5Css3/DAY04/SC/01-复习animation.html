@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .box{
+
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+            /* 最后一个参数：代表是否继续动画，给paused代表暂停，默认是running，代表动画播放 */
+            animation: scale 1s .2s linear infinite forwards alternate paused;
+
+            /* animation-name: scale;
+            animation-duration: 1s;
+            animation-delay: .2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-direction: alternate;
+            animation-play-state: paused; */
+
+        }
+
+        .box:hover{
+
+            /* animation:  */
+            animation-play-state: running;
+        }
+
+        /* 要用animation属性之前，需要先写一个动画的剧本，告诉别人应该怎么动 */
+        @keyframes scale{
+            
+            /* from里一般不写东西 */
+            from{}            
+            /* 一般把动画效果写在to里面，to里面就写你想让元素用动画变成什么样子 */
+            to{
+
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

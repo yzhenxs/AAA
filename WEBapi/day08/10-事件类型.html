@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+        事件对象.type  能获取到触发事件的事件名
+    -->
+</head>
+<body>
+
+<input type="button" value="按钮" id="btn"/>
+<script>
+    /*事件类型：e.type
+        * 获取触发当前这个事件的类型，去掉on  例如：click  mouseover
+
+    一个元素多个不同的事件需要执行的函数是一样的，如何知道这个函数到底是被哪一个事件触发的呢
+
+     */
+
+    //点击事件：执行函数test
+    document.getElementById('btn').onclick = test;
+    //鼠标移入事件：执行函数test
+    document.getElementById('btn').onmouseover = test;
+
+    function test ( e ) {
+        //获取当前触发这个事件的事件类型：没有on
+        console.log ( e.type );
+        console.log('1111');
+    }
+</script>
+</body>
+
+
+</html>

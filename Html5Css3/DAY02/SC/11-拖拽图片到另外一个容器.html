@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+    
+        div{
+            width: 350px;
+            height: 480px;
+            border: 1px solid #000;
+            position: absolute;
+        }
+
+        .leftBox{
+            left:50px;
+            top:50px;
+        }
+
+        .rightBox{
+
+            right:50px;
+            top:50px;
+        }
+
+
+        img{
+
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="leftBox">
+        <img src="images/1.jpg" alt="">
+        <img src="images/2.jpg" alt="">
+        <img src="images/3.jpg" alt="">
+        <img src="images/4.jpg" alt="">
+        <img src="images/5.jpg" alt="">
+    </div>
+    <div class="rightBox"></div>
+</body>
+</html>
+
+<script>
+    //找到左右两边盒子
+    var leftBox = document.querySelector('.leftBox');
+    var rightBox = document.querySelector('.rightBox');
+    //找到所有img
+    var imgList = document.getElementsByTagName('img');
+
+    //准备一个记录当前被拖拽元素的变量
+    var currentImg;
+
+    //再给所有img加拖拽开始事件
+    for(var i = 0; i < imgList.length; i++){
+
+        imgList[i].ondragstart = function(){
+
+            //保存在全局变量
+            currentImg = this;
+        }
+    }
+
+    //此事件，仅仅只是为了让ondrop事件可以触发
+    rightBox.ondragover = function(e){
+        e = e || window.event;
+        e.preventDefault(); 
+    }
+
+    //既在我里面又松手才触发
+    rightBox.ondrop = function(){
+
+        //要把被拖拽的图片加到rightBox作为子元素
+        rightBox.appendChild(currentImg);
+    }
+</script>

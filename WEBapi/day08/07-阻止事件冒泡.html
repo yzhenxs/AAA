@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            background-color: hotpink;
+            position: relative;
+        }
+
+        #son{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+
+            left: 350px;
+            top: 350px;
+
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="点我" id="btn"/>
+
+    <div id="son"></div>
+</div>
+
+
+<script src="common.js"></script>
+
+<script>
+    /*1.阻止事件冒泡：只会触发当前元素的事件，不会触发父元素的事件
+        语法：e.stopPropagation()
+        IE8:e.cancelBubble = true;
+    2.注意点：一定要获取事件对象
+     */
+   id('btn').onclick = function (  ) {
+       alert('我是小按钮');
+   }
+
+   id('box').onclick = function ( e ) {
+       alert('我是骚粉的大盒子');
+
+   }
+
+   document.body.onclick = function ( e ) {
+       alert('我是body');
+       e = e || window.event;
+       //阻止冒泡：只会触发当前元素的事件，不会触发父元素的事件
+       //IE8不支持
+       //  e.stopPropagation();
+       //IE8
+       //e.cancelBubble = true;//阻止冒泡
+
+       stopPropagation(e);
+   }
+
+   document.documentElement.onclick = function (  ) {
+       alert('我是HTML');
+   }
+
+   document.onclick = function (  ) {
+       alert('我是document');
+   }
+
+   window.onclick = function (  ) {
+       alert('我是window');
+   }
+
+   function  stopPropagation  (  e) {
+       if(e.stopPropagation){
+           e.stopPropagation();
+       }else{
+           e.cancelBubble = true;
+       }
+   }
+</script>
+</body>
+</html>

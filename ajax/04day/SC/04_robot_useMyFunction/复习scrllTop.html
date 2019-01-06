@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .box{
+
+            width: 300px;
+            height: 300px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="box" class="box">
+        <img src="big.jpg" alt="">
+    </div>
+
+    <input type="button" id="btn" value="点我滚动">
+</body>
+</html>
+
+<script>
+
+    var box = document.getElementById('box');
+    document.getElementById('btn').onclick = function(){
+
+        //用来获取或者设置垂直方向内容的滚动距离
+        //换句话说就是能控制滚动条往下面滚动
+        box.scrollTop = 957;
+    };
+</script>

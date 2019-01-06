@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        xxx-of-type和xxx-child 非常像！
+
+        唯一的区别在于：xxx-of-type就是直接找到第几个，不用再子元素中也是第几个
+
+        不是指整个网页中的第几个，而是指它那一块里的第几个
+     -->
+
+     <style>
+
+         /* 代表就是找到第一个li,不需要在子元素中是第一个 */
+         li:first-of-type{
+
+             color:red;
+         }
+         
+         /* 就是找到第三个li,不需要在子元素中是第三个  */
+         li:nth-of-type(3){
+
+             color:green;
+         }
+
+         li:last-of-type{
+             color:blue;
+         }
+     </style>
+</head>
+<body>
+    <ul>
+        <span>我是span</span>
+        <li>隔壁老王1</li>
+        <li>隔壁老王2</li>
+        <li>隔壁老王3</li>
+        <li>隔壁老王4</li>
+        <li>隔壁老王5</li>
+        <li>隔壁老王6</li>
+        <li>隔壁老王7</li>
+        <li>隔壁老王8</li>
+        <li>隔壁老王9</li>
+        <li>隔壁老王10</li>
+        <span>我是最后一个span</span>
+    </ul>
+
+    <ul>
+        <li>隔壁老周1</li>
+        <li>隔壁老周2</li>
+        <li>隔壁老周3</li>
+        <li>隔壁老周4</li>
+        <li>隔壁老周5</li>
+        <li>隔壁老周6</li>
+        <li>隔壁老周7</li>
+        <li>隔壁老周8</li>
+        <li>隔壁老周9</li>
+        <li>隔壁老周10</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.js继承的实现方式
+
+    //1.1 混入式.
+    // var wangjianlin = {
+    //   house: {
+    //     address:"东京",
+    //     price:10000000
+    //   },
+    //   car:{
+    //     brand:'法拉利',
+    //     price:5000000
+    //   }
+    // };
+    // var wangsicong = {
+    //   girlFriends:['雪梨','豆得儿','某个嫩模','林更新'],
+    // }
+    // //wangsicong这个对象想拥有wangjianlin这个对象的house和car. 可以从wangjianlin那里继承.
+    // for(var key in wangjianlin){
+    //   wangsicong[key] = wangjianlin[key];
+    // }
+    // console.log(wangsicong);
+
+
+
+    //1.2 替换原型继承
+    // var wangjianlin = {
+    //   house: {
+    //     address:"东京",
+    //     price:10000000
+    //   },
+    //   car:{
+    //     brand:'法拉利',
+    //     price:5000000
+    //   }
+    // };
+    // //声明的ZhaNan构造函数.
+    // function ZhaNan(gfs){
+    //   this.gfs = gfs;
+    // }
+    // ZhaNan.prototype.huaQian = function () {
+    //   console.log("我是渣男,很会都女孩子开心,请吃6块钱麻辣烫....");
+    // }
+    // //替换原型继承.  有一个缺点:原来原型中的方法会丢失.
+    // ZhaNan.prototype = wangjianlin;
+    // //根据ZhaNan构造函数创建一个对象
+    // var wangsicong = new ZhaNan(['雪梨','豆得儿','某个嫩模','林更新']);
+    // console.log(wangsicong);
+
+
+
+    //1.3 混合式.
+    var wangjianlin = {
+      house: {
+        address:"东京",
+        price:10000000
+      },
+      car:{
+        brand:'法拉利',
+        price:5000000
+      }
+    };
+    //声明的ZhaNan构造函数.
+    function ZhaNan(gfs){
+      this.gfs = gfs;
+    }
+    ZhaNan.prototype.huaQian = function () {
+      console.log("我是渣男,很会都女孩子开心,请吃6块钱麻辣烫....");
+    }
+    //混合式继承
+    //这里没有替换原型,而是给原型对象添加属性(什么属性,从wangjianlin这个对象中取出来的属性.)
+    for(var key in wangjianlin){
+      ZhaNan.prototype[key] = wangjianlin[key];
+    }
+    //根据ZhaNan构造函数创建一个对象
+    var wangsicong = new ZhaNan(['雪梨','豆得儿','某个嫩模','林更新']);
+    console.log(wangsicong);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

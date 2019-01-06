@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.函数的上下文调用模式可以更改函数内部的this的指向.
+    //call(); apply(); bind(); 这三个方法是定义在那里的? 是定义在 Function.prototype 里面的.
+    //意味着js中的所有的函数都可以调用这三个方法.
+    // console.dir(Function.prototype);
+
+
+    //2.
+    //如果上下文调用模式,小括号里面this的指向没有写,或者写一个window,或者写一个null,或者undefined, this都指向window
+    //如果上下文调用模式,小括号里面this的指向,写了一个number类型的数,this就指向基本包装类型的Number对象.
+    //如果上下文调用模式,小括号里面this的指向,写了一个string类型的数,this就指向基本包装类型的String对象.
+    //如果上下文调用模式,小括号里面this的指向,写了一个boolean类型的数,this就指向基本包装类型的Boolean对象.
+    function test1(){
+      console.log(this);
+    }
+    test1.call(123); //
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

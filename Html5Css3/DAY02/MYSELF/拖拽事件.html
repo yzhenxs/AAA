@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 30px 50px;
+            position: absolute;
+            /* 拖拽事件要给盒子添加一个定位才会有作用 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box" draggable="true"></div>
+</body>
+
+</html>
+<script>
+    //首先需要得到鼠标当时点击的位置
+
+    var box = document.querySelector('.box');
+    
+    var offsetX, offsetY;
+    box.onmousedown = function (e) {
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+    }
+
+
+
+    box.ondragstart = function () {
+
+        console.log('开始了');
+    }
+
+    // box.ondragend = function (e) {
+    //     console.log(e);
+
+    // }
+
+    box.ondrag = function () {
+
+        console.log('我被拖走了');
+    }
+
+    box.ondragend = function (e) {
+
+        console.log('我被拖走结束了');
+
+        box.style.left = e.pageX - offsetX + "px";
+        box.style.top = e.pageY - offsetY + "px";
+
+
+    }
+
+
+
+</script>

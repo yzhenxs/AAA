@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+     //1.递归
+     //语法: 函数内部调用函数自己.
+     //调用要有结束的时候.
+
+     // function test1(){
+     //   console.log("哈哈");
+     //   test1();
+     // }
+     // test1();
+
+
+     // function test1(){
+     //   console.log("哈哈");
+     //   test2();
+     // }
+     // function test2(){
+     //   console.log("呵呵");
+     //   test1();
+     // }
+     // test1();
+
+
+
+    //2.调用要有结束的时候.
+    var i = 0;
+    function test(){
+      i++;
+      console.log("哈哈");
+      if(i < 3 ){
+        test();
+      }
+      console.log("呵呵");
+    }
+    test();
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

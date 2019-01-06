@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>隔壁老王1</li>
+    <li id="li2">隔壁老王2</li>
+    <li>隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <li>隔壁老王5</li>
+</ul>
+<ul id="ul2">
+    <li>隔壁老张1</li>
+    <li>隔壁老张2</li>
+    <li>隔壁老张3</li>
+    <li>隔壁老张4</li>
+    <li id="li5">隔壁老张5</li>
+</ul>
+</body>
+
+<script>
+    /*appendChild：父元素.appendChild(子元素)
+    1.新创建的元素：默认添加到最后面
+    2.已存在的元素：则是移动到最后面
+    3.元素有子元素：则所有的子元素都移动到最后面
+
+     */
+
+    var ul1 = document.getElementById('ul1');
+    var li5 = document.getElementById('li5');//隔壁老王5
+
+    //1.新创建的元素
+    var li = document.createElement('li');
+    li.innerText = '我是新创建的标签';
+    ul1.appendChild(li);
+
+    //2.添加已存在的元素
+    ul1.appendChild(li5);
+
+    //3.元素有子元素
+    var ul2 = document.getElementById('ul2');
+    ul1.appendChild(ul2);
+
+</script>
+</html>

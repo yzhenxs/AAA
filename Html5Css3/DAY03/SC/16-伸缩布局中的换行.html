@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        让子元素在主轴方向允许换行
+            flex-wrap: wrap;
+
+        
+        如果有换行，那么align-items就代表是设置在自己所占的那块地里的副轴对齐
+
+        没有换行就是统一设置在整个父元素副轴的对齐
+        
+    -->
+
+    <style>
+        ul {
+
+            list-style: none;
+            padding: 0;
+            width: 600px;
+            height: 500px;
+            border: 1px solid #000;
+
+            display: flex;
+            justify-content: space-around;
+
+            flex-wrap: wrap;
+            
+            /* 设置分地块的方式
+                    stretch ,大家平分父盒子,有几行平分几块
+                    其他的值都是你占多少就分多少
+             */
+            align-content:stretch;
+
+            /* 这个属性是在平分父元素的时候才有用，其他时候没有用 */
+            align-items: flex-end;
+
+        }
+
+        li {
+            width: 150px;
+            height: 150px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+
+</html>

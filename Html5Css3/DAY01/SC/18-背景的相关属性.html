@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        
+        .box{
+            width: 300px;
+            height: 600px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            /* 
+                当图片比盒子大的时候，只显示一部分
+                当图片比盒子小的时候，会平铺
+
+                参数1：图片路径 写法：url(路径)
+                参数2：是否平铺，默认是平铺 no-repeat代表不平铺，还有可选值是：repeat-x repeat-y
+                参数3：图片位置，默认是左上对齐（图片的左上跟盒子左上是重叠的）,图片位置要传2个，第一个写的是水平位置，第二个写的是垂直位置，既可以写像素，也可以写百分比，还可以写方向 水平可以写left,right,center
+                垂直可以写top center bottom,如果只写一个center代表水平和垂直都居中
+
+                参数4：在参数3后面打一个/  可以指定背景图片的大小,它有两个特殊取值
+                        cover和contain都是按比例缩放图片，所以不会变形
+                        cover:图片一定会覆盖整个盒子(图片可能会超出)
+                        contain：盒子一定包含整个图片（图片一定不会超出，但是可能会留白）
+
+                如果要多张背景图片，用逗号隔开，先写的图片层级最高，最后写的层级最低
+
+                背景颜色只能放在最前面或者最后面
+            */
+            background: url(img/bg.jpg) no-repeat left top / 100% 100%,
+                        url(img/pl.png) no-repeat left bottom / 100% 100% red;
+            
+            /* background-image:  */
+            /* background-repeat:no-repeat */
+            /* background-size:  */
+            /* background-position:  */
+            /* background-color:  */
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

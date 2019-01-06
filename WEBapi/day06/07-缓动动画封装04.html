@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        .one {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 50px;
+            left: 0px;
+        }
+        .two {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            top: 170px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="左右移动到400" id="lr400"/>
+<input type="button" value="左右移动到800" id="lr800"/>
+<input type="button" value="上下移动到200" id="tb200"/>
+<input type="button" value="上下移动到400" id="tb400"/>
+<div class="one" id="box"></div>
+
+<script>
+
+    /*本小节解决问题：函数可以同时修改多个属性的值
+    解决方案：将函数的参数变成对象
+        * 1.可以修改多个属性
+        * 2.减少函数参数数量
+
+     */
+    var box = document.getElementById('box');
+
+    //左右移动到400
+    document.getElementById('lr400').onclick = function (  ) {
+        animationSlow(box,{
+            width:200,
+            left:300,
+            height:200,
+            top:400
+        });
+    }
+
+    //左右移动到800
+    document.getElementById('lr800').onclick = function (  ) {
+        animationSlow(box,{
+            height:800
+        });
+    }
+
+    //上下移动到200
+    document.getElementById('tb200').onclick = function (  ) {
+        animationSlow(box,{
+            top:200
+        });
+    }
+
+    //上下移动到400
+    document.getElementById('tb400').onclick = function (  ) {
+        animationSlow(box,{
+            top:400
+        });
+    }
+
+    /**
+     * 缓动动画
+     * @param obj  要动画的元素
+     * @param attrs  要改变的属性对象
+     */
+    function animationSlow (  obj,attrs) {
+        //1.清除对象之前的定时器
+        clearInterval(obj.timeID);
+        //2.开启本次动画定时器
+        obj.timeID = setInterval(function (  ) {
+            for(var key in attrs){
+                var attr = key;
+                var target = attrs[attrs];
+                //2.1 获取当前属性的值
+                //注意点：getComputedStyle获取属性返回的是字符串，需要转成number类型
+                var currentLeft = parseInt(getStyle(obj,attr));
+                //2.2 计算本次移动的值
+                var step = (target - currentLeft)/10;
+                //2.3  取整操作
+                step =   step>0?Math.ceil(step):Math.floor(step);
+                //2.4 开始移动
+                currentLeft += step;
+                obj.style[attr] = currentLeft + 'px';
+                //2.5 终点检测：到达终点清除定时器
+                if(currentLeft == target){
+                    clearInterval(obj.timeID);
+                }
+            }
+
+
+        },50);
+    }
+
+    function getStyle (  ele,attr) {
+        if(ele.currentStyle){//IE8浏览器
+            return ele.currentStyle[attr];
+        }else{//非IE8浏览器
+            return window.getComputedStyle(ele,null)[attr];
+        }
+    }
+</script>
+</body>
+</html>

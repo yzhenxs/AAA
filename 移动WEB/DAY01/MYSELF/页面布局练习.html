@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		.row .col{
+			height: 100px;
+			border: 1px solid red;
+			font-size: 20px;
+			text-align: center;
+			line-height: 100px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col">1</div>
+		<div class="col">2</div>
+		<div class="col">3</div>
+		<div class="col">4</div>
+	</div>
+
+</body>
+</html>
+<script type="text/javascript">
+//如果需要屏幕改变布局,就需要监听屏幕尺寸的改变
+window.addEventListener("resize", response);
+response();
+function response() {
+	// 现在首先是需要获取到屏幕宽度变化	
+var windowwidth=document.documentElement.offsetWidth;
+var cols=document.querySelectorAll('.col');
+if(windowwidth>=1200){
+    for(var i=0;i<cols.length;i++){
+     cols[i].style.width="25%";
+    }
+}else if(windowwidth>=992){
+    for(var i=0;i<cols.length;i++){
+     cols[i].style.width="33.3%";
+    }
+}else if(windowwidth>=768){
+   for(var i=0;i<cols.length;i++){
+     cols[i].style.width="50%";
+    }
+}else if(windowwidth<768){
+    for(var i=0;i<cols.length;i++){
+     cols[i].style.width="100%";
+    }
+}
+}
+
+</script>

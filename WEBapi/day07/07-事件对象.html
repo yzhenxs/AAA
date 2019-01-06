@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    #box{
+        width: 200px;
+        height: 200px;
+        background:red;
+    }
+</style>
+<body>
+
+<button id="box"></button>
+</body>
+
+<script>
+    /*事件对象：存储与事件相关的一些数据
+
+        1.事件对象：当一个元素在触发事件的时候，浏览器在获取事件的时候，会将用户的鼠标的一些相关信息
+        （鼠标触发点，点击的时候是否按住其他按键等信息）保存到一个对象里面，这个对象称之为事件对象
+        2.如何获取事件对象
+            * 只需要给事件处理函数一个形参即可
+                * (1) 谷歌火狐：通常形参叫做e或者event(易读性)
+                * (2)IE8获取方式：window.event
+     */
+
+    document.getElementById('box').onclick = function ( e ) {
+        //console.log ( window.event );//IE8
+       // console.log ( e );//谷歌火狐
+        //事件对象浏览器兼容性
+        e = e || window.event
+
+        console.log ( e );
+        console.log ( "有sb点我了" );
+        //判断用户触发这个事件的时候有没有按住alert键
+        if(e.altKey == true){
+            console.log ( "按住了anlert键" );
+        }else{
+            console.log ( "没按" );
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        总结：
+            操作类
+            元素.classList
+                获得是一个伪数组，能让我们很方便的取到某一个类名，或者添加一个类，或者删除一个类
+
+                元素.classList.add： 添加一个类
+                元素.classList.remove 删除一个类
+                元素.classList.toggle 切换一个类：原来没有这个类就加上，原来有这个类就删除
+
+     -->
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            transition: all 1s; 
+        }
+        
+        /* 交集选择器，代表既要有类box也要有animation */
+        .box.animation{
+
+            width: 300px;
+            height: 300px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box xxoo"></div>
+
+    <input type="button" value="放大" id="btn1">
+    <input type="button" value="复原" id="btn2">
+    <input type="button" value="切换" id="btn3">
+</body>
+
+</html>
+
+<script>
+
+    var box = document.querySelector('.box');
+
+    document.getElementById('btn1').onclick = function () {
+
+        // box.style.width = "300px";
+        // box.style.height = "300px";
+        // box.style.transition = "all 1s";
+        // 加类很麻烦，因为需要把原来的类也要保留下来，万一原来有10个类，你这里也要先写10个再写自己要加的类
+        // box.className = "box animation";
+        // 下面这样写是方便了， 但是很容易写错，因为会忘记加空格
+        // box.className += " animation";
+
+        //有好办法:第一：取值更方便，可以方便取到某一个类名
+        // console.log(box.classList[0]);
+
+        // 加一个类名
+        box.classList.add('animation');
+
+        // addClass
+    }
+
+    document.getElementById('btn2').onclick = function(){
+
+        // box.className = "box";
+
+        box.classList.remove('animation');
+        // removeClass
+
+    }
+
+    document.getElementById('btn3').onclick = function(){
+
+        // 原来没有这个类，就给你加这个类
+        // 如果有这个类，就删除这个类
+        box.classList.toggle('animation');
+    }
+</script>

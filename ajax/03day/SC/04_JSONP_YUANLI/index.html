@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        script 加src属性，就是引入一个文件
+        引入的文件肯定有被执行
+        它会请求一个文件，并且会把文件的响应体，当做JS代码来执行
+        跟文件类型无关，只跟响应体有关
+    -->
+    <!-- <script src="1.js"></script> -->
+
+    <!-- apache收到你这个请求了，然后读取出里面的内容当做响应体， -->
+    <!-- <script src="1.txt"></script> -->
+
+
+    <!-- 
+
+        支持JSONP的接口，它内部一般都会拿到你传过去的函数名，然后返回一个 这个函数名调用的语法，并把对象当做参数传递
+
+        JSONP以后怎么用？
+                就是用script标签去访问接口，并且再接口后面传递一个参数，参数叫callback，参数值你的是函数名字
+                然后当请求完成，你的这个函数会被自动调用，并且会把JSON数据当函数的参数传递过来
+
+        以后支持JSONP的接口，以后接收的key，都要叫callback =  你自己写的函数名
+
+        这是一个规范，然后这个函数的参数就是服务器返回的数据，而且直接就是对象了，不需要做转换
+        
+        是所有接口都可以传一个callback来解决跨域吗？肯定不是！
+        所以接口不一定支持JSONP,所以要解决跨域，不一定说这个方法通用
+
+        那我怎么知道哪些接口支持，哪些接口不支持呢？
+        看接口文档
+            接口文档写了JSONP，那么就代表绝对支持！
+     -->
+
+    
+    <script>
+
+         function test(par){
+
+             console.log('我系f1');
+             console.log(par);
+         }
+
+    </script>
+
+    <script src="data.php?callback=test"></script>
+
+</head>
+<body>
+    
+</body>
+</html>

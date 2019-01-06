@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    html {
+        /* 使用rem可以实现统一变化 实现全局操控 */
+        /*iphon678 375  100px*/
+        /*iphone5 320 100px*/
+        /*iphone6p 414 100px*/
+        /*  375/100 =  3.75 求到当前屏幕 需要写多少个rem  在375屏幕上 需要写3.75rem占满整屏
+        320也要使用3.75rem来占满整个320  320/3.75 == 85.33333  320根元素的字体大小
+        414也要使用3.75rem来占满整屏414  414/3.75 == 110.4     414 根元素的字太小
+        375也要使用3.75rem来占满整屏375  375/3.75 ==  100      375根元素字体大小是100px
+        公式就是当前屏幕大小 /  3.75 (标准屏幕多少个rem能够占满整屏) = 当前屏幕需要设置的根元素的字体大小*/
+        font-size: 100px;
+    }
+    body{
+     /*注意因为给html设置字体大小导致页面文字很大 后面如果没有设置字体大小 会继承html的字体大小
+     html的字体大小不是用来改变文字大小用改变适配自适应布局
+     注意使用rem的时候要把body字体还原成16px*/
+    	font-size: 16px;
+    }
+    .box1 {
+        /*font-size: 20px;*/
+        font-size: 0.2rem;
+        width: 3.75rem;
+        height: 3.75rem;
+        background-color: #ccc;
+    }
+    
+    .box2 {
+        /*font-size: 30px;*/
+        font-size: 0.3rem;
+        width: 3.75rem;        
+        height: 3.75rem;
+        background-color: yellowgreen;
+    }
+    
+    .box3 {
+        /*font-size: 40px;*/
+        font-size: 0.4rem;
+        width: 3.75rem;
+        height: 3.75rem;
+        background-color: greenyellow;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box1">div1</div>
+    <div class="box2">div2</div>
+    <div class="box3">div3</div>
+    <div class="box4">
+    	div4
+    </div>
+    <!-- 使用rem实现屏幕适配 相当只需要在不同屏幕改变当前根元素字体大小即可 -->
+    <!-- 需求让所有屏幕的盒子的宽度和屏幕宽度一样 高度也和宽度一样
+    375 屏幕 盒子宽高都是375
+    320 屏幕 盒子宽高都是320 -->
+    <script>
+    // 4. 添加一个resize事件屏幕宽度变化马上计算和设置
+    window.addEventListener('resize', setHtmlFontSize);
+    setHtmlFontSize();
+    function setHtmlFontSize() {
+        // 1. 获取当前的屏幕的宽度
+        var windowWidth = document.documentElement.offsetWidth;
+        // 2. 以标准的375屏幕 根元素100px的标准  需要3.75rem占满整屏的值 作为参照点
+        var htmlFontSize = windowWidth / 3.75;
+        // 3. 把当前根元素的字体大小设置给当前html的fontSize 注意要带单位
+        document.querySelector('html').style.fontSize = htmlFontSize + 'px';
+    }
+    </script>
+</body>
+
+</html>

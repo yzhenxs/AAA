@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<!-- 
+
+    JSONP 和 JSON 绝对不是同一个东西
+ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 它可以跨域访问，但是响应体我们不好拿，它默认把响应体当CSS了 -->
+    <!-- <link rel="stylesheet" href="http://api.douban.com/v2/movie/top250"> -->
+
+    <script>
+        function f1(obj){
+
+            console.log(obj);
+            
+        }
+    </script>
+
+    <!-- 
+
+        用script能解决跨域访问，并且也能拿到响应体
+
+        那么像这样的用script标签来跨域访问得到JSON数据的技术方案，叫JSONP
+
+        JSONP是用来解决跨域访问得到JSON数据的一套技术方案
+     -->
+    <script src="http://api.douban.com/v2/movie/top250?callback=f1"></script>
+
+</head>
+<body>
+    
+    <!-- img可以跨域访问，但它一般用来访问图片
+        如果要访问接口呢？能访问接口
+        但是接口返回的一般都是JSON字符串，而用Img去访问，会把响应体当图片，拿不到这个JSON响应体
+    -->
+    <!-- <img src="http://api.douban.com/v2/movie/top250" alt=""> -->
+
+    <!-- 不行，它会整个网页跳转走 -->
+    <!-- <a href="http://api.douban.com/v2/movie/top250">我是a</a> -->
+
+</body>
+</html>
+

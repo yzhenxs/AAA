@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style> 
+    div {
+      width: 200px;
+      height: 200px;
+      margin-top: 10px;
+    }
+    .one  {
+      border: 1px solid red;
+    }
+    .two {
+      border: 1px solid green;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //回忆一下原生js中用on的方式注册事件,相同的事件后面的会把前面的给覆盖.
+      // document.getElementById("one").onclick = function () {
+      //   alert('6666');
+      // };
+      // document.getElementById("one").onclick = function () {
+      //   alert('7777');
+      // };
+
+      //jQuery中的事件发展历程.
+      //1.简单事件注册.
+      //缺点: 不能同时注册事件, 不支持动态注册.
+//      $('div').click(function () {
+//        alert(111666);
+//      });
+//      $('div').click(function () {
+//        alert(222777);
+//      });
+//      $('div').mouseenter(function () {
+//        console.log('鼠标移入了');
+//      });
+//
+//      //点击按钮新创建一个div
+//      $('#btn').on('click', function () {
+//        $('body').append($('<div class="one" id="two"></div>'));
+//      });
+
+
+
+      //2.bind事件绑定
+      //不支持动态注册.
+//      $('div').bind('click mouseenter', function () {
+//        console.log("哈哈");
+//      });
+//      $('div').bind({
+//        click: function () {
+//          console.log("我是点击事件");
+//        },
+//        mouseenter: function () {
+//          console.log("我是鼠标移入事件");
+//        }
+//      });
+//
+//      //点击按钮新创建一个div
+//      $('#btn').on('click', function () {
+//        $('body').append($('<div class="one" id="two"></div>'));
+//      });
+
+
+      //3.delegate事件绑定
+      //可以同时注册多个事件.
+      //支持动态注册的.
+//      $('body').delegate('div',{
+//        click: function () {
+//          console.log("单击事件");
+//        },
+//        mouseenter: function () {
+//          console.log("鼠标移入事件");
+//        }
+//      })
+//
+//      //点击按钮新创建一个div
+//      $('#btn').on('click', function () {
+//        $('body').append($('<div class="one" id="two"></div>'));
+//      });
+
+
+
+
+      //4.jQuery1.7之后，jQuery用on统一了所有事件的处理方法。
+
+      //4.1 on注册简单事件
+      //可以同时注册多个事件.
+      //不支持动态注册.
+      // $('div').on('click', function () {
+      //   console.log("单击事件");
+      // });
+//      $('div').on({
+//        click: function () {
+//          console.log("单击事件");
+//        },
+//        mouseenter: function () {
+//          console.log("鼠标移入事件");
+//        }
+//      });
+//      //点击按钮新创建一个div
+//      $('#btn').on('click', function () {
+//        $('body').append($('<div class="one" id="two"></div>'));
+//      });
+
+
+
+      //4.2  on注册事件委托
+      //支持动态注册的.
+      $('body').on('click','div', function () {
+        console.log("on委托注册的单击事件");
+      });
+
+      //点击按钮新创建一个div
+      $('#btn').on('click', function () {
+        $('body').append($('<div class="one" id="two"></div>'));
+      });
+
+
+
+
+    });
+  </script>
+
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/> <br/><br/>
+<div class="one" id="one"></div>
+</body>
+</html>

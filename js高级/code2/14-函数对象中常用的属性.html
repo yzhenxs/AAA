@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.函数是一个对象. 那这个对象中就有默认的属性和方法.
+    function test(){
+      console.log("哈哈,我是test函数");
+    }
+    console.dir(test);
+    //-------------------------------------------------------------------
+
+    //2.1 caller
+    //如果函数a在函数b中调用. 那么函数a的caller就是函数b.
+    //如果函数a直接在window下调用,那么函数a的caller就是null.
+    // function test1(){
+    //   test2();
+    // }
+    // function test2(){
+    //   console.log(test2.caller); //test1
+    // }
+    // test1();
+
+
+    //2.2 length
+    //函数形参的个数.
+    // function test1(a,b,c,d,e,f){
+    //   console.log(test1.length);
+    // }
+    // test1(10,20);
+
+
+    //2.3 name
+    //就是函数名.
+    // var test1 = function () {
+    //   console.log(test1.name);
+    // }
+    // test1();
+
+
+    //2.4 arguments
+    function test1(a,b,c){
+      //是一个对象,是一个伪数组(用下标存取值,还有长度,但是没有数组的方法.).
+      //arguments里面存放的是实参的值.
+      //arguments和形参是一一对应的.
+      console.log(arguments);
+      console.log(arguments.callee);
+
+
+      //函数作为对象,里面的属性arguments用的并不多,用的多的还是在函数体中直接输出的arguments.
+      // console.log(test1.arguments);
+      // console.log(arguments === test1.arguments);//false
+    }
+    test1(10,20,30,40,50);
+
+
+    //3. arguments既然是一个对象,那这个对象里面的属性代表什么意思呢?
+    //3.1 callee
+    //    函数本身.
+    //3.2 length
+    //    实参的个数.
+
+
+
+
+
+
+    //举例-递归:函数自己调用自己.
+    //匿名函数递归.
+    // (function (){
+    //   arguments.callee();
+    // }());
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

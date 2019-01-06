@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- 
+        本文件知识点：
+                h5新增的自定义属性写法
+
+                写法格式：data-属性名
+
+                JS取值：元素.dataset.属性名
+
+     -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 标签不存在的属性，你写上了就叫自定义属性
+        以前我们写的自定义属性缺点：1.不能很好的区分什么是自定义是属性，什么是自带属性
+                                  2.取自定义属性太麻烦了
+
+        所以H5新增了一种自定义属性的写法， 以及它对应的取值方法
+    -->
+    <!-- <div id="box" class="box" name="jack"  shengao="180cm" tizhong="200kg"></div> -->
+
+
+    <div id="box" class="box" data-name="jack"  data-shengao="180cm" data-tizhong="200kg"></div>
+
+  
+</body>
+</html>
+
+<script>
+    //js怎么获取自定义属性？
+    var box = document.getElementById('box');
+    // console.log(box.getAttribute('shengao'));
+    // console.log(box.getAttribute('tizhong'));
+
+    console.log(box.dataset.name);
+    console.log(box.dataset.shengao);
+    console.log(box.dataset.tizhong);
+    
+    
+</script>

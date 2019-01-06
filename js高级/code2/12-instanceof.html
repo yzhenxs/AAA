@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.instanceof.
+    //语法: 对象 instanceof  构造函数.
+    //真正的作用: 判断构造函数的prototype属性.在不在这个对象的原型链上.
+
+    // var arr = [10,20,30];
+    // //arr的原型链:  Array.prototype -> Object.prototype ->null
+    // console.log(arr instanceof  Array); //true
+    // console.log(arr instanceof  Object);//true
+
+
+
+
+    //2.
+    //Function对象的原型链: Function.prototype -> Object.prototype ->null
+    // console.log(Function instanceof  Function); //true
+    // console.log(Function instanceof  Object); //true
+
+
+    //3.
+    //Object对象的原型链: Function.prototype -> Object.prototype ->null
+    console.log(Object instanceof  Object); //true
+    console.log(Object instanceof  Function); //true
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

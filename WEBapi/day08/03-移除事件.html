@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+
+<input type="button" value="点我" id="btn"/>
+
+</body>
+
+<script src="common.js"></script>
+
+<script>
+
+    var btn = id('btn');
+    /*1.点语法：如果是同名事件，后面会覆盖前面
+    移除：  元素.事件类型 = null
+     */
+
+    btn.onclick = function (  ) {
+        alert('1111');
+    }
+
+    btn.onclick = null;
+
+    /*2.addEventListener:同名事件不覆盖，依次执行
+
+     */
+    addEventListener(btn,'click',function (  ) {
+        alert('22222');
+    })
+
+    function test (  ) {
+        alert('坤哥，今晚六点兴东地铁口见');
+    }
+
+    addEvent(btn,'click',test);
+
+    //2.移除
+    /*第一个参数：事件类型   去掉on
+    第二个参数：事件函数
+     */
+  //  btn.removeEventListener('click',test);
+
+    //3.IE8不支持removeEventListener
+    //IE8使用：detachEvent
+    /*第一个参数：事件类型   加上on
+    第二个参数：事件函数
+     */
+   // btn.detachEvent('onclick',test);
+    removeEvent(btn,'click',test);
+
+    //4.移除事件兼容性封装
+    /**
+     * 移除事件
+     * @param obj 元素
+     * @param type  事件类型，去掉on
+     * @param fn  事件处理函数
+     */
+    function removeEvent ( obj,type,fn ) {
+        if(obj.detachEvent){//IE8
+            obj.detachEvent('on' + type,fn);
+        }else if(obj.removeEventListener){//谷歌火狐
+            obj.removeEventListener(type,fn);
+        }else {//其他浏览器，点语法移除
+            obj['on' + type] = null;
+        }
+    }
+
+
+</script>
+</html>

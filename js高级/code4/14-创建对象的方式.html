@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.构造函数就相当于是一个模板, new关键字就会根据这个模板创建一个对象.
+    // function Student(name,age){
+    //   this.name = name;
+    //   this.age = age;
+    //   console.log(this);
+    //   //new关键字帮我们在构造函数中自动返回this这个对象.
+    // }
+    // var s1 = new Student("欧阳",16);
+
+
+
+    //2.工厂模式创建对象.
+    // function createStudent(name,age){
+    //   var obj = new Object();
+    //   obj.name = name;
+    //   obj.age = age;
+    //   obj.xx = "xx";
+    //   console.log(this); //window
+    //   return obj;
+    // }
+    // var s1 =  createStudent("志玲",17);
+    // console.log(s1);
+
+
+
+    //3.寄生模式
+    // function createStudent(name,age){
+    //   var obj = new Object();
+    //   obj.name = name;
+    //   obj.age = age;
+    //   obj.xx = "xx";
+    //   console.log(this);
+    //   this.name = name; //构造函数中一般不写返回值,写了返回值会怎么样?
+    //   return obj;
+    // }
+    // var s1 = new createStudent("志玲",17);
+    // console.log(s1);
+
+
+
+
+
+    //补充:
+    //计时器回调函数中的this的指向.
+    var obj = {
+      test1: function () {
+        console.log("哈哈");
+        console.log(this);
+      }
+    }
+
+
+    //这里只是拿到obj.test1这个方法体.把这个方法交给计时器, 计时器回调函数还是window点出来的.
+    //setTimeout(obj.test1,2000);
+
+
+    //上面那句代码就相当于是下面这段代码.
+    // setTimeout(function () {
+    //   console.log("哈哈");
+    //   console.log(this);
+    // },2000);
+
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

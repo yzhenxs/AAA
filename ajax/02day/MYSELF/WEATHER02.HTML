@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        div {
+            margin-top: 20px;
+            width: 1366px;
+        }
+
+        ul {
+            margin-top: 10px;
+            padding-top: 50px;
+            border: 2px solid #ddd;
+            height: 200px;
+        }
+
+        li {
+            text-align: center;
+            width: 180px;
+            background-color: #ccc;
+            margin-left: 12px;
+            float: left;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="city" value="郑州">
+    <button id="btn">查询天气</button>
+
+    <div>
+        <p id="cityname">城市名称：</p>
+        <ul id="weather">
+            <li>
+                <p class="date">20日星期五</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+                <p class="sunlight">晴</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+                <p class="sunlight">晴</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+                <p class="sunlight">晴</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+                <p class="sunlight">晴</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+                <p class="sunlight">晴</p>
+
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var city = document.getElementById('city');
+    var lilist = document.getElementById('weather').children;
+    console.log(lilist);
+
+    //页面一打开,定时器自动开启,并且执行一次后就结束执行
+    setTimeout(function () {
+        document.getElementById('btn').onclick();
+    })
+
+    //当需要在文本框输入需要输入的内容时,文本框一旦获得焦点,则立刻清空
+    document.getElementById('city').onfocus = function () {
+        city.value = "";
+    }
+
+    //当文本框失去焦点后,需要判断文本框内的内容是否为空,如果为空,内容自动恢复为郑州
+    //如果不为空,不清除内容
+    document.getElementById('city').onblur = function () {
+        if (city.value == "") {
+            city.value += "郑州";
+        }
+    }
+
+    document.getElementById('btn').onclick = function () {
+
+        //创建访问体
+        var xhr = new XMLHttpRequest();
+        //设置访问行
+        xhr.open('get', 'http://wthrcdn.etouch.cn/WeatherApi?city=' + city.value);
+        //设置访问头
+        //因为是get传输,不需要设置
+        //设置访问体
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                //console.log(xhr.responseXML);//发现获取的结果是xml格式的
+                //我们需要获取的是标签名为weather的标签
+                //console.log(xhr.responseXML.getElementsByTagName('weather'));
+                var weatherlist = xhr.responseXML.getElementsByTagName('weather');
+                console.log(weatherlist);
+
+                console.log(weatherlist[0]);
+
+                console.log(weatherlist[0].children);
+
+                console.log(weatherlist[0].children[0]);
+
+                console.log(weatherlist[0].children[0].innerHTML);
+                for (var i = 0; i < weatherlist.length; i++) {
+                    //lilist[i].children[0].innerHTML = weatherlist[i].children[0].innerHTML;
+                    // lilist[i].children[1].innerHTML = weatherlist[i].children[1].innerHTML;
+                    //lilist[i].children[2].innerHTML = weatherlist[i].children[2].innerHTML;
+
+                    for (var j = 0; j < lilist[i].children.length; j++) {
+                        lilist[i].children[j].innerHTML = weatherlist[i].children[j].innerHTML;
+                    }
+                }
+            }
+        }
+    }
+
+    //当点击enter键时候,应该达到与点击鼠标同样的效果
+    city.onkeypress = function (e) {
+        e = e || window.event;
+        var code = e.keyCode || e.charCode;
+        console.log(code);
+        //这里可以发现点击enter键后打印的数字是13
+        if (code = 13) {
+            document.getElementById('btn').onclick();
+        }
+    }
+
+
+
+
+
+
+</script>
+
+</html>

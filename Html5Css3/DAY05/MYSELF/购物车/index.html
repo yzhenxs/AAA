@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+
+    实现步骤：
+        1.第一屏
+                给第一屏两个背景图片，都居中，一个商品一个bg，商品要在bg的前面
+                给第一屏html加两个img，一个是沙发，一个是气球，给它们加类
+                沙发的定位：left:50% ,再给margin-left:一个合适的值就行了,bottom 50%
+                气球的定位：right:30 top:1xx
+
+                写了一个剧本，剧本就是往上走50，剧本给沙发和球，两个都用infinite,以及alternat
+
+
+        2.第二屏
+                先给第二屏加背景，水平居中，底部对齐，而且不要平铺
+
+                给第二屏加两个img，一个seach01一个sofas
+
+                给它们两加默认样式：
+                        seach01：right:50% margin-right:-600px 然后top50% 再margin-top:-高度一半
+                        沙发：也一定给的是right和bottom定位，那样的话，放大时就会保证右下固定不变
+                                记得right 50% bottom 50% 再附宽度一半和负的高度一半就能居中
+                                但是默认不要看到图片，所以宽高给0
+
+
+                加动画，在JS里写afterLoad事件
+                        判断如果是第二屏，那么就用jquery的animate函数，让search01平移到margin-right负的宽度一半
+                        并且记得导入jquery.easeing，用一个动画效果
+                        然后动画完成后，记得把图片替换为search02的图片，延迟500毫秒，再往右上走并且高度变小
+                        动画完成里，延迟500毫秒，把图片慢慢放大
+
+                解决再次滚回来它在最终位置做动画的bug：
+                        清空section>div div 和 section>div img 的所有style的属性
+                        另外记得单独设置回section2 .search的attr
+
+
+        3. 第三屏 略
+
+
+        4. 第四屏 
+                4.1 先给第四屏加背景图片，center bottom
+                4.2 给第四屏里加一个img，img用云的图片
+                4.3 给云加绝对定位，定位到上面去
+                4.4 写一个往左边走的动画剧本，设置给云的animation 记得infinite
+
+                4.5 再写一个img，放文字
+                4.6 准备一个div，里面放一个Img,img的图给地址，给这个div设置背景图片用键盘的那个图
+
+                4.7 给section4>div 加伸缩布局，然后设置主轴为Y轴，主副轴都居中
+
+                4.8 给地址Img加定位，呢么就要给它的父元素加相对定位，把地址img定位到合适的位置
+
+                4.9 做购物车
+                        4.9.1 准备一个div，div的大小跟购物车的大小一样大
+                        4.9.2 div里面放2个img，第一个先放沙发，第二个再放购物车
+                        4.9.3 把这个div里的两个img做绝对定位，但是只改沙发的位置，移动到合适的地方去
+
+                5.0 记得把键盘的透明度设置为0
+
+        
+        5. 第五屏
+             5.1 给整屏的背景图片
+             5.2 给一个装银行卡和账单的盒子，里面放2个img，分别是账单和银行卡
+             5.3 给盒子一个宽高（就用银行卡的宽高），再然后账单和银行都要用绝对定位，盒子也要用绝对定位，盒子定位到right:50%;top:260px;
+             5.4 修改账单的left为120px，top为0
+
+             5.5 加一个鼠标div,宽205高400，加一个绝对定位，left:50%; margin-left:240px;
+                 加一个背景图片，center bottom
+
+             5.6 加一个手的div（也可以用img）,绝对定位，跟鼠标的位置差不多，但是比它更左一点和更下一点
+
+             5.7 加一个放文字的img，然后定位到中间，left:50%,然后margin-left -宽度的一半，top：50，透明度为0
+
+             5.8 做动画
+                    给JS里给section5加animation
+                    然后css里写交集选择器
+                            .section5.animation .hand 先改手，把bottom改为0  动画1秒
+                            .section5.animation .mouse 延迟1秒，动画0.5秒 替换background（记得center和bottom也要加上）
+                            .section5.animation .bill 延迟1.5秒，动画1秒，把top改为负的自己高度
+                            .section5.animation .words 延迟2.5秒 动画1秒，旋转360度，并放大1.5倍（透明度为1）
+
+        6.第六屏
+            6.1 加一个背景图片 图片位置为-220px bottom;
+            6.2 加一个div，里面放汽车、包裹（div里包2个图片）、人，这个div跟汽车一样大，用绝对定位，left:515px;bottom:85px;
+            6.3 包裹大小跟纸盒子图片大小一样大，里面两个图片都用绝对定位，然后调整沙发和盒子位置，再把整个包裹定位到汽车上方，然后在JS里写一个animate动画，把bottom改为0，并且最后隐藏
+
+            6.4 当包裹掉落动画完成后（也就是上一个动画的回调函数），用动画效果移动section6的背景图片backgroundPosistionX,给-1180
+
+            6.4 给人加一个定位，定位到车的右方以及高度默认为0，然后当移动动画完成后，把人的高度用动画效果变为120，在这个动画完成后再用动画效果把人往右边走
+
+            6.5 放两个img，一个显示门，一个显示女孩，定位到合适的位置，默认隐藏，然后在快递小哥往右边移动动画完成后，显示出门和女孩
+
+
+        7.第七屏
+            7.1 给一个背景图片，位置用center和bottom
+            7.2 给一个div，背景图片用star3，宽高跟图片一样，用中线定位到合适位置。默认宽度为0
+            7.3 给一个img，背景图片是好评图片，中线定位到合适位置，默认opacity为0
+            7.4 在CSS里，加section7.animation .star选择器，然后在里面把宽度变为图片宽度，分5步
+            7.5 在css里加section7.animation .good选择器，然后在里面把opacity改为1
+
+        8.第八屏
+            8.1 给背景图片，要求平铺
+            8.2 给img，放图片按钮，左右居中，距离上面50
+            8.3 给重新开始的img，定位在右下
+            8.4 写JS代码，监听section8的鼠标移动时间，拿到x再减60，赋值给手的left，拿到y，判断如果y小于170，则就等于170，否则拿原来的值，再赋值给手的top
+            8.5 给再来一次加点击事件，点击事件里 $.fn.fullpage.moveTo(1,0); 跳到第一页
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        fullpage的三步
+            1.导入文件
+            2.写HTML结构代码
+            3.调用初始化代码
+     -->
+
+     <link rel="stylesheet" href="css/jquery.fullpage.min.css">
+
+     <script src="js/jquery-1.8.3.min.js"></script>
+
+     <script src="js/jquery.fullpage.min.js"></script>
+
+     <!-- 因为它是基于jquery的，所以要再jquery的后面，但是要在使用的前面 -->
+     <script src="js/jquery.easing.1.3.js"></script>
+
+     <!-- 要导入到jquery的后面，因为里面用了jquery -->
+     <script src="js/index.js"></script>
+
+     <link rel="stylesheet" href="css/index.css">
+
+
+</head>
+<body>
+
+    <div id="shop">
+
+        <div class="section section1">
+            <img class="sofa" src="images/01/sofa.png" alt="">
+            <img class="ball" src="images/01/ball.png" alt="">
+        </div>
+        <div class="section section2">
+            <img class="search" src="images/02/search01.png" alt="">
+            <img class="sofas" src="images/02/sofas.png" alt="">
+        </div>
+        <div class="section section3 ">
+            <img class="sofa" src="images/03/sofa.png" alt="">
+
+            <div class="color"></div>
+            <div class="add"></div>
+        </div>
+        <div class="section section4">
+            <img class="cloud" src="images/04/cloud.png" alt="">
+
+            <img class="words" src="images/04/words02.png" alt="">
+            
+            <div class="keyboard">
+                <img class="address" src="images/04/address.png" alt="">
+            </div>
+
+            <div class="carBox">
+                <img class="sofa" src="images/04/sofa.png" alt="">
+                <img class="car" src="images/04/car.png" alt="">
+            </div>
+
+        </div>
+        <div class="section section5">
+            <div class="cardBox">
+                <img class="bill" src="images/05/bill.png" alt="">
+                <img class="card" src="images/05/card.png" alt="">
+            </div>
+
+           <div class="mouse"></div>
+           <div class="hand"></div>
+
+           <img  class="words" src="images/05/words.png" alt="">
+
+        </div>
+        <div class="section section6">
+
+            <div class="carBox">
+
+                <div class="box">
+                    <img  class="sofa" src="images/04/sofa.png" alt="">
+                    <img class="smallBox" src="images/06/box.png" alt="">
+                </div>
+
+
+                <img  class="man" src="images/06/man.png" alt="">
+
+                <img  class="car" src="images/06/car.png" alt="">    
+                
+            </div>
+
+            <img class="door" src="images/06/door.png" alt="">
+
+            <img class="girl" src="images/06/girl.png" alt="">
+
+        </div>
+        <div class="section section7">
+            <div class="star"></div>
+
+            <img  class="good" src="images/07/good.png" alt="">
+
+        </div>
+        <div class="section section8">
+            <img  class="begin" src="images/08/begin.png" alt="">
+            <img  class="hand" src="images/08/hand.png" alt="">
+
+            <img class="again" src="images/08/again.png" alt="">
+        </div>
+
+    </div>
+
+</body>
+</html>
+

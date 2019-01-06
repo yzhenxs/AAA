@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="btn" value="发请求">
+</body>
+</html>
+
+<script src="jquery-1.12.4.js"></script>
+
+<script>
+    $('#btn').click( function(){
+
+        //发ajax请求
+        // $.ajax({
+        //     url:"data.php",
+        //     type:"get",
+        //     data:"name=刘德华&age=16",
+        //     // 告诉jquery，我的响应体是JSON字符串，你自动帮我转成JS对象
+        //     dataType:"json",
+        //     success:function(obj){
+                
+        //         console.log(obj);
+                
+        //     }
+        // });
+
+         $.ajax({
+            url:"data.php",
+            type:"get",
+            data:{ name:"刘德华", age:16 },
+            // 告诉jquery，我的响应体是JSON字符串，你自动帮我转成JS对象
+            dataType:"json",
+            success:function(obj){
+                
+                // console.log("chenggongle");
+                
+                console.log(obj);
+                
+            },
+            error:function(){
+
+                console.log('出错了');
+                
+            }
+        });
+    } )
+</script>

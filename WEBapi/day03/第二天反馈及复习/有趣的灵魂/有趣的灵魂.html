@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-image: url("1.jpg");
+        }
+        button{
+            z-index:9999;
+            width:100px;
+            height:30px;
+            position:absolute;
+            top:200px;
+            left:600px;
+        }
+        div{
+            position:relative;
+            width:1200px;
+            height:800px;
+        }
+        p{
+            position:absolute;
+            margin:0;
+            padding:0;
+            left:400px;
+            top:300px;
+        }
+    </style>
+</head>
+
+<body>
+<button type="button">开心一笑</button>
+<div id="box">
+    <p class="pop" onclick="">点击按钮即可开始，以后可以自己添加各种事件动画效果<br>更改变量或逻辑或在数组中添加数据<br>有时间的同学可以帮我解决代码最后的那个问题</p>
+</div>
+<script>
+    var people=['杨亚','王龙','朱原正','蔡泉益','刘棒','谭栖','曾钰婷','吴方姣','肖啟明','张胜','白东东','袁世文','欧阳冬萍','张容','周林芳','李刚涛','杨振','缪智强',
+        '和启洋','蒙培锋','刘清清','胡健','罗国平','冯鹏锦','匡智勇','张健发','曹淑芳','刘天福','彭娜','宋文翔','皮宇坤','钟衍艳','周洋毅','徐娜','黎晶晶',
+        '郑茂如','姚木德','宋秀菲','张维','陆毅彪','张宇达','柏东升','黄嘉欣','韩超','陈明兰','张露思','姚希琳','周依方','蔡泽濠','钟林福','李亚鹏','何龙杰',
+        '万奕舟','阳新平','涂婳','黄浩','李宝怡','郑璐','孔学明','陶文鑫','文冬成','龙凤章','高苗','李勇桦','周隆','庄雪芬','姚观兴','李沛奇','郑伟鹏','林宏霏',
+        '汤天怡','陈杰','钟林波','王慰硕','康冲宇','彭爽','曾嘉豪','覃慧玲','陆秋妍','刘龙明','黄雪雨','刘海涛','肖坛中','刘芳玲','丁梓习','刘成平','易泽港',
+        '刘乔峰','王彬','王成','荣文学','王锦平','曾俊君','鲍芳','卫涛','曹盼','于晓慧','谢丽群','甘文强','区志玲','匡鹏'];
+    var address=['市场','超市','医院','学校','宾馆','饭店','体育馆','工厂','地铁站','机场','火车站','公交站','邮电局','警察局','消防队','大学','剧院','电影院',
+        '咖啡馆','图书馆','公园','游乐园','教堂','公园','百货商店','银行','画廊','体育场','操场','酒吧','办公室','政府','码头','厕所','电视台','塔','寺庙',
+        '动物园','植物园','博物馆','游泳池','游乐场','马戏团','图书馆','戏院','自然公园','主题公园','科学博物馆','唐人街','池塘','社区','商店','书店','礼品店',
+        '大楼','广场','自助洗衣店'];
+    var oneve=['说','看','走','听','笑','拿','跑','吃','唱','喝','敲','坐','舔','盯','踢','闻','摸','宣传','学习','研究','想','爱','恨','伯',
+        '想念','喜欢','害伯','担心','讨厌','思考','挤','买'];
+    var str=['毛巾','厕所','肥皂','洗衣粉','清洁剂','牙膏','牙刷','镜子','画笔','化妆品','口红','梳妆粉盒','香水','衣架','奶瓶','热水瓶','炊具箱',
+        '饭盒','毛线','针','钮扣','拉链','钥匙','闪光灯','手电筒','电灯泡','水闸','电池','手表','手表','杂货','内衣','男服','女服','衣服','被单','信纸',
+        '摄像机','卧室','地板','拖把','架子','时钟','闹钟','雨伞','背包','手提包','钱包','公文包','文件夹','手提箱','放大镜','热水袋','打火机','珠宝',
+        '古董','装饰物','戒指','项链','胸针','饰坠','手链','锁链','耳环','小装饰品','钻石','珍珠','摇篮','赝品','尿布','奶嘴','婴儿车','儿童学步车',
+        '摇马','滑板','剃须刀','梳子','烘干机','吹风机','商品','家庭用品','冰箱','电饭锅','炊具','烤箱','毛巾','围裙','餐具','盘子'];
+    var btn=document.getElementsByTagName('button')[0];
+    var ppp=document.getElementsByTagName('p');
+    var div=document.getElementsByTagName('div')[0];            //在div中效果不好所以加在body
+    btn.onclick=function(){
+        var pclone=ppp[0].cloneNode(true);                   //克隆节点
+        pclone.onclick=function(){                 //为什么点击会没用？有知道原因并解决的私信内通网，ID：从前端到前台
+            alert(1);
+        }
+        var suiji=Math.random();                              //随机数
+        var peoplename=people[Math.floor((people.length-1)*suiji)];    //获取人名
+        var addressname=address[Math.floor((address.length-1)*suiji)];  //获取地址名
+        var onebename=oneve[Math.floor((oneve.length-1)*suiji)];       //获取动作名
+        var strname=str[Math.floor((str.length-1)*suiji)];          //获取物品
+        var appendstr=peoplename+'在'+addressname+onebename+strname;    //在数组中获取数据串联成字符串
+        ppp[0].style.display='none';                      //头文字
+        pclone.style.left=1200*Math.random()+'px';       //在div中生成随机X轴定位
+        pclone.style.top=800*Math.random()+'px';        //在div中生成随机Y轴定位
+        pclone.style.display='block';                   //设置元素显示状态
+        pclone.style.background='white';                //设置背景是为了不让重复的字段产生重叠难看
+        pclone.innerHTML=appendstr;                     //将随机出来的字段添加进克隆节点
+        //div.appendChild(pclone);                        //在div中加入克隆的节点
+        document.body.appendChild(pclone);               //这个是直接放body里
+    };
+              //没有在被克隆元素上添加class属性就不能在克隆后的元素上设置class
+
+    //var pop=document.getElementsByClassName('pop');    //测试
+    for(var i=0;i<ppp.length;i++){
+
+    }
+
+</script>
+</body>
+</html>

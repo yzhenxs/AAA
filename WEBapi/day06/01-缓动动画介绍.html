@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="匀速移到400" id="move400"/>
+<input type="button" value="缓动移到400" id="move800"/>
+
+<div id="box"></div>
+
+</body>
+
+<script>
+    /*1.现实世界中物体运动有两种
+        * 匀速移动：每一次移动距离固定 10px
+        * 变速匀速：每一次移动距离不固定（缓动：移动距离越来越小）
+     2.哪一种移动更常用：缓动
+        * 因为缓动更符合现实世界物体运动规律
+
+    3.缓动动画核心公式：   本次移动距离 = （目标位置 - 当前位置）/10
+
+    4.模拟元素缓动到400的运动规律
+    运动次数                当前位置                     目标位置                  本次移动距离
+        1                             0                              400                         (400-0)/10 = 40
+        2                            40                             400                        (400-40)/10 = 36
+        3                            76                             400                        (400-76)/10 = 32.4     33（像素一般都是整数，所以需要向上取整）
+        4                            109                            400                        （400-109）/10 = 29.1   30
+    ………………
+        m                            395                              400                     (400-395)/10 = 0.5   1
+         m +1                           396                              400                     (400-396)/10 = 0.4   1
+         m +2                           397                              400                     (400-397)/10 = 0.3   1
+         m +3                           398                              400                     (400-398)/10 = 0.2   1
+         m +4                           399                              400                     (400-399）/10 = 0.1   1
+                                             400
+
+   5.缓动动画特点
+    * 1.取整：每一次移动距离计算式可能存在小数，需要向上取整操作
+    * 2.无需边界检测：因为运动最后面都是1px的移动，没有任何误差
+            * 但是仍然要到达目的地之后清除定时器
+     */
+
+    var box = document.getElementById('box');
+    var timeID = null;
+    //匀速到400
+    document.getElementById('move400').onclick = function (  ) {
+        //先清除之前的定时器
+        clearInterval(timeID);
+        //开启定时器
+        timeID = setInterval(function (  ) {
+            //1.获取元素当前位置
+            var currentLeft = box.offsetLeft;
+            //2.开始移动
+            currentLeft += 10;
+            //3.边界检测
+            if(currentLeft < 400){
+                box.style.left = currentLeft + 'px';
+            }else{//到达目的地
+                clearInterval(timeID);
+                //元素复位：避免动画误差
+                box.style.left = '400px';
+            }
+        },50);
+
+    }
+
+    //缓动到400
+    document.getElementById('move800').onclick = function (  ) {
+        //先清除之前的定时器
+        clearInterval(timeID);
+        //开启定时器
+        timeID = setInterval(function (  ) {
+            //1.获取元素当前位置
+            var currentLeft = box.offsetLeft;
+            //2.计算本次移动距离
+            var step = (800-currentLeft)/10;
+            //3.取整操作：向上取整
+            step = Math.ceil(step);
+            //4.开始移动
+            currentLeft += step;
+            box.style.left = currentLeft + 'px';
+            //5.到达目的地清除定时器
+            if(currentLeft == 400){
+                clearInterval(timeID);
+            }
+        },50);
+    }
+</script>
+</html>

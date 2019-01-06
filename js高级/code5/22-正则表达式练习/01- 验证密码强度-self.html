@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style type="text/css">
+  body {
+    background: #ccc;
+  }
+
+  label {
+    width: 40px;
+    display: inline-block;
+  }
+
+  span {
+    color: red;
+  }
+
+  .container {
+    margin: 100px auto;
+    width: 400px;
+    padding: 50px;
+    line-height: 40px;
+    border: 1px solid #999;
+    background: #efefef;
+  }
+
+  span {
+    margin-left: 30px;
+    font-size: 12px;
+  }
+
+  .wrong {
+    color: red
+  }
+
+  .right {
+    color: green;
+  }
+
+  .strengthLv0 {
+    height: 6px;
+    width: 120px;
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+
+  .strengthLv1 {
+    background: red;
+    height: 6px;
+    width: 40px;
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+
+  .strengthLv2 {
+    background: orange;
+    height: 6px;
+    width: 80px;
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+
+  .strengthLv3 {
+    background: green;
+    height: 6px;
+    width: 120px;
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+</style>
+<body>
+<div class="container">
+  <label>密码</label>
+  <input type="text" id="inp1" maxlength="16">
+  <!--<input type="password" id="inp1" maxlength="16"/>-->
+  <div class="pass-wrap">
+    <em>密码强度：</em><em id="strength"></em>
+
+    <div id="strengthLevel" class="strengthLv0"></div>
+  </div>
+</div>
+
+</body>
+</html>
+<script>
+  // 密码的组成： 大小写字母 数字 _  特殊符合   一定要大于6位
+  // 思路： 要看输入的密码有没须有小写数字_ \w   长度要大于6位
+
+  //1.获取对应的元素.
+  var txtInp1 = document.getElementById("inp1"); //输出密码的文本框.
+  var strength = document.getElementById("strength"); //显示密码强度: 中高低 标签
+  var strengthLevel = document.getElementById("strengthLevel"); //显示中高低颜色的标签.
+
+
+  var showArr = ['密码长度不够','低','中','高'];
+
+  //2.给密码输入框一个失去焦点事件
+  txtInp1.onblur = function () {
+    //声明一个变量,用来记录密码的强度.
+    var level = 0;
+
+    //2.1 获取输入的密码
+    //console.log(this.value); //用value可以获取文本框输入的密码,而且是字符串格式的,说明可以用正则来验证.
+    var password = this.value;
+    //2.2 写正则来验证这个密码: 看这个密码里面有没有字母,数字,其他字符.
+    //a.验证这个密码是否包含数字
+    if(/\d/.test(password)){
+      level++;
+    }
+    //b.验证这个密码是否包含字母
+    if(/[a-zA-Z_]/.test(password)){
+      level++;
+    }
+    //c.验证这个密码是否包含特殊字符
+    if(/\W/.test(password)){
+      level++;
+    }
+    //d. 如果密码长度不够6位.
+    if(password.length < 6){
+      level = 0;
+    }
+
+    //2.3 根据level的值,显示对应的汉字(中高低),以及对应的颜色.
+    strength.innerHTML = showArr[level];
+    strengthLevel.setAttribute("class",'strengthLv'+level)
+  }
+
+
+
+    
+
+</script>

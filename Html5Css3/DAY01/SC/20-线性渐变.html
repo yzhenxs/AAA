@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <!-- 
+        1.让美工帮你出张图
+                缺点：1.要请美工吃饭  2.图片会让浏览器访问的时候加载稍微慢一点，因为会发起一个图片的请求
+
+        2.不用图片，自己用CSS属性，做一个渐变颜色，所以这个时候要用线性渐变
+    -->
+
+    <style>
+        .box{
+            width: 300px;
+            height: 100px;
+            border: 1px solid #000;
+
+            /* 一定要设置给背景属性(严格来讲是给background-image)，因为它相当于是把渐变色当成背景图片 */
+            /*
+                参数1：渐变的方向 
+                        to right: 从左到右
+                        to left: 从右到左
+                        to top ： 从下到上
+                        to bottom：从上到下
+                        to right top: 从左下到右上
+                        to right bottom： 从左上右右下
+                        to left top ： 从右下到左上
+                        to left bottom： 从右上到左下
+
+                        除了方向以外，还有一个角度值
+                            0deg 代表从下到上，值越大，就是顺时针旋转，需要什么角度自己调就行了
+
+                参数2：颜色1
+                参数3：颜色2
+
+                每个颜色之间还可以设置占的比例
+
+                第一个颜色设置百分比代表它结束的位置
+                后面每个颜色设置百分比代表它开始的位置
+
+                至少要有2个颜色，多个颜色不限制
+            */
+
+
+            /* background-image: linear-gradient(to right,red,blue); */
+            /* background-image: linear-gradient(0deg,red,blue); */
+            background-image: linear-gradient(to right,orange,orangered,red);
+        }
+
+        input{
+
+            margin-top: 50px;
+
+            color:white;
+            width: 135px;
+            height: 35px;
+
+            background-image: linear-gradient(to right top,orange,orangered);
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box"></div>
+
+    <input type="button" value="我是按钮">
+</body>
+</html>

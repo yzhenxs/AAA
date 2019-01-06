@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url("images/bg.gif");
+            font: 12px "simsun";
+        }
+
+        .content {
+            width: 960px;
+            height: 627px;
+            margin: 0 auto;
+            background: url("images/content_bg.jpg");
+            position: relative;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: '';
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .tip {
+            width: 227px;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
+
+        .tip-h {
+            padding-top: 50px;
+            background: url("images/tip1_h.gif") no-repeat;
+            cursor: default;
+        }
+
+        .text {
+            float: left;
+            padding-left: 10px;
+        }
+
+        .close {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .tip-m {
+            min-height: 40px;
+            padding: 0 10px;
+            padding-top: 10px;
+            background: url("images/tip1_c.gif");
+        }
+
+        .tip-f {
+            height: 53px;
+            background: url("images/tip1_f.gif");
+            padding-top: 20px;
+        }
+
+        .icon {
+            float: left;
+            padding-left: 10px;
+        }
+
+        .name {
+            float: right;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="content">
+    <div class="tip" id="tip">
+        <div class="tip-h clearfix" title="双击关闭纸条">
+            <div class="text">第[99999]条 2018-07-23 09:22:22</div>
+            <div class="close" title="关闭纸条">x</div>
+        </div>
+        <div class="tip-m">程序猿最烦两件事，第一件事是别人要他给自己的代码写注释，
+            第二件呢？是别人的程序没有留下注释。</div>
+        <div class="tip-f clearfix">
+            <div class="icon">
+                <img src="images/bpic_1.gif" alt=""/>
+            </div>
+            <div class="name">蒙娜丽莎</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tip  =document.getElementById('tip');
+    //先获取模板上的大盒子的元素.
+
+        for(var i=1;i<10;i++){//遍历数组
+             var tags= tip.cloneNode(true);
+             //深克隆,虚拟存进一个变量,但是还没有显示出来,.
+
+                tags.id='tip'+i;
+                //这个是防止他的ID重复,ID是具备唯一性的.
+
+                tags.style.left=Math.floor ( Math.random () * 733)+'px';
+                //随机出现一个数字(要减去贴纸的宽度,防止出轨)他的高度(就是定位的位置意思)
+
+                tags.style.top=Math.floor ( Math.random () * 438)+'px';
+                //随机出现一个数字(要减去贴纸的高度,防止出轨)他的宽度(这个也是位置的意思)
+
+                content.appendChild(tags);
+                //把复制出来的贴纸,添加到父元素的页面上,即可出炉...
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    var ceshi=document.getElementById('content');
+//        ceshi.onclick = function (  ) {
+//            alert('哟呵呵,坤哥今天真帅气@@@!');
+//        }
+</script>
+</body>
+</html>

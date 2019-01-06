@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #c0c0c0;
+            width: 500px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+            height: 24px;
+        }
+
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>
+            <input type="checkbox" name="" id="checkAll"/>全选/全不选
+        </th>
+        <th>菜名</th>
+        <th>商家</th>
+        <th>价格</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name="check"/>
+        </td>
+        <td>红烧肉</td>
+        <td>隆江猪脚饭</td>
+        <td>￥200</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name="check"/>
+        </td>
+        <td>香酥排骨</td>
+        <td>隆江猪脚饭</td>
+        <td>￥998</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name="check"/>
+        </td>
+        <td>北京烤鸭</td>
+        <td>隆江猪脚饭</td>
+        <td>￥88</td>
+    </tr>
+
+
+</table>
+
+<script>
+    /*需求分析
+     * 1.点击上方选择框，让下方选择框选中状态与自身一致
+     * 2.点击下方选择框（开关思想）
+         *  2.1 如果下方所有选择框都是选中状态，则上方选择框为选中
+         *  2.2 否则（任意一个不是勾选状态）未选中
+    思路分析
+        * 1.获取界面元素
+        * 2.给上方选择框和下方所有的添加点击事件
+        * 3.实现上方选择框点击需求
+        * 4.实现下方选择框点击需求
+
+     */
+
+    // 1.获取界面元素
+    var checkAll = document.getElementById('checkAll');
+    var checkList = document.getElementsByName('check');//下方选择框列表
+
+    //  2.给上方选择框和下方所有的添加点击事件
+    //2.1 上方选择框点击事件
+    checkAll.onclick = function (  ) {
+        //3.实现上方选择框点击需求
+        console.log ( this.checked );
+        //3.1  该选择框的状态与自身当前状态相反（取反）
+        //input标签选择框，无需设置，当用户点击之后，值会自动变化
+
+        //3.2 并且下方所有的选择框与自身状态一致
+
+        for(var i = 0;i<checkList.length;i++){
+            checkList[i].checked = this.checked;
+        }
+    }
+
+    //2.1 遍历下方选择框数组
+    for(var i = 0;i<checkList.length;i++){
+        //2.2 给每一个选择框选择框点击事件
+        checkList[i].onclick = function (  ) {
+                //3. 开关思想
+            var isAllCheck = true;//假设全部选中。默认为true
+
+            //验证开关
+            for(var j = 0;j<checkList.length;j++){
+                if(checkList[j].checked != true){//推翻假设  只要有一个选择框选中状态时false
+                    isAllCheck = false;
+                }
+            }
+
+            checkAll.checked = isAllCheck;
+
+
+        }
+
+    }
+
+    console.log ( Date () );
+
+</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            transition: all 1s;
+
+            margin-top: 50px;
+        }
+
+        .box1:hover{
+            /* 3D变换也是用transform */
+            transform: translateX(500px);
+        }
+
+        .box2:hover{
+
+            transform: translateY(500px);
+        }
+
+        .box3{
+            /* 默认看不到效果，但是大家它是前后移动就行了 */
+            transform: translateZ(500px);
+        }
+        
+    </style>
+
+</head>
+<body>
+    <div class="box1">x轴平移</div>
+    <div class="box2">y轴平移</div>
+    <div class="box3">z轴平移</div>
+
+</body>
+</html>

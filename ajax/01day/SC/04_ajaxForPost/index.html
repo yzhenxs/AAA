@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入账号" id="user"> <span id="result"></span>
+    <br>
+    <input type="password" placeholder="请输入密码">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('user').onblur = function(){
+
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //2. 设置请求行
+        xhr.open('post','checkName.php');
+
+        //3. 设置请求头，get请求不需要设置，post请求一定要设置（设置的代码，不需要记，直接复制就行了）
+        xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        
+        //4. 发送请求&设置请求体
+        xhr.send("username=" + this.value);
+
+
+        xhr.onload = function(){
+
+            document.getElementById('result').innerHTML = xhr.responseText;   
+        }
+    }    
+
+</script>

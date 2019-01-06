@@ -1,0 +1,178 @@
+/* 
+    因为fullpage，在生成每一屏的时候会把我们写的内容再用一个div包起来，我们要让我们的内容
+    用伸缩布局，就应该这个包起来内容的div写display:flex;
+*/
+
+.section1>div{
+    /* 让子元素用伸缩布局 */
+    display: flex;
+    /* 让y轴为主轴 */
+    flex-direction: column;
+    /* 主轴对齐为起点和终点有间距，元素和元素之间也有间距 */
+    justify-content: space-around;
+    /* 在副轴居中 */
+    align-items: center;
+}
+
+
+.section1 .text img{
+
+    margin-left: 20px;
+    opacity: .5;
+}
+
+.section1.animation  .text img{
+
+    transition: all 1s;
+    margin-left: 0;
+    opacity: 1;
+}
+
+
+/* 第二屏开始 */
+
+.section2>div{
+
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.section2 .shield{
+
+    width:420px;
+}
+
+.section2 .info{
+
+    width: 635px;
+    height: 309px;
+}
+
+.section2 .shield img:nth-child(3){
+
+    transform: translate(700px,500px) rotate(270deg);
+}
+
+
+.section2.animation .shield img:nth-child(3){
+
+    transition: all 1s;
+    transform: none;
+}
+
+
+/********************** 第三屏开始 ******************************/
+.section3>div{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section3 .circle{
+
+    width: 453px;
+    height: 449px;
+    background: url(../images/circle.png) no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section3 .rocket{
+
+    transform: translate(-1000px,600px);
+}
+
+.section3.animation .rocket{
+    transition: all 1s;
+    transform: none;
+}
+
+
+/****************** 第四屏开始  *******************/
+.section4>div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section4 .searchBox{
+    width: 529px;
+    height:438px;
+
+    transform: translate(-1000px);
+}
+
+.section4 .search{
+
+    width: 529px;
+    height: 66px;
+    background: url(../images/search.png) no-repeat;
+    position: relative;
+}
+
+.section4 .key{
+
+    /* width: 99px; */
+    width: 0;
+    height: 22px;
+    background: url(../images/key.png) no-repeat;
+    position: absolute;
+    left:20px;
+    top:25px;
+
+}
+
+.section4 .result{
+
+    
+    width: 529px;
+    /* height: 372px; */
+    height: 0;
+    background: url(../images/result.png) no-repeat;
+}
+
+
+
+.section4.animation .searchBox{
+
+    transition: all 1s;
+    transform: none;
+}
+
+.section4.animation .key{
+
+    transition: all .6s 1s steps(5);
+    width: 99px;
+}
+
+.section4.animation .result{
+
+    transition: all 1s 2s;
+    height:372px;
+}
+
+
+/**************    第五屏    **************/
+.section5>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section5 .browser{
+
+    width: 1004px;
+    flex: 1;
+    border: 5px solid white;
+    position: relative;
+}
+
+.section5 .extra{
+
+    position: absolute;
+    right:0;
+    bottom: 0;
+}

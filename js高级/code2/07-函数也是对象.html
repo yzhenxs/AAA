@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.函数是一个对象.
+    function test1(){
+      console.log("我是test1函数.");
+    }
+    //把test1这个函数作为对象,往里面添加属性sb和方法dsb.
+    test1.sb = "随便";
+    test1.dsb = function () {
+      console.log("我是大随便...");
+    }
+    //调用test1对象中的属性和方法.
+    console.log(test1.sb);
+    test1.dsb();
+
+
+    //2.输出函数这个对象看看.
+    console.log(test1); //这样输出函数,拿到的是函数体.
+    console.dir(test1); //这样输出,就把函数作为对象输出了.
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

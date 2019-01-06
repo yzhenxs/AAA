@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        在伸缩布局中，默认情况下x轴为主轴
+            应用伸缩布局的那个元素里的  子元素 都是在主轴方向上依次排列
+
+        伸缩布局的特点是：
+                1.子元素在主轴方向上永远不会超出，不会管副轴
+                2.如果不给副轴方向上的值（可能是宽，可能是高），那么就用父盒子的（宽度或者高度）
+
+
+        默认主轴是水平方向也就是x轴
+
+        修改主轴方向：
+                flex-direction:
+                            row 默认值：也就是让水平方向为主轴
+                            column  让y轴为主轴
+                        不常用的值
+                            row-reverse：x轴为主轴，只不过起点在右边
+                            column-reverse：y轴为主轴，只不过起点在下边
+
+        修改子元素在主轴方向上的对齐方式
+                justify-content：
+                    flex-start：代表从起点开始依次排列  默认值
+                    center: 在主轴方向居中
+                    flex-end：代表默认情况下的右对齐，严格来讲说主轴方向上的终点对齐
+                    space-around： 起点和终点有间距，元素和元素之间也有间距
+                    space-between：起点和终点没有间距，元素和元素之间有间距
+
+        
+        统一设置所有子元素在副轴上的对齐方式
+                 align-items:
+                    flex-start：默认值，设置元素在副轴的起点对齐
+                    center：设置元素在副轴的中间
+                    flex-end：设置元素在副轴的终点
+    
+     -->
+     
+     <style>
+
+            ul{
+                list-style: none;
+                padding: 0;
+                width: 600px;
+                height: 500px;
+                border: 1px solid #000;
+               
+               /* 让ul的子元素应用伸缩布局 */
+                display: flex;
+                
+                /* 设置元素在主轴方向上的对齐方式 只是对齐里面
+                    flex-start：代表从起点开始依次排列  默认值
+                    center: 在主轴方向居中
+                    flex-end：代表默认情况下的右对齐，严格来讲说主轴方向上的终点对齐
+                    space-around： 起点和终点有间距，元素和元素之间也有间距
+                    space-between：起点和终点没有间距，元素和元素之间有间距
+                 */
+                justify-content: space-around;
+
+                /* 统一设置所有元素在副轴方向上的对齐方式
+                    flex-start：默认值，设置元素在副轴的起点对齐
+                    center：设置元素在副轴的中间
+                    flex-end：设置元素在副轴的终点
+                 */
+                align-items: flex-start;
+
+
+                /* 修改主轴方向 */
+                /* flex-direction: column; */
+                
+            }
+   
+            li{
+              
+                width: 100px;
+                height: 100px;
+                background-color: yellowgreen;
+            }
+        </style>
+</head>
+<body>
+    
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

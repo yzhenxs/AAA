@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>隔壁老王1</li>
+    <li id="li2">隔壁老王2</li>
+    <li id="li3">隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <li>隔壁老王5</li>
+</ul>
+
+<ul id="ul2">
+    <li>隔壁老林1</li>
+    <li id="li22">隔壁老林2</li>
+    <li>隔壁老林3</li>
+    <li>隔壁老林4</li>
+    <li>隔壁老林5</li>
+</ul>
+
+<script>
+    /*removeChild
+    语法：父元素.removeChild(子元素)
+
+    1.父元素只能移除自己的子元素（只有亲爸爸可以干掉亲儿子）
+    2.元素不能自己移除自己（不能自杀，只能被亲爸爸杀）
+    3.元素不能移除别人子元素（只能杀掉自己的亲儿子）
+
+     */
+
+    var ul1 =document.getElementById('ul1');//隔壁老王ul
+    var ul2 =document.getElementById('ul2');//隔壁老张ul
+    var li2 = document.getElementById('li2');//隔壁老王2
+    var li3 = document.getElementById('li3');//隔壁老王3
+    var li4 = document.getElementById('li4');//隔壁老张4
+
+    //1.自己不能移除自己(不能自杀)
+  //  li2.removeChild(li2);
+
+    //2.自己不能移除别人的子元素(不能杀别人的儿子)
+    //ul1.removeChild(li4);
+
+    //3.父元素只能移除自己的子元素（只有亲爸爸才可以杀死亲儿子）
+    ul1.removeChild(li2);
+
+    //儿子如何做到杀死爸爸，让自己的爷爷杀死爸爸
+    console.log ( li3.parentNode );//li的父亲 ul1
+    console.log ( li3.parentNode.parentNode );//li2的爷爷
+    //li3的爷爷杀死li3的爸爸
+    li3.parentNode.parentNode.removeChild(li3.parentNode);
+</script>
+</body>
+</html>

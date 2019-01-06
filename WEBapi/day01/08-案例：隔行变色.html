@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button>点我啊，给你点颜色看看</button>
+
+<ul>
+    <li>隔壁老王1</li>
+    <li>隔壁老王2</li>
+    <li>隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <li>隔壁老王5</li>
+    <li>隔壁老王6</li>
+</ul>
+
+<script>
+    /*1.需求分析： （1）点击按钮，改变ul标签里面的li标签颜色 （2）单数行，显示绿色  ，双数行，显示粉色
+    2.思路分析
+        * （1）获取元素（事件源）
+        * （2）注册事件（点击）
+        * （3）处理事件
+            *  获取ul标签下的所有li标签数组
+            * 遍历数组获取每一个li标签元素
+            * 改变li标签颜色
+
+     */
+
+    //1.获取元素
+    var btn = document.getElementsByTagName('button')[0];
+    console.log ( btn );
+    //发现问题：（1）tagname获取元素返回值是数组 （2）数组没有添加事件这个语法的（元素）
+    //解决方案：通过下标获取数组里面的元素
+
+    //2.注册事件
+    btn.onclick = function (  ) {
+        //3.事件处理
+        //3.1 获取界面所有li标签
+        var liList = document.getElementsByTagName('li');
+        //3.2 遍历数组，获取每一个li标签
+        for(var i = 0;i<liList.length;i++){
+            console.log ( liList[ i ] );
+            if(i%2==0){//单数行
+                liList[i].style.backgroundColor = 'green';
+            }else{//双数行
+                liList[i].style.backgroundColor = 'hotpink';
+            }
+        }
+    }
+</script>
+</body>
+</html>

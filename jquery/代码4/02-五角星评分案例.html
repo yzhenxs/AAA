@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星评分案例</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            font-size: 40px;
+            color: red;
+        }
+
+        .comment li {
+            float: left;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+      $(function () {
+        //需求1:鼠标移入到li标签上,当前li标签和他之前的li标签显示实心五角心,后面的li显示空心五角心.
+        //需求2:鼠标离开li,所有的li都变成空心.
+        //需求3:点击li,鼠标离开后,刚才点击的那个li和之前的li都变成实心五角心,后面空心五角心.
+
+        //prev(); 找上一个兄弟
+        //prevAll(); 之前所有的兄弟
+        //next(); 下一个兄弟
+        //nextAll(); 后面所有的兄弟
+
+        //声明变量保存实心五角心
+        var sx_wjx = "★";
+        var kx_wjx = "☆";
+
+        //需求1:
+        $('.comment>li').on('mouseenter', function () {
+          //$(this).text(sx_wjx).prevAll().text(sx_wjx).nextAll().text(kx_wjx); //不行
+          //console.log($(this).text(sx_wjx).prevAll().text(sx_wjx).nextAll());
+
+
+          //end()方法. 筛选选择器会改变jQuery对象的DOM对象，想要回复到上一次的状态，并且返回匹配元素之前的状态。
+          //console.log($(this).text(sx_wjx).prevAll().text(sx_wjx).end());
+          $(this).text(sx_wjx).prevAll().text(sx_wjx).end().nextAll().text(kx_wjx);
+
+
+          //下面两行代码是可以实现效果的.
+          //$(this).text(sx_wjx).prevAll().text(sx_wjx);
+          //$(this).nextAll().text(kx_wjx);
+        }).on('mouseleave', function () {
+          //需求2
+          $('.comment>li').text(kx_wjx);
+
+          //只有在需求3里面记录了刚才点击的是哪一个,我这个需求2里离开li的时候才知道你刚才点的是哪一个.
+          //$('.comment>li.current').text(sx_wjx).prevAll().text(sx_wjx);
+          $('.comment>li[aaa="current"]').text(sx_wjx).prevAll().text(sx_wjx);
+
+        }).on('click', function () {
+          //需求3: 记录点击的是哪一个li标签.
+          //给当前点击的li一个属性(我们这里给的是class属性的一个值) ,其他的li移除这个属性.
+          //$(this).attr('class','current').siblings('li').removeAttr('class','current');
+          $(this).attr('aaa','current').siblings('li').removeAttr('aaa','current');
+        });
+
+
+
+
+
+
+
+      });
+    </script>
+</head>
+
+<body>
+
+    <ul class="comment">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+
+</body>
+
+</html>

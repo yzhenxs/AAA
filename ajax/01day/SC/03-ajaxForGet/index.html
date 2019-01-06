@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入账号" id="user">  <span id="result"></span>
+    <br>
+    <input type="password" placeholder="请输入密码">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('user').onblur = function(){
+
+        if( this.value == "" ){
+            return; //不往下执行
+        }
+
+        //不为空才发请求
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //2. 设置请求行， get请求如果要传递数据，是通过URL传递
+        //get请求通过url传递数据：key=value的形式传递，记得先要再路径后面加一个问号
+        //例：data.php?name=jack
+        //如果要发送多个数据，用&符号连接 例： data.php?name=admin&pwd=123456
+        xhr.open('get','checkName.php?username=' + this.value);
+
+        //3. get请求不需要设置请求头
+
+        //响应完成事件
+        xhr.onload = function(){
+
+            //把响应体给span去显示
+            document.getElementById('result').innerHTML = xhr.responseText;
+        }
+
+        //4. 发送请求&设置请求体
+        // get请求不是通过请求体传递的数据
+        xhr.send();
+    }
+
+</script>

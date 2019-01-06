@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.为什么这样写,有性能低下的问题.
+    //因为计算了很多重复的项.
+    // var i = 0; //声明一个变量,用来记录getFB这个函数调用的次数.
+    // function getFB(n){
+    //   i++;
+    //   if(n == 1 || n == 2){
+    //     return 1;
+    //   }
+    //   return getFB(n-1) + getFB(n-2);
+    // }
+    // console.log(getFB(43));
+    // console.log(i); //866988873 求43位是多少,调用getFB这个函数的次数.
+
+
+    //2.如何解决这个性能低下的问题.
+    //思路:已经算过的项,就不要再算了,就会少很多计算重复项的调用.
+    //已经求过的项,保存起来, 如果下次还要求这个项就可以直接取出来用.(而不是调用getFB来求出来.)
+    //如何保存,用什么东西保存.  用对象保存.
+
+    var i = 0;//声明一个变量i,用来记录调用getFB的次数.
+    //声明一个对象obj,用来保存已经求过的斐波那契项.
+    var obj = {};
+    function getFB(n){
+      i++;
+      //先去obj对象中看看,n这位之前求过没有,如果求过就直接拿出来用,如果没有求过就求.
+      if(obj[n]){
+        //如果到了这里,说明n位已经求过了.
+        return obj[n];
+      }else {
+        //如果到了这里,说明n位没有求过,就要求.
+        if(n == 1 || n == 2 ){
+           //把求过的值存进obj里面,方便以后拿来用.
+           obj[n] = 1;
+           return 1;
+        }else {
+          //把求过的值存进obj里面,方便以后拿来用.
+          obj[n] =  getFB(n-1) + getFB(n-2);
+          return obj[n];
+        }
+      }
+    }
+
+    console.log(getFB(50)); //12586269025
+    console.log(i); //97 计算50位的数是多少调用getFB函数的次数为97.
+
+
+
+
+
+
+    //复习一下对象.
+    // var obj = {
+    //   9:34
+    // };
+    // console.log(obj[1]);//undefined
+    // console.log(obj[9]);//34
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

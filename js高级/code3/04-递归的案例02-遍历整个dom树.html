@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+
+</head>
+<body>
+<div class="father" id="father">
+  <div>div1
+    <span>span1</span>
+    <span>span2</span>
+  </div>
+  <div>div2</div>
+  <div>div3</div>
+  <p>p1</p>
+  <p>p2</p>
+  <p>p3
+    <b>b1</b>
+    <b>b2</b>
+  </p>
+</div>
+
+<script>
+  //1.需求:求出id为father的这个div的所有的后代元素.
+  //有没有一个直接的api可以求某个元素的所有后代?没有, 怎么办? 先求出子代,再让子代求子代,直到求到没有子代为止.
+  //如果写了一个函数getHDEles()就是用来子代的; 子代在求子代的时候也要调用这个函数. 不就是递归嘛.
+
+  //声明一个数组list,用来保存所有的后代元素.
+  var list = [];
+  function getHDEles(ele){
+    var children = ele.children; //这就找到了ele这个元素的所有子代.
+    //那这些子代每一个都要再去求子代.所以要遍历.
+    for(var i = 0 ; i < children.length; i++){
+      var child = children[i]; //先拿到每一个子元素.
+      //把已经求过的子代先存起来.
+      list.push(child);
+      //子代也要求子代,也是调用getHDEles这个方法来求.
+      getHDEles(child);
+    }
+  }
+
+  //验证一下
+  // var father = document.getElementById("father");
+  // getHDEles(father);
+  // console.log(list);
+
+
+  //验证: 如果我们要 求出整个dom树的元素.意思就是求document的所有的后代.
+  getHDEles(document);
+  console.log(list);
+
+
+
+</script>
+</body>
+</html>

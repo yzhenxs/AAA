@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="jd/lib/swiper/css/swiper.css">
+    <style>
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+    
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .swiper-container {
+        width: 300px;
+        height: 150px;
+    }
+    
+    .swiper-slide {
+        background-position: center;
+        background-size: 100% 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(jd/images/l1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(jd/images/l2.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(jd/images/l3.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(jd/images/l4.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(jd/images/l5.jpg)"></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <script src="../../day03/3-源代码/weijinsuo/lib/jquery/jquery.js"></script>
+    <script src="jd/lib/swiper/js/swiper.js"></script>
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 2000
+        },
+        effect: 'cube',
+        // effect: 'coverflow',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    //实现鼠标上移停止自动轮播图 鼠标离开开启自动轮播图 方法使用对应版本swiper的方法
+    $(".swiper-container").mouseenter(function() { //滑过悬停
+        swiper.autoplay.stop(); //mySwiper 为上面你swiper实例化的名称
+    }).mouseleave(function() { //离开开启
+        swiper.autoplay.start();
+    });
+    </script>
+</body>
+
+</html>

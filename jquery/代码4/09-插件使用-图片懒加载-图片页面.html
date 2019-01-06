@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            width: 980px;
+            margin: 0 auto;
+        }
+        ul li{
+            width:230px;
+            height: 230px;
+            float: left;
+            margin-right:20px;
+            margin-bottom:20px;
+        }
+        ul li.last{
+            margin-right:0;
+        }
+        ul li img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div style="margin-bottom: 2000px">
+    <img src="data:image/png;base64,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" alt=""/>
+</div>
+<ul>
+    <li><img data-original="http://img.daimg.com/uploads/allimg/160324/1-160324232117.jpg" alt=""></li>
+    <li><img data-original="http://img.daimg.com/uploads/allimg/160318/1-16031P01P0.jpg" alt=""></li>
+    <li><img data-original="http://img.daimg.com/uploads/allimg/160318/1-16031P01332.jpg" alt=""></li>
+    <li class="last"><img data-original="images/guojidapai.jpg" alt=""></li>
+</ul>
+<!--
+图片懒加载
+1. 不管图片隐藏还是显示  有src属性都会去加载
+2. 那么如果页面上有太多的图片  而且有些图片不在可视窗口内  如果加载了会影响页面的渲染页面时间
+3. 解决方案：自己控制图片的加载  当进入可视区域内容才去加载
+4. 怎么控制呢？ 通过控制src属性来控制图片加载
+5. 思路怎么样？ 首先默认所有的图片都不使用src属性，自定义一个属性存要显示的图片路径，当进入可视区域追加到src属性
+6. 使用插件  基于jquery的图片加载插件
+7. jquery.lazyload.js  延时加载图片
+-->
+<script src="jquery-1.12.4.js"></script>
+<script src="plugin/jquery.lazyload.js"></script>
+<script>
+    $(function () {
+        /*1.需要初始化*/
+        /*2.先需要找  懒加载的图片 */
+        /*3.把src属性改成自定义属性  默认的是  data-original */
+        $('ul img').lazyload({
+            effect: "fadeIn",
+            placeholder:'1.png'
+        });
+        /*4. data:image/png:djsadjslkajdslkajdlksajdlskajdlsaj;*/
+        /*5. base64数据  也可以当作图片使用*/
+    })
+</script>
+</body>
+</html>

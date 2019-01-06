@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 100px;
+			height:100px;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		// 移动端click事件 有一定延迟 
+		// 为了兼容双击操作 如果300ms以内有2次点击就是双击
+		// 300ms以内只有一次点击就是单击
+		// 由于touch事件是不延迟 touchstart touchend不会延迟
+
+		// 为了解决移动端点击事件的延迟 就使用touch事件模拟 
+		// 使用zepto里面封装好的tap事件能够解决延迟问题
+		var box = document.querySelector('.box');
+		box.addEventListener('click', function () {
+			console.log('click');
+		})
+		box.addEventListener('touchstart', function () {
+			console.log('touchstart');
+		})
+		box.addEventListener('touchend', function () {
+			console.log('touchend');
+		})
+	</script>
+</body>
+</html>

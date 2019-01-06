@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>隔壁保健坤1</li>
+    <li>隔壁保健坤2</li>
+    <li>隔壁保健坤3</li>
+    <li>隔壁保健坤4</li>
+    <li>隔壁保健坤5</li>
+</ul>
+
+<ul id="ul2">
+    <li id="li1">隔壁老王6</li>
+    <li>隔壁老王7</li>
+    <li>隔壁老王8</li>
+    <li>隔壁老王9</li>
+    <li>隔壁老王10</li>
+</ul>
+
+</body>
+
+<script>
+    /**
+     * 1.根据标签名获取元素（获取页面所有标签名元素）
+     * @param  标签名字符串
+     * @return 一定是一个数组（伪数组，拥有数组的三要素，没有数组的API）
+     */
+   var liList = document.getElementsByTagName('li');//如果找不到，则返回空数组
+   console.log ( liList );
+    //伪数组只有数组的三要素，没有数组的API
+    //console.log ( liList.reverse () );//这行代码会报错
+
+    //2.获取一个父元素下面所有的标签名元素数组
+    var ul1 = document.getElementById('ul1');
+    var liArr =    ul1.getElementsByTagName('li');
+    console.log ( liArr );
+
+    //3.获取id（id具有唯一性），只能由document来调用
+   var li1 =  document.getElementById('li1');
+    console.log ( li1 );
+
+    /*小技巧：如果获取元素的api中element后面有s，则获取的一定是数组，否则是元素
+    1.使用  document.getElementsByTagName('标签名')  获取的整个页面所有的标签名元素数组
+    2.使用  父元素.getElementsByTagName('标签名')       获取父元素中的所有标签名元素数组
+    3.获取id只能使用  document.getElementById('id')
+     */
+</script>
+</html>

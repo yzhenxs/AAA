@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+            transition: all 2s;
+            /* 这句话一定要写 */
+        }
+
+        #box1{
+            background-color: red;
+        }
+        #box1:hover{
+            transform: translateX(800px);
+        }
+
+        #box2{
+            background-color: blue;
+        }
+        #box2:hover{
+            transform: translateY(300px);
+        }
+
+        #box3{
+            background-color: yellow;
+        }
+        #box3:hover{
+            transform: translateZ(200px);
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">小红</div>
+    <div id="box2">小蓝</div>
+    <div id="box3">小黄</div>
+</body>
+</html>
+
+
+
+

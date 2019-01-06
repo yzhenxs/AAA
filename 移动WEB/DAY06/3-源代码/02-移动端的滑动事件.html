@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    .box {
+        height: 500px;
+        overflow: hidden;
+    }
+    
+    .box div {
+        width: 100px;
+        height: 2200px;
+        background-color: #ccc;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 滑动原理
+		1. 获取滑动开始的手指的坐标 
+		2. 获取滑动结束手指的坐标
+		3. 用结束的坐标-开始的坐标 求到手指移动的距离
+		4. 把距离设置给div位移 -->
+    <div class="box">
+        <div>
+        	<p>文字1</p>
+        	<p>文字2</p>
+        	<p>文字3</p>
+        	<p>文字4</p>
+        	<p>文字5</p>
+        	<p>文字6</p>
+        	<p>文字7</p>
+        	<p>文字8</p>
+        	<p>文字9</p>
+        	<p>文字10</p>
+        	<p>文字11</p>
+        	<p>文字12</p>
+        	<p>文字13</p>
+        	<p>文字14</p>
+        	<p>文字15</p>
+        	<p>文字16</p>
+        	<p>文字17</p>
+        	<p>文字18</p>
+        	<p>文字19</p>
+        	<p>文字20</p>
+        	<p>文字21</p>
+        	<p>文字22</p>
+        	<p>文字23</p>
+        	<p>文字24</p>
+        	<p>文字25</p>
+        	<p>文字26</p>
+        	<p>文字27</p>
+        	<p>文字28</p>
+        	<p>文字29</p>
+        	<p>文字30</p>
+        	<p>文字31</p>
+        	<p>文字32</p>
+        	<p>文字33</p>
+        	<p>文字34</p>
+        	<p>文字35</p>
+        	<p>文字36</p>
+        	<p>文字37</p>
+        	<p>文字38</p>
+        	<p>文字39</p>
+        	<p>文字40</p>
+        	<p>文字41</p>
+        	<p>文字42</p>
+        	<p>文字43</p>
+        	<p>文字44</p>
+        	<p>文字45</p>
+        	<p>文字46</p>
+        	<p>文字47</p>
+        	<p>文字48</p>
+        	<p>文字49</p>
+        	<p>文字50</p>
+        </div>
+    </div>
+    <script>
+    // 注意滑动只能在手机或者手机模拟器中使用PC使用不了的
+    var div = document.querySelector('.box div');
+    // 滑动距离X    距离Y      起点X    起点 Y    滑动中X  滑动中Y  当前的位置X 当前的位置Y
+    var distanceX = distanceY = startX = startY = moveX = moveY = currentX = currentY = 0;
+    //touchstart 触摸开始的事件 手指放上屏幕就会触发的事件
+    div.addEventListener('touchstart', function(e) {
+        // e事件源对象
+        // e.touches是手指对象 是一个数组有很多手指
+        // e.touches[0]  取第一个手指对象
+        // e.touches[0].clientX 手指坐标相对于视口左上角 通常使用视口左上角参照点
+        // console.log(e.touches[0].clientX);	
+        // console.log(e.touches[0].clientY);	
+        // X水平坐标 Y垂直坐标 都是手指坐标
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        console.log(currentX);
+        console.log(currentY);
+    });
+    //touchmove手指在滑动中会触发的事件 手指放在屏幕上不断滑动会一直触发的事件
+    div.addEventListener('touchmove', function(e) {
+        // console.log(e.touches[0].clientX);	
+        // console.log(e.touches[0].clientY);	
+        moveX = e.touches[0].clientX;
+        moveY = e.touches[0].clientY;
+        distanceX = moveX - startX;
+        distanceY = moveY - startY;
+
+        //把距离赋值给div的位移 注意要带单位
+        // div.style.transform = 'translate('+(currentX+distanceX)+'px,'+(currentY+distanceY)+'px)';
+        div.style.transform = 'translate(0px,' + (currentY + distanceY) + 'px)';
+    });
+    // touchend滑动结束事件 手指松开的时候会触发的事件
+    div.addEventListener('touchend', function() {
+        //把之前所有位移的距离累加起来 作为div位移的起点
+        currentX += distanceX;
+        currentY += distanceY;
+    });
+    </script>
+</body>
+
+</html>

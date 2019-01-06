@@ -1,0 +1,242 @@
+/* 头部区域样式 */
+#header {
+  border-bottom: 1px solid #ccc;
+}
+#header .row > div {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  border-right: 1px solid #ccc;
+}
+#header .row > div:first-child > a {
+  display: block;
+}
+#header .row > div:last-child {
+  border-right: 0px solid #ccc;
+}
+#header .row > div:last-child > .btn-sm {
+  background-color: #e92322;
+}
+#header .row > div a {
+  color: #666;
+  position: relative;
+  text-decoration: none;
+}
+#header .row > div a > img {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+#header .row > div a:hover > img {
+  display: block;
+}
+/* 导航区域样式 */
+#nav {
+  background-color: #fff;
+  z-index: 998;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+}
+#nav .container .navbar-brand {
+  height: 80px ;
+  line-height: 50px;
+}
+#nav .container .navbar-brand .icon-icon {
+  color: #e92322;
+  font-size: 30px;
+}
+#nav .container .navbar-brand .icon-logo {
+  color: #000;
+  font-size: 30px;
+}
+#nav .container .collapse > ul {
+  list-style: none;
+}
+#nav .container .collapse > ul > li > a {
+  height: 80px;
+  line-height: 50px;
+  color: #666;
+}
+#nav .container .collapse > ul > li > a:hover {
+  border-bottom: 2px solid #e92322;
+  box-sizing: border-box;
+}
+#nav .container .collapse > ul:first-child > li:first-child > a {
+  border-bottom: 2px solid #e92322;
+  box-sizing: border-box;
+}
+/* 轮播图区域 */
+#slide .large-image {
+  /* 设置大图片样式 高度 宽度 背景居中显示*/
+  display: block;
+  width: 100%;
+  height: 410px;
+  background-position: center center;
+}
+#slide .small-image {
+  display: block;
+}
+#slide .small-image > img {
+  width: 100%;
+}
+/* 特色广告区域 */
+#feature {
+  padding: 30px;
+}
+#feature .row .media {
+  margin-bottom: 10px;
+}
+#feature .row .media > a {
+  text-decoration: none;
+  color: #666;
+}
+#feature .row .media > a:hover {
+  color: #e92322;
+}
+/* 立即预约区域 */
+#booking {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+}
+/* 产品推荐区域 */
+#products {
+  background-color: #f0f0f0;
+  padding-bottom: 40px;
+}
+#products .container .ul-wapper > ul {
+  padding-top: 40px;
+}
+#products .container .ul-wapper > ul > li > a {
+  background-color: #f0f0f0;
+  border: none;
+  font-size: 16px;
+  color: #666;
+}
+#products .container .ul-wapper > ul > li.active {
+  border-bottom: 3px solid #e92322;
+  box-sizing: border-box;
+}
+#products .container .tab-content .tab-pane .col-xs-12 {
+  margin-top: 20px;
+}
+#products .container .tab-content .tab-pane .col-xs-12:first-child .productBox {
+  background-color: #e92322;
+  color: #fff;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox {
+  height: 160px;
+  background-color: #fff;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-left {
+  padding: 10px;
+  text-align: center;
+  height: 160px;
+  margin-right: 120px;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-left .row .col-xs-6 {
+  margin-bottom: 10px;
+  text-align: left;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-left .row .col-xs-6:nth-child(2n) {
+  text-align: right;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-left .row .col-xs-6 p {
+  margin-bottom: 0;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right {
+  width: 120px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 160px;
+  border-left: 1px dashed #ccc;
+  padding-top: 40px;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right > p {
+  text-align: center;
+  margin-bottom: 0;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right > p > strong {
+  font-size: 30px;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right .yuan {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  position: absolute;
+  left: -8px;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right .yuan.top {
+  top: -8px;
+}
+#products .container .tab-content .tab-pane .col-xs-12 .productBox .pull-right .yuan.bottom {
+  bottom: -8px;
+}
+/* 新闻区域 */
+#news .container .col-md-2 > h4 {
+  border-bottom: 1px dashed #ccc;
+  line-height: 40px;
+  text-align: center;
+}
+#news .container .col-md-2 > div {
+  width: 10px;
+  height: 10px;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  position: absolute;
+  left: 173px;
+  top: 45px;
+}
+#news .container .col-md-1 .nav {
+  border-bottom: 0;
+}
+#news .container .col-md-1 .nav > li {
+  margin-bottom: 20px;
+}
+#news .container .col-md-1 .nav > li > a {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: 0;
+  text-align: center;
+  font-size: 30px;
+  color: #ccc;
+}
+#news .container .col-md-1 .nav > li > a:hover {
+  background-color: #e92322;
+}
+#news .container .col-md-1 .nav > li.active > a {
+  background-color: #e92322;
+}
+#news .container .tab-content .tab-pane > ul {
+  list-style: none;
+}
+#news .container .tab-content .tab-pane > ul > li {
+  line-height: 40px;
+}
+#parner {
+  padding: 40px 0;
+}
+#parner .container .top {
+  text-align: center;
+}
+#parner .container .bottom > ul > li {
+  list-style: none;
+  width: 11.11111111%;
+  float: left;
+  font-size: 50px;
+}
+#parner .container .bottom > ul > li > a {
+  text-decoration: none;
+  color: #333;
+}
+#parner .container .bottom > ul > li > a:hover {
+  color: #e92322;
+}

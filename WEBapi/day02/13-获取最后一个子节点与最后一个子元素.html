@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>我是第1个li标签</li>
+    <li>我是第2个li标签</li>
+    <li>我是第3个li标签</li>
+    <li>我是第4个li标签</li>
+    <li>我是第5个li标签</li>
+    我是一个文本
+    <!-- 我是一个注释-->
+</ul>
+
+</body>
+
+<script>
+    /*获取最后一个子节点与最后一个子元素（兼容性与兄弟节点/元素一致）
+    1.获取最后一个子节点;：  元素.lastChild
+    2.获取最后一个子元素： 元素.lastElementChild
+        * IE8不支持
+
+     */
+    var ul1 = document.getElementById('ul1');
+
+    //1.获取最后一个子节点
+    console.log ( ul1.lastChild );//空文本
+    //2.获取最后一个子元素
+    console.log ( ul1.lastElementChild );
+
+    console.log ( getlastElementChild ( ul1 ) );
+
+    //3.IE8兼容性封装
+
+    function  getlastElementChild ( ele ) {
+        var node = ele.lastChild;
+        while(node != null && node.nodeType != 1){
+            node = node.previousSibling;
+        }
+        return node;
+    }
+
+</script>
+</html>

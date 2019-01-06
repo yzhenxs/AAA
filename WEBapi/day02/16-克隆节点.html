@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .one{
+        background: red;
+    }
+</style>
+<body>
+<div class="one" id="box" >我是div
+    <span>我是span</span>
+</div>
+</body>
+
+<script>
+    /*本小节知识点：克隆节点
+        * 语法： 元素.cloneNode()
+            * true：深克隆
+            * false:浅克隆
+        * 注意点：克隆之后的元素，所有的属性都是一样，需要修改id（避免id重复）
+
+      2.添加子节点：  元素.appendChile(子节点)
+
+     */
+
+    var box = document.getElementById('box');
+
+    //1.克隆box
+    /**
+     * 克隆节点
+     * @param 布尔类型  深克隆true/浅克隆false(默认)
+     * 浅克隆：只克隆元素自身，不克隆子元素
+     * 深克隆：克隆自身以及所有的子元素
+     * @type {Node}
+     */
+    var cloneBox = box.cloneNode(true);
+
+    //克隆出来的元素最好修改id，避免id重复
+    cloneBox.id = '66666';
+    console.log ( cloneBox );
+
+    //2.克隆的元素只是在内存中克隆一份，不会添加到界面上
+    //需要手动的添加到页面上
+    document.body.appendChild(cloneBox);
+
+    //3.移出子节点
+//    document.body.removeChild(cloneBox);
+</script>
+</html>

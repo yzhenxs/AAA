@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    .row div {
+        height: 100px;
+        border: 1px solid red;
+        float: left;
+    }
+    </style>
+</head>
+
+<body>
+    <!--  1. 大屏幕的时候 一行放4个div 屏幕宽度>=1200  现代电脑
+    2. 中屏幕的时候 一行放3个div 992 <= 屏幕宽度 < 1200  老款台式机
+    3. 小屏幕的时候 一行放2个div 768 <= 屏幕宽度 < 992  ipad
+    4. 超小屏幕的时候 一行放1个div 屏幕宽度<768  手机 -->
+    <div class="row">
+        <div class="col">1</div>
+        <div class="col">2</div>
+        <div class="col">3</div>
+        <div class="col">4</div>
+    </div>
+    <script>
+    // 1. 获取屏幕宽度来判断属于哪个范围
+    // 2. 针对某个范围设置div宽度 注意带All
+    // 3. 当屏幕宽度变化后 把整个代码重新执行  使用resize事件 只要宽度变化就执行下面的代码
+    window.addEventListener('resize', response)
+    response();
+    //封装函数 默认触发一次 在事件里面也触发一次
+    function response() {
+        var cols = document.querySelectorAll('.col');
+        // 1. 获取屏幕宽度
+        var windowWidth = document.documentElement.offsetWidth;
+        console.log(windowWidth);
+        // 2. 判断是否是大屏幕
+        if (windowWidth >= 1200) {
+            // 3. 如果是大屏幕 设置div宽度 100%/4  == 25%
+            for (var i = 0; i < cols.length; i++) {
+                cols[i].style.width = '25%';
+            }
+        } else if (windowWidth >= 992) { // 4. 判断是否中屏幕
+            // 3. 如果是中屏幕 设置div宽度 100%/3  == 33.33%
+            for (var i = 0; i < cols.length; i++) {
+                cols[i].style.width = '33.33%';
+            }
+        } else if (windowWidth >= 768) { //5. 判断是否是小屏幕
+            // 3. 如果是小屏幕屏幕 设置div宽度 100%/2  == 50%
+            for (var i = 0; i < cols.length; i++) {
+                cols[i].style.width = '50%';
+            }
+        } else if (windowWidth < 768) { //6. 判断是否是超小屏幕
+            // 3. 如果是超小屏幕 设置div宽度 100%/1  == 100%
+            for (var i = 0; i < cols.length; i++) {
+                cols[i].style.width = '100%';
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

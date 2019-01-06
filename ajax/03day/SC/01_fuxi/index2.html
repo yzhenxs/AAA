@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        select {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="" id="sheng"></select>
+    <select name="" id="shi"></select>
+    <select name="" id="qu"></select>
+</body>
+
+</html>
+
+<script>
+    //找到省
+    var sheng = document.getElementById('sheng');
+    //找到市
+    var shi = document.getElementById('shi');
+    //找到区
+    var qu = document.getElementById('qu');
+
+
+    function loadData(pId, sel) {
+
+        //页面一打开就应该去请求省的数据
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'region.php?parentID=' + pId);
+        xhr.send();
+
+        xhr.onload = function () {
+
+            var obj = JSON.parse(xhr.responseText);
+            // console.log(obj);
+
+            for (var i = 0; i < obj.length; i++) {
+
+                var opt = document.createElement('option');
+                // 给一个value，为了把每个省份自己的id存起来
+                opt.value = obj[i].region_id;
+                opt.innerHTML = obj[i].region_name;
+                sel.appendChild(opt);
+            }
+
+            //当所有省有数据后手动调用省的change事件
+            sel.onchange();
+        }
+    }
+
+    loadData(1, sheng);
+
+    sheng.onchange = function () {
+
+        //在查询新的市之前，先清空原来的市
+        shi.innerHTML = "";
+
+        loadData(sheng.value, shi);
+
+    }
+
+    shi.onchange = function () {
+
+        //先清空上一次的区
+        qu.innerHTML = "";
+
+        loadData(shi.value, qu);
+    }
+
+    qu.onchange = function(){
+        
+    }
+</script>

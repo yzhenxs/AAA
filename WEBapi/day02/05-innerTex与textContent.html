@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    我是文本
+    <p>我是p标签</p>
+</div>
+</body>
+
+<script src="common.js"></script>
+<script>
+    var box = id('box');
+    //1.获取元素的内容文本，如果子元素也有文本则一起获取
+   // console.log ( box.innerText );
+
+    //innerText属性有浏览器兼容性问题：火狐42版本之前不支持这个属性，这个语法不是W3C标准语法，而是微软自己的语法
+  //  console.log ( box.innerText );//火狐42版本之前获取的是undefined
+
+    //2.textContent:作用与innerText一模一样
+    /*
+    textContent:支持谷歌、支持火狐，是W3C标准语法，IE8之前不支持
+
+     */
+    console.log ( box.textContent );
+
+    console.log ( getText ( box ) );
+
+    setText(box,'111');
+
+
+
+    /*浏览器兼容性：并不是所有的API，所有的浏览器都支持，有的浏览器有自己独立的API
+    兼容性：能让在不同的浏览器实现一样的效果（几乎所有的兼容性问题都是由IE8引起）
+
+    1.不支持IE8浏览器
+    2.做兼容性处理
+
+     */
+    /**
+     * 1.获取元素的文本（兼容性处理）
+     * @param ele  元素
+     * @return 获取到的文本
+     */
+    function getText ( ele ) {
+        //浏览器能力检测
+        if(ele.textContent == undefined){//IE8浏览器
+           return ele.innerText
+        }else{
+            return ele.textContent;
+        }
+    }
+
+    /**
+     * 1.设置元素的文本（兼容性处理）
+     * @param ele  元素
+     * @param txt  需要设置的文本
+     */
+    function setText ( ele,txt ) {
+        //浏览器能力检测
+        if(ele.textContent == undefined){//IE8浏览器
+            ele.innerText = txt;
+        }else{
+            ele.textContent = txt;
+        }
+    }
+</script>
+</html>

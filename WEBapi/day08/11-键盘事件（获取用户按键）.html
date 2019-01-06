@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    /*复习键盘事件有哪些：
+    onkeydown:键盘按下
+    onkeyup:键盘弹起
+    onkeypress:键盘按下（常用）
+
+    2.onkeydown与onkeypress区别：
+        * onkeydown不过滤特殊按键（F1-F2,ALT），不区分大小写
+        * onkeypress:过滤特殊按键，支持大小写
+
+    3.如何获取用户按的是哪一个按键
+        *  e.keyCode =  e.keyCode || e.charCode || e.which
+        * 注意点：
+            * a.获取的字符是ascii码：键盘上每一个按键对应一个编码数字
+            * b.如何将ascii转成字符：
+     */
+
+//     window.onkeydown = function ( e ) {
+//         console.log ( e.keyCode );
+//
+//         //将数字的ASCII码转成字符
+////         console.log ( String.fromCharCode ( e.keyCode ) );
+//     }
+
+    window.onkeypress = function ( e ) {
+        console.log ( e.keyCode );
+        //逻辑或解决按键兼容问题
+       e.keyCode =  e.keyCode || e.charCode || e.which
+       //将数字的ASCII码转成字符
+       console.log ( String.fromCharCode ( e.keyCode ) );
+
+        // //禁止某些按键：例如禁止输入空格
+        // if(e.keyCode == 32){
+        //     return false;//禁止输入该字符
+        // }
+    }
+</script>
+</html>

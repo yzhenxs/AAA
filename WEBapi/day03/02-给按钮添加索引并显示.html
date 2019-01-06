@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<input type="button" value="按钮4">
+<input type="button" value="按钮5">
+</body>
+
+<script>
+    /*1.给每一个按钮添加一个自定义属性
+    2.点击弹出这个属性
+     */
+
+    //获取按钮数组
+    var inputList = document.getElementsByTagName('input');
+    //遍历数组<获取每一个按钮
+    for(var i = 0;i<inputList.length;i++){
+        //添加自定义属性
+        inputList[i].setAttribute('index',i);
+        //给每一个按钮添加点击事件
+        inputList[i].onclick = function (  ) {
+            //弹出当前点击按钮的index自定义属性
+
+            //使用attribute属性添加的是行内自定义属性，js点语法无法获取，只能用getAttribute语法获取
+         //   console.log ( this.index );
+            alert(this.getAttribute('index'));
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<input type="button" value="哼哼" class="1" >
+<input type="button" value="哼哼" class="2">
+<input type="button" value="哼哼" class="3">
+<input type="button" value="哼哼" class="4">
+<input type="button" value="哼哼" class="5">
+
+</body>
+
+<script>
+    /*1.点击按钮改变样式  2.只有当前按钮的样式才会修改，其他按钮样式都是默认的
+
+    分析：1.获取界面元素
+    //2.给所有的按钮添加点击事件
+    //3.每一次点击的时候，判断只有当前点击的这个才需要改变样式，其他所有的按钮都不需要改变
+        * 遍历其他所有的按钮，如果是自己就改变样式，如果不是就不改变（默认值）
+
+     */
+
+    //1.获取界面元素
+    var inputList = document.getElementsByTagName('input');
+
+    //2.给所有的按钮添加点击事件
+    for(var i = 0;i<inputList.length;i++){//for循环只是给五个按钮添加点击事件
+        inputList[i].onclick = function (  ) {
+            console.log ( i );//5
+            console.log ( this );//当前点击的按钮
+            //3.点击按钮：排他思想
+            //遍历inputList中的5个按钮
+            //如果按钮是this，则修改this样式为粉红色
+            //如果按钮不是this，就修改按钮的样式默认值 哼哼
+
+            for(var j = 0;j<inputList.length;j++){
+                if(inputList[j] == this){
+                    this.value = '哈哈';
+                    this.style.backgroundColor = 'hotpink';
+                }else{
+                    inputList[j].value = '哼哼';
+                    inputList[j].style.backgroundColor = '';
+                }
+            }
+        }
+    }
+
+
+
+</script>
+</html>

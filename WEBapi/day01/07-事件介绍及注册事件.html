@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="box" style="background-color: green;width: 100px;height: 100px;">我是班长</div>
+
+<script>
+    var box = document.getElementById('box');
+
+    /*1.事件：js处理网页与用户交互的一种机制
+  事件源：页面元素
+  事件类型：点击 onclick、鼠标移入onmouseover………………
+  事件响应（处理）：通常是一个函数
+     */
+
+    /*2.给元素注册事件：事件源.事件类型 = 事件处理（函数）
+    事件处理函数并不会一开始就执行，而是用触发了这个时刻（用户与元素产生交互的时刻）
+    编译器会自动的来帮我们调用box的这个方法
+     */
+    //班长只有困了才会睡觉
+    //这个box只有在被点击的时候才会执行这个代码
+    //box在被点击的时刻，会自动执行这个函数
+    box.onclick = function (  ) {
+        alert('哈哈哈');
+    }
+    //box在鼠标移入的时刻，会自动执行这个函数
+    box.onmouseover = function (  ) {
+        alert('嘿嘿嘿');
+    }
+
+</script>
+</body>
+</html>

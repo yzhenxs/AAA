@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box {
+            width: 322px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+      $(function () {
+         //找到关闭按钮,设置点击事件.
+         $('#closeButton').on('click', function () {
+             //给下面部分div设置高度为0
+             $('#bottomPart').animate({
+                 'height':0
+             },1000, function () {
+                 //下面部分div高度设置为0之后再去做其他事情,所以代码写在回调函数中.
+                 //给整个大盒子的宽度设置为0
+                 $('#box').animate({
+                     width:0
+                 },2000);
+
+
+                 //给上面部分的宽度变为0,不能.
+                 // $('#headPart').animate({
+                 //     'width':0
+                 // },2000);
+
+             });
+         });
+
+
+      });
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <span id="closeButton"></span>
+    <div class="hd" id="headPart">
+        <img src="images/t.jpg" alt=""/>
+    </div>
+    <div class="bd" id="bottomPart">
+        <img src="images/b.jpg" alt=""/>
+    </div>
+</div>
+
+
+
+</body>
+</html>

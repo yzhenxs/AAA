@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+
+        }
+
+        img {
+            width: 80px;
+            height: 90px;
+        }
+
+        .right {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <img src="./images/1.jpg" alt="">
+        <img src="./images/2.jpg" alt="">
+        <img src="./images/3.jpg" alt="">
+        <img src="./images/4.jpg" alt="">
+        <img src="./images/5.jpg" alt="">
+        <img src="./images/pl.png" alt="">
+    </div>
+    <div class="right"></div>
+</body>
+
+</html>
+<script>
+    //先找到左边的盒子
+    var left = document.getElementsByClassName('left')[0];
+    //找到右边的盒子
+    var right = document.getElementsByClassName('right')[0];
+    // 找到所有的img
+    var imglist = document.getElementsByTagName('img');
+    for (var i = 0; i < imglist.length; i++) {
+        imglist[i].ondragstart = function () {
+            currentImg = this;
+        }
+    }
+
+    right.ondragover = function (e) {
+        e.preventDefault();
+    }
+    right.ondrop = function () {
+        right.appendChild(currentImg);
+    }
+
+</script>

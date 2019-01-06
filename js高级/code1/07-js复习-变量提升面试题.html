@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.作用域
+    //局部作用域:
+    //全局作用域:
+    //局部变量:
+    //全局变量:
+
+    //2.作用域链.
+    // var num = 10;
+    // function test1(){
+    //   var num = 20;
+    //   function test2(){
+    //     var num = 30;
+    //     console.log(num);
+    //   }
+    //   test2();
+    // }
+    // test1();
+
+
+    //3.预解析:
+    //a: 任意的作用域中变量的声明会提前到当前作用域的最顶端,赋值语句保留在原地.
+    // console.log(num1);//undefined
+    // var num1 = 10;
+    //b: 任意的作用域中函数的声明提前到作用域的最顶端,调用语句保留在原地.
+    // test1();
+    // function test1(){
+    //   console.log("我是test1函数");
+    // }
+
+
+    //面试题分割线------------------------------------------------------------------------------------------
+
+    //1.------------------------------
+    // function foo() {
+    //   var num = 123;
+    //   console.log(num); //123
+    // }
+    // foo();
+    // console.log(num); //报错  num is not defined
+
+
+    // 2
+    // var scope = "global";
+    // function foo() {
+    //   console.log(scope); //undefinde
+    //   var scope = "local";
+    //   console.log(scope); //local
+    // }
+    // foo();
+
+
+
+    // 3
+    //分析过程
+    // var a; //声明一个变量a,实际上就是给window对象添加一个属性a.
+    // if("a" in window){
+    //   a = 10;
+    // }
+    // alert(a); //10
+    //--------------------
+    // if("a" in window){
+    //   var a = 10;
+    // }
+    // alert(a); //
+
+
+
+    //4.
+    // if(!"a" in window){
+    //   var a = 10;
+    // }
+    // alert(a); // undefiend
+
+
+
+    //5.
+    //分析过程
+    // var a;
+    // if(name in window){ //"" in window
+    //   a = 10;
+    // }
+    // alert(a); //undefiend
+    //---------------
+    // if(name in window){
+    //   var a = 10;
+    // }
+    // alert(a); //
+
+
+
+    //6
+    // if("name" in window){
+    //   var a = 10;
+    // }
+    // alert(a);//10
+
+
+    //7
+    //分析过程:
+    // var a;
+    // if(a in window){ //取a的值undefiend in window.
+    //   a = 10;
+    // }
+    // alert(a); //10
+    //-------------
+    // if(a in window){
+    //   var a = 10;
+    // }
+    // alert(a); //10
+
+
+    //8
+    //分析过程
+    // var foo = 1;
+    // function bar() {
+    //   var foo;
+    //   if(!foo) {
+    //     foo = 10;
+    //   }
+    //   alert(foo); //10
+    // }
+    // bar();
+    //---------------
+    // var foo = 1;
+    // function bar() {
+    //   if(!foo) {
+    //     var foo = 10;
+    //   }
+    //   alert(foo); //10
+    // }
+    // bar();
+
+
+
+    //9.------------------------------------
+    // var num = 123;
+    // function f1() {
+    //   console.log(num); // 123
+    // }
+//
+    // function f2() {
+    //   var num = 456;
+    //   f1();
+    // }
+//
+    // f2();
+
+
+
+    //10.---------------------------------------
+    var num = 123;
+    function f1(num) { //形参本质上就是函数内部的一个局部变量.
+      console.log(num); // 456
+    }
+
+    function f2() {
+      var num = 456;
+      f1(num);
+    }
+
+    f2();
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

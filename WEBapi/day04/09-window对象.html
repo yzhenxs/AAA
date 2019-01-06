@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /*window:一个浏览器窗口
+    1.是js中的顶级对象
+        * 一切的全局变量、函数、document都是window对象的一个属性
+    2.只要是window的属性，在使用的时候可以直接省略window
+    3.window有一个特殊的属性，name，一定只能是字符串
+     */
+    console.log ( window );
+    //1.所有的全局变量都是window的属性
+    var a = '社会龙';
+    console.log ( window.a );
+    console.log ( a === window.a );
+    //2.
+  //  window.alert('11111');
+    console.log ( window.document );
+
+    //3.特殊name属性，一定是字符串
+
+    //哪怕你赋值其他数据类型，也是字符串
+    window.name = 666;
+    window.name = [10,20,30];
+    console.log ( name );
+    //就算你重新声明一个变量叫做name，它也是字符串
+    var name = 100;
+    console.log ( typeof  name )//string
+</script>
+</body>
+</html>

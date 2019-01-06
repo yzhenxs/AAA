@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.constructor属性.
+    //属于原型的, 指向他对应的构造函数.
+    function Teacher(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    Teacher.prototype.sayHi = function () {
+      console.log("我的名字是:"+this.name+",我的年龄是:"+this.age);
+    }
+    var t1 = new Teacher("黑群",38);
+    console.log(t1);
+
+    console.log(Teacher.prototype);
+    console.log(Teacher.prototype.constructor === Teacher); //true
+    console.log(t1.__proto__.constructor== Teacher)
+
+    //2. t1访问constructor.自己没有,访问原型的,原型有,指向构造函数.
+    // console.log(t1.constructor); //这句话有没有问题? 没有
+
+
+    //3.
+    // var t2 = new Teacher.prototype.constructor('保健坤',48); //这句话也没有问题.
+    // console.log(t2);
+
+
+
+    //4.原型是可以修改的. 修改了之后的原型会把constructor的指向给丢失.
+    //指向是可以找回来的.
+//    Teacher.prototype = {
+//      constructor:Teacher
+//    }
+//    console.log(Teacher.prototype.constructor === Teacher); //true
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

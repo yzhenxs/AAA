@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        以下事件跟被拖拽事件无关，是跟容器有关
+            ondragenter：
+                    当有拖拽元素进入时触发
+
+            ondragleave：
+                    当有拖拽元素离开时触发
+
+            ondrop：
+                    当有拖拽元素进来，并且松手后触发的事件
+                    但是这个事件，默认不会被触发，如果希望它能触发，必须先监听ondragover事件，并且在ondragover里阻止事件默认行为
+
+
+        ondragenter只触发一次，就是只进去那时触发，在里面移动不触发了，ondragover只要在里面移动都触发
+        我们用ondragover一般仅仅只是为了阻止它的事件默认行为，好让元素允许放置进来
+
+     -->
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        .container {
+            width: 300px;
+            height: 450px;
+            border: 1px solid #000;
+            position: absolute;
+            right: 50px;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" draggable="true"></div>
+
+    <div class="container"></div>
+</body>
+
+</html>
+
+<script>
+
+    //找到容器
+    var container = document.querySelector('.container');
+    //找到div
+    var box = document.querySelector('.box');
+
+    //当有拖拽的元素进入我这个容器时，触发的事件
+    container.ondragenter = function () {
+
+        // console.log('...');
+        // container.appendChild(box);
+
+    }
+
+    //当有拖拽的元素离开我这个容器时，触发的事件
+    container.ondragleave = function () {
+
+        console.log('你走了~~');
+
+    }
+
+    //还有一个事件，ondragover
+    container.ondragover = function(e){
+
+        // console.log('over');
+        e.preventDefault();
+        
+    }
+
+    //还有一个事件
+    //既要满足进来了，又要满足松手 才触发的事件
+    //如果希望这个事件能被触发，那么就需要先监听over事件，并且要让over事件里阻止事件默认行为
+    container.ondrop = function(){
+
+        // console.log('drop');
+
+        //加div
+        container.appendChild(box);
+        
+    }
+
+</script>

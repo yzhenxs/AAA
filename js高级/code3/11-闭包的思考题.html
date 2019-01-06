@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.闭包的思考题
+
+    //思考题 1：
+    // var name = "The Window";
+    // var object = {
+    //   name: "My Object",
+    //   getNameFunc: function () {
+    //     return function () {
+    //       return this.name;
+    //     };
+    //   }
+    // };
+    // console.log(object.getNameFunc()()); //"The Window";
+
+
+
+    //思考题 2：
+    // var name = "The Window";　　
+    // var object = {
+    //   name: "My Object",
+    //   getNameFunc: function () {
+    //     var that = this;
+    //     return function () {
+    //       return that.name;
+    //     };
+    //   }
+    // };
+    // console.log(object.getNameFunc()()); //"My Object",
+
+
+
+
+    //3.斐波那契数列.
+    //下面这样写,其实还是有问题的: getFB函数是用来求第n为的数是多少的,但是始终要和外面的一个obj对象配合使用.
+//    var obj = {};
+//    function getFB(n){
+//      if(obj[n]){
+//        return obj[n];
+//      }else {
+//        if(n == 1 || n == 2 ){
+//          obj[n] = 1;
+//          return 1;
+//        }else {
+//          obj[n] =  getFB(n-1) + getFB(n-2);
+//          return obj[n];
+//        }
+//      }
+//    }
+
+
+    //怎么解决问题? 使用闭包
+    function createFB(){
+      var obj = {};
+      function getFB(n){
+        if(obj[n]){
+          return obj[n];
+        }else {
+          if(n == 1 || n == 2 ){
+            obj[n] = 1;
+            return 1;
+          }else {
+            obj[n] =  getFB(n-1) + getFB(n-2);
+            return obj[n];
+          }
+        }
+      }
+      return getFB;
+    }
+    console.log(createFB()(50));
+
+
+
+    //思考题:
+    //遍历整个dom树那个例子,一个完整的函数代码始终要和外面的list数组配合使用,不太好.怎么解决?
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

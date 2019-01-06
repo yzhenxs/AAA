@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+
+        让网页中的某些元素可以拖拽
+
+        元素不是你想拽，想拽就能拽
+
+        图片可以拽，其他的默认不能拽
+
+        非要拽怎么办？
+            设置一个属性叫 draggable
+
+        希望一个元素能够被拖拽，就给它加一个行内属性  draggable="true"
+
+    -->
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <img src="images/pl.png" alt="">
+
+    <div class="box" draggable="true"></div>
+
+</body>
+
+</html>
+
+<script>
+    //找到div
+    var box = document.querySelector('.box');
+
+    //全局变量记录鼠标按下时相对于div左上角的坐标
+    var offsetX, offsetY;
+
+    box.onmousedown = function (e) {
+
+        //记录相对于自身左上角的坐标
+        // console.log(e.offsetX,e.offsetY);
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+    }
+
+    //拖拽开始触发的事件
+    box.ondragstart = function () {
+
+        console.log('拖拽开始');
+    }
+
+    //拖拽中
+    box.ondrag = function () {
+
+        console.log('拖拽中');
+
+    }
+
+    //拖拽结束事件
+    box.ondragend = function (e) {
+
+        // console.log(e);
+        box.style.left = e.pageX - offsetX + "px";
+        box.style.top = e.pageY - offsetY + "px";
+
+    }
+
+</script>

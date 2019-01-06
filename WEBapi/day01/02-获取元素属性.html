@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            height: 100px;
+            padding: 50px;
+        }
+
+        .div1{
+            margin: 50px;
+        }
+
+        .div2{
+            border: 10px solid green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box" class="div1"  style="background-color: red;width: 100px;" >我是div</div>
+
+</body>
+
+<script>
+    //1.根据id获取元素(获取到的元素是dom对象)
+   var box = document.getElementById('box');
+
+   //2.获取元素的属性
+    /*特点
+    1.获取的属性值都是字符串类型，并且带单位（行内写的是什么，拿的就是什么）
+    2.只能获取行内属性，不能获取行外属性
+    3.获取类名，使用className属性
+    4.如果属性中有-，则获取时需要转成驼峰命名法
+    */
+    console.log ( box.id );//点语法
+    console.log ( box[ "id" ] );//字符串语法
+
+    //2.1 获取类名属性需要使用className（因为calss是js的一个关键字）
+    console.log ( box.className );
+
+    console.log ( box.style );//元素的样式style属性值是一个对象
+    console.log ( box.style.width );//获取宽度是一个带单位的字符串类型
+    //2.2 如果css的属性带-，比如font-   border-  padding-,使用js获取需要转成驼峰命名法
+    /*a.去掉-，将-后面的单词首字母大写
+    b.原因：  - 不符合js中变量命名规范
+     */
+    console.log ( box.style.backgroundColor );//red
+    console.log ( box.style.height );//空字符串  点语法只能获取行内样式，无法获取行外（内外联）属性
+
+    //3.修改元素的属性
+    box.style.backgroundColor = 'hotpink';
+    box.style.height = '200px';
+    //修改类名，则会修改对应的样式
+    /*注意点：
+    如果我想替换类样式：  元素.calssName = '类名字符串'
+    如果我想添加类样式：   元素.calssName += ' 类名字符串'
+     */
+    //box.className = 'div2';
+    box.className += ' div2';//注意div2前面的空格
+
+   
+
+
+</script>
+</html>

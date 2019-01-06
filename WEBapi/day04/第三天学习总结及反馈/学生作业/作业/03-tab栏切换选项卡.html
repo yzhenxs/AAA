@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .wrapper {
+            width: 1000px;
+            height: 475px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        .tab {
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            height: 36px;
+            width: 320px;
+        }
+        .tab li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+            border-top: 4px solid #fff;
+        }
+        .tab span {
+            position: absolute;
+            right: 0;
+            top: 10px;
+            background: #ddd;
+            width: 1px;
+            height: 14px;
+            overflow: hidden;
+        }
+        .products {
+            width: 1002px;
+            border: 1px solid #ddd;
+            height: 476px;
+        }
+        .products .main {
+            float: left;
+            display: none;
+        }
+        .products .main.selected {
+            display: block;
+        }
+        .tab li.active {
+            border-color: red;
+            border-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <ul class="tab">
+        <li class="tab-item active">国际大牌<span>◆</span></li>
+        <li class="tab-item">国妆名牌<span>◆</span></li>
+        <li class="tab-item">清洁用品<span>◆</span></li>
+        <li class="tab-item">男士精品</li>
+    </ul>
+    <div class="products">
+        <div class="main selected">
+            <a href="###"><img src="images1/guojidapai.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/guozhuangmingpin.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/qingjieyongpin.jpg" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="images1/nanshijingpin.jpg" alt=""/></a>
+        </div>
+    </div>
+</div>
+<script>
+    //1.获取元素
+    var  tabItem  =  document.getElementsByClassName('tab-item');
+    var  main       =  document.getElementsByClassName('main');
+
+    //2.注册事件
+    for(var i = 0;i<tabItem.length;i++){
+        tabItem[i].setAttribute('index',i);
+
+        tabItem[i].onclick   =  function (  ) {
+            var index = this.getAttribute('index');
+            // 改变自身的颜色排他思想
+            for(var j = 0;j<tabItem.length;j++){
+                if(tabItem[j] == this) {
+                    //这里必须要空格,因为类名有多个,多类名之间用空格隔开,运算符是自加用来增加类
+                    tabItem[j].className    +=  ' active';
+                }else {
+                    //这里的处理非常重要,因为第一个已经有两个类tab-item active,这里用
+                    // 变量重赋值的形式来覆盖的原来的类
+                    tabItem[j].className    =     'tab-item';
+                }
+            }
+
+            //盒子一一对应排他思想
+            for(var k = 0;k<main.length;k++){
+                    if(k == index) {
+                        main[k].className    +=  ' selected';
+                    }else {
+                        main[k].className      =  'main';
+                    }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

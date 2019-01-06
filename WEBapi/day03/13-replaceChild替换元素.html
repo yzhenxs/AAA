@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>隔壁老王1</li>
+    <li id="li2">隔壁老王2</li>
+    <li id="li3">隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <li id="li5">隔壁老王5</li>
+</ul>
+<ul id="ul2">
+    <li id="li11">隔壁老张1</li>
+    <li>隔壁老张2</li>
+    <li>隔壁老张3</li>
+    <li id="li4">隔壁老张4</li>
+    <li>隔壁老张5</li>
+</ul>
+
+</body>
+<script>
+    /*replaceChild
+    语法： 父元素.replaceChild(新元素，旧元素)     将旧元素替换成新元素
+    1.新创建元素：  替换操作
+    2.已存在的元素： 先移动，后替换（原来的位置没有了）
+    3.元素有子元素： 所有子元素一起先移动，后替换
+     */
+
+    var ul1 =document.getElementById('ul1');//隔壁老王ul
+    var ul2 =document.getElementById('ul2');//隔壁老张ul
+    var li2 = document.getElementById('li2');//隔壁老王2
+    var li3 = document.getElementById('li3');//隔壁老王3
+    var li4 = document.getElementById('li4');//隔壁老张4
+
+    //1.新创建元素
+    var li = document.createElement('li');
+    li.innerText = '我是班长社会龙';
+    ul1.replaceChild(li,li3);//将li3替换成li
+
+    //2.已存在元素
+    ul1.replaceChild(li4,li2);//将li2替换成li4
+
+    //3.元素有子元素
+    ul1.replaceChild(ul2,li);
+
+
+
+</script>
+</html>

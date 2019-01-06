@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    div {
+      height: 100px;
+      margin-top: 10px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    //入口函数.
+    $(document).ready(function () {
+      //设置边框
+      $('#btn11').click(function () {
+        //console.log($('div'));
+        $('div').css({
+          border:'1px solid red'
+        });
+      });
+
+      //设置文本
+      $('#btn2').click(function () {
+        $('div').text('我是设置的文本');
+      });
+    });
+
+
+    // $(document).ready(function () {
+    //   alert('111');
+    // });
+
+
+    //jQuery的优势:
+    //1.可以写多个入口函数,不会覆盖.
+    //2.jQuery有一个隐式迭代的特性(偷偷的遍历.)
+    //3.jQuery中的获取元素的方式简单,操作的一些方法名字也好记.
+    //4.jQuery已经帮我们处理好了兼容问题.我们只需要直接拿来用,不要考虑兼容问题.
+    //5.jQuery容错率较高,前面的代码有问题没有出现效果,不影响后面的代码.
+
+
+  </script>
+</head>
+<body>
+  <input type="button" value="设置边框" id="btn1"/>
+  <input type="button" value="设置文本" id="btn2"/>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
+</html>

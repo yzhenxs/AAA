@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        伸缩布局：也叫弹性布局
+            flex布局
+
+        伸缩布局乍一看好像是可以让子元素变成类似于行内块的元素
+
+        但是这个特点不是它的主要特点！
+
+        伸缩布局特点：如果超出父元素，会自动缩放
+
+        在移动端可以经常用
+
+     -->
+
+     <style>
+
+         ul{
+             list-style: none;
+             padding: 0;
+             width: 600px;
+             height: 500px;
+             border: 1px solid #000;
+            
+            /* 让ul的子元素应用伸缩布局 */
+             display: flex;
+             /* justify-content: center; */
+         }
+
+         li{
+           
+             width: 200px;
+             height: 200px;
+             background-color: yellowgreen;
+         }
+     </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.需求:元素都是为整数的伪数组来排序
+    var weiArr = {
+      0:1109,
+      1:110,
+      2:220,
+      3:215,
+      4:210,
+      5:500,
+      6:400,
+      length:7
+    }
+
+    //如果weiArr,可以调用sort方法,直接排序. 但是他是伪数组,不能调用sort方法.
+
+    //调用sort方法修改里面的this为weiArr,那给人的感觉就是weiArr在调用sort.
+    Array.prototype.sort.call(weiArr, function (a,b) {
+      return a -b;
+    });
+    console.log(weiArr);
+    //weiArr.push(100); //报错, 上面只是对weiArr进行元素排序,并没有把这个伪数组转成真数组.
+
+
+
+
+
+    //------------------------
+    //复习下sort方法.
+    // var arr = [1190,120,220,215,210,500,400,110];
+    // arr.sort(function (a,b) {
+    //   return b-a;
+    // });
+    // console.log(arr);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

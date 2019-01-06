@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        input{
+
+            display: block;
+            margin: 50px auto;
+            width:120px;
+            height: 65px;
+        }
+
+        table{
+            margin: 50px auto;
+            /* 合并单元格的边框 */
+            border-collapse: collapse;
+        }
+
+        th,td{
+            border: 1px solid #000;
+            width: 80px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="加载数据" id="load">
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>成绩</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+        </tbody>
+
+    </table>
+</body>
+
+</html>
+
+<script>
+
+    //找到tbody,只会找到第一个
+    var tb = document.querySelector('tbody'); //document.getElementsByTagName('tbody')[0];
+
+    document.getElementById('load').onclick = function(){
+
+        //每次点击之前先清空
+        tb.innerHTML = "";
+
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+        //2. 设置请求行
+        xhr.open('get','data.php'); 
+        //3. 发送请求
+        xhr.send();
+
+        //4. 监听响应完成
+        xhr.onreadystatechange = function(){
+
+            if(xhr.readyState == 4 && xhr.status == 200){
+
+                //拿到数据
+                // console.log(xhr.responseText);
+
+                //转成JS数据
+                var arr = JSON.parse(xhr.responseText);
+                
+                //遍历数组
+                for(var i = 0; i < arr.length; i++){
+
+                    //数组里多少个元素就创建多少个tr
+                    var tr = "<tr>";
+                    
+                    tr += "<td>";
+                    tr += arr[i].Id;
+                    tr += "</td>";
+
+                    tr += "<td>";
+                    tr += arr[i].name;
+                    tr += "</td>";
+
+                    tr += "<td>";
+                    tr += arr[i].age;
+                    tr += "</td>";
+
+                    tr += "<td>";
+                    tr += arr[i].score;
+                    tr += "</td>";
+
+                    tr += "</tr>";
+
+                    tb.innerHTML += tr;
+                }           
+                
+
+                
+            }
+        }
+    }
+</script>

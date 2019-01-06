@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="移动到400" id="move400"/>
+<input type="button" value="移动到800" id="move800"/>
+
+<div id="box"></div>
+
+</body>
+
+<script>
+    var box = document.getElementById('box');
+    /*本小节解决问题
+    1.代码冗余 - 函数
+    2.移动的距离写死的-函数的参数
+     */
+
+    var timeID = null;
+    //移动到四百
+    document.getElementById('move400').onclick = function (  ) {
+        animationMove(400);
+    }
+
+    //移动到八百
+    document.getElementById('move800').onclick = function (  ) {
+
+        animationMove(800);
+    }
+
+    //traget:目标距离
+    function animationMove ( target ) {
+        //每一次移动之前，先结束上一次的定时器
+        clearInterval(timeID);
+
+        timeID =     setInterval(function (  ) {
+            //1.获取元素当前位置
+            var currentLeft = box.offsetLeft;
+            //2.计算本次移动的距离
+            currentLeft += 10;
+            //3.边界检测
+            if(currentLeft < target){
+                box.style.left = currentLeft + 'px';
+            }else{//到达目的地
+                clearInterval(timeID);//清除定时器
+                box.style.left = target + 'px';
+            }
+        },50);
+    }
+</script>
+
+</html>

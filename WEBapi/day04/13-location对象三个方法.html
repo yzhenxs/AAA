@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="assign">assign</button>
+<button id="replace">replace</button>
+<button id="reload">reload</button>
+</body>
+
+<script>
+    //location开发中常用的：跳转到新网页（相当于location.replace方法）
+    //window.location.href = 'https://www.baidu.com';//常用
+
+    document.getElementById('assign').onclick = function (  ) {
+        /*打开新网页
+        特点：新网页有返回按钮，可以返回到上一页
+         */
+        window.location.assign('https://www.baidu.com');
+    }
+
+    document.getElementById('replace').onclick = function (  ) {
+        /*替换当前网页
+        特点：无法返回上一页
+         */
+        window.location.replace('https://www.baidu.com');
+    }
+
+    document.getElementById('reload').onclick = function (  ) {
+        /*刷新当前网页（F5）
+
+         */
+        window.location.reload();
+    }
+</script>
+</html>

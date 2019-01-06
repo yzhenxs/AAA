@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li class="one">隔壁老王1</li>
+    <li class="one">隔壁老王2</li>
+    <li class="one">隔壁老王3</li>
+    <li class="one">隔壁老王4</li>
+    <li class="one">隔壁老王5</li>
+</ul>
+
+<ul id="ul2">
+    <li class="one">隔壁老张1</li>
+    <li class="one">隔壁老张2</li>
+    <li class="one">隔壁老张3</li>
+    <li class="one">隔壁老张4</li>
+    <li class="one">隔壁老张5</li>
+</ul>
+
+<script>
+    /*举一反三
+    如果api的Element后面有s
+        * 返回值：数组
+        * 可以用父元素来调用
+    */
+    /**
+     * 1. 根据类名获取元素
+     * @param 类名字符串
+     * @return  数组（伪数组）
+     */
+   var liList =  document.getElementsByClassName('one');
+   console.log ( liList );
+
+   var ul2 = document.getElementById('ul2');
+    console.log ( ul2.getElementsByClassName ( "one" ) );
+
+    //2.使用类名获取元素用的不多，IE8及以下不支持
+    //尽量使用其他方式来代替
+</script>
+</body>
+</html>

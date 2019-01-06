@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.
+    var arr1 = [10,20,30];
+    var arr2 = new Array(100,200,300);
+    console.log(arr1.__proto__ === arr2.__proto__);//true
+    console.log(arr1.__proto__ === Array.prototype);//true
+
+    //不管是那个数组对象,他的原型都指向Array.prototype,那么Array.prototype里面的成员所有的数组对象都可以访问.
+    //console.log(Array.prototype);
+
+    //我觉得Array.prototype里面的方法不够用.我要自己添加一个.可以不可以,可以.
+    Array.prototype.aaa = "aaa";
+    Array.prototype.bbb = function () {
+      console.log("bbb");
+    }
+    //给Array.prototype原型中添加的aaa属性和bbb方法,每一个数组对象都可以访问.
+    console.log(arr1.aaa);
+    arr2.bbb();
+
+
+    //---------------------------------
+    //给Array.prototype原型,添加一个有意义的方法,比如排序方法.
+    Array.prototype.mySort = function () {
+      for(var i = 0 ; i < this.length-1; i++){
+        for(var j = 0 ; j < this.length-1-i; j++){
+          if(this[j] > this[j+1]){
+            var temp = this[j];
+            this[j] = this[j+1];
+            this[j+1] = temp;
+          }
+        }
+      }
+    }
+    //数组对象1,调用我们自己往Array.prototype里面添加的mySort方法.
+    var arr = [10,110,107,119,118,121,55,66,33,22,11];
+    arr.mySort();
+    console.log(arr);
+
+    //数组对象2.
+    var arr21 = [11,22,55,33,22,11,7,8,3];
+    arr21.mySort();
+    console.log(arr21);
+
+
+
+
+
+
+
+    //-------------------------------------------
+    //回忆一下冒泡
+    // var arr = [10,110,107,119,118,121,55,66,33,22,11];
+    // for(var i = 0 ; i < arr.length-1; i++){
+    // 	for(var j = 0 ; j < arr.length-1-i; j++){
+    // 		if(arr[j] > arr[j+1]){
+    //            var temp = arr[j];
+    //            arr[j] = arr[j+1];
+    //            arr[j+1] = temp;
+    //         }
+    // 	}
+    // }
+    // console.log(arr);
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

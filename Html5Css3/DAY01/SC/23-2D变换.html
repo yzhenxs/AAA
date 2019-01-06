@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        transform：既可以做旋转，也可以做平移，还可以做缩放和扭曲
+                rotate()  顺时针或者逆时针旋转
+                        正的顺时针，负的逆时针
+
+                translate()
+                        平移
+                        参数1：x
+                        参数2：y
+                        只给一个就是x轴动
+
+                scale()
+                        缩放
+                        给的是倍数，大于1的放大，小于1的缩小，等于1不变
+                        参数1：x轴方向的缩放（宽度的缩放）
+                        参数2：y轴方向的缩放（高度的缩放） 
+
+                    如果只写一个，那么是宽高都缩放
+
+
+                skew():
+                        倾斜
+                        其实就是变为平行四边形
+                        用的少，传入的也是角度
+     -->
+
+    <style>
+        ul{
+            list-style: none;
+            padding: 0;
+
+            width: 460px;
+            height: 460px;
+            margin: 100px auto;
+        }
+
+        li{
+            background-color: yellowgreen;
+            width: 220px;
+            height: 220px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+            transition: all 1s;
+        }
+
+        li:first-child:hover{
+
+            transform: rotate(45deg);
+        }
+
+        li:nth-child(2):hover{
+
+            /* 2个参数
+                参数1：x轴平移  为正向右，为负向左
+                参数2：y轴平移  为正向下，为负向上
+            
+                如果只写一个，只变x轴
+             */
+            transform: translate( 100px );
+        }
+
+        li:nth-child(3):hover{
+
+            /*
+            给的是倍数，大于1的放大，小于1的缩小，等于1不变
+                参数1：x轴方向的缩放（宽度的缩放）
+                参数2：y轴方向的缩放（高度的缩放） 
+
+            如果只写一个，那么是宽高都缩放
+            */
+            transform: scale(0.5);
+        }
+
+        li:last-child:hover{
+
+            /* 
+                就是把一个图形变成平行四边形
+                传入一个角度
+             */
+            transform: skew(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>旋转</li>
+        <li>平移</li>
+        <li>缩放</li>
+        <li>扭曲</li>
+    </ul>
+</body>
+</html>

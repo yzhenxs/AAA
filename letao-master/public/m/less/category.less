@@ -1,0 +1,57 @@
+/* 引入公共less文件 */
+
+@import 'base.less';
+
+/* 分类页面的主体布局 */
+
+#main {
+    display: flex;
+    .category-left {
+        width: 80px;
+        ul {
+            >li {
+                >a {
+                    height: 45px;
+                    display: block;
+                    font-size: 14px;
+                    line-height: 45px;
+                    text-align: center;
+                    background-color: #fff;
+                    border-bottom: 1px solid #ccc;
+                    border-right: 1px solid #ccc;
+                }
+                &.active {
+                    >a {
+                        background-color: #ccc;
+                    }
+                }
+            }
+        }
+    }
+    .category-right {
+        flex: 1;        
+        /* 需要在右侧分类实现区域滚动 区域滚动父容器有绝对定位的 需要给右侧分类添加相对定位 */        
+        position: relative;
+        .mui-scroll{
+            padding: 0px 10px;
+           /*  当内容不够的时候需要滑动就可以添加最小高 101%稍微高出父元素一点点就可以滑动 */
+            min-height: 101%;
+        }
+        .mui-row {
+            >div {
+                margin-top: 10px;
+                a {
+                	background-color: #fff;
+                    display: block;
+                    img {
+                        width: 100%;
+                    }
+                    p{
+                    		text-align: center;
+                    		margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>复制</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            float: left;
+            width: 200px;
+            height: 200px;
+            background: pink;
+            text-align: center;
+            line-height: 200px;
+            margin: 0 20px 20px 0;
+        }
+    </style>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+      $(function () {
+       //需求是设置每一个li标签的透明度,从0.1到1.
+        var $lis = $('#ulList>li');
+
+       //1.下面是隐式迭代,每一个li标签设置的opacity的值都是一样的.
+       //$lis.css('opacity',1);
+
+
+        //2.要设置每一个li标签的opacity不一样,遍历出每一个li设置,以前的做法
+        // for(var i = 0 ; i < $lis.length; i++){
+        //     $lis[i].style.opacity = (i+1) /10;
+        // 	//$($lis[i]).css('opacity',(i+1)/10);
+        // }
+
+
+        //3.显示迭代each();
+        $lis.each(function (index,ele) {
+          // console.log(index);
+          // console.log(ele); //dom元素
+
+          //ele.style.opacity = (index+1)/10;
+
+          $(ele).css('opacity',(index+1)/10);
+
+        });
+
+
+
+
+      });
+    </script>
+</head>
+
+<body>
+<ul id="ulList">
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+    <li>什么都看不见</li>
+</ul>
+</body>
+
+</html>

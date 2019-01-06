@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.__proto__属性
+    //属于对象的, 这个属性指向  实例化这个对象的构造函数对应的原型.
+    function Teacher(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    Teacher.prototype.sayHi = function () {
+      console.log("我的名字是:"+this.name+",我的年龄是:"+this.age);
+    }
+    var t1 = new Teacher("黑群",38);
+    console.log(t1);
+    console.log(t1.__proto__)
+    console.log( Teacher.prototype)
+    console.log(t1.__proto__ === Teacher.prototype); // true
+
+
+    //2.虽然下面这句代码没有问题,但是不推荐大家这样使用. 因为他不是标准的w3c的属性.
+    //虽然实际开发不推荐使用,但是平时测试/平时学习 可以用.
+//    t1.__proto__.aaa = "aaa"; //这句话是在给原型添加属性aaa.
+//    console.log(Teacher.prototype);
+
+
+
+
+    //开发者网络.
+    //https://developer.mozilla.org/zh-CN/
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

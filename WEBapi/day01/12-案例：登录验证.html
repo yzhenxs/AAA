@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+账号：<input type="text" id="userName">
+<br/><br/>
+密码：<input type="password" id="password" >
+<br/><br/>
+<input type="button" value="登录" id="login">
+</body>
+
+
+<script>
+    /*需求分析：点击登录按钮，如果账号或者密码长度小于6，则登录失败。否则登录成功
+    思路分析
+        * 1.获取元素
+        * 2.注册事件
+        * 3.事件处理
+            * 获取表单元素文本
+            *  3.1 账号或者密码长度小于6，弹窗提示失败
+            *  3.2 否则登录成功
+
+     */
+
+    //1.获取元素
+    var login = document.getElementById('login');
+    var userName = document.getElementById('userName');
+    var password = document.getElementById('password');
+
+    //2.注册事件
+    login.onclick = function (  ) {
+        //如何获取表单元素的文本
+        /*双标签获取文本用 innerText属性
+        单标签获取文本用value属性
+         */
+        console.log ( userName.value );
+        //3.事件处理
+        //如果账号或者密码长度小于6，则登录失败。否则登录成功
+        if(userName.value.length < 6 || password.value.length < 6){
+            alert('账号名或密码长度不符合要求');
+        }else{
+            alert('恭喜你，登录成功');
+        }
+    }
+
+</script>
+</html>

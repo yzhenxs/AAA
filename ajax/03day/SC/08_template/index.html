@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- 
+    模板引擎：
+        以后有很多html代码其实是一样的，只是数据不一样
+        就像我们表格里的tr那个html都是一样，只是数据不一样
+
+        这个时候我们就可以先准备一套html代码，然后你给它一个数据，数据是什么，它就显示什么
+
+        这样做就方便
+
+
+    用法：
+        1.导入模板引擎 art-template
+        2.准备一个模板
+        3.调用模板生成最终数据
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<!-- 1.导入模板引擎 -->
+<script src="template-web.js"></script>
+
+<!--
+     2. 准备模板
+        1.用script标签准备模板,并且必须给type属性，并且type属性不能为text/javascript
+        2.必须script给一个id（为了方便后面找到它）
+-->
+<script type="text/html" id="tpl">
+    <p>大家好，我叫<%= name %>，今年<%= age %>岁，我在<%= school %>学前端</p>
+</script>
+
+
+<script>
+
+    var obj = { name:"jack",age:16,school:"黑马程序员" };
+
+    //3. 调用模板
+    // 参数1：传模板的id
+    // 参数2：传给模板去填充的数据
+    var html = template('tpl',obj);
+
+    // console.log(html);
+    document.body.innerHTML += html;
+    
+    
+
+</script>

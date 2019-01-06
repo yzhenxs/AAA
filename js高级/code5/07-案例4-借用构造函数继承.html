@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1. 继承: 混入式  替换原型式  混合式
+    //         借用构造函数继承
+    //这种继承方式只能继承this.xx这样的属性或者方法.
+
+
+
+    //声明一个Person构造函数
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+
+    //声明一个学生Student构造函数
+    function Student(name,age,score){
+      //name,和age的赋值这两句话,想从Person构造函数中继承过来.
+      Person.call(this,name,age);//借用构造函数继承
+      //在这里是用上下文模式call()来调用Person(), 并且修改了Person构造函数中的this.为当前这个函数中new关键字创建出来的学生对象.
+
+      this.score = score;
+    }
+
+    //实例化一个学生对象.
+    var s1 = new Student('欧阳',18,100);
+    console.log(s1);
+
+
+
+    //实例化一个人对象.
+    //var p1 = new Person('社会龙哥',38);
+    //console.log(p1);
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

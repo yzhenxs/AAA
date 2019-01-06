@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        ajax是一个局部请求的技术
+
+        那么既然要发请求，就意味着，需要有请求行，请求头，请求体
+
+    使用ajax的五大步
+        1.请求对象
+            var xhr = new XMLHttpRquest();
+        2.设置请求行
+            xhr.open('post','路径');
+
+        3.设置请求头（post才需要设置）
+            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+        4.发送请求&设置请求体
+            xhr.send('name=jack&age=16');  //如果没有请求体就不写参数
+
+        5.需要监听响应完成事件
+            xhr.onload = function(){
+
+                
+            }
+
+
+        onload有兼容性问题，IE8和之前的不支持
+                onreadystatechange
+                        但是这个事件会调用3次
+                            我们只需要取最后一次
+
+                                if(xhr.readyState == 4 && xhr.status == 200)
+
+        
+        JSON：就是一套按规则写的字符串，它主要用来做数据传输的
+            {}对象，对象的键必须用双引号
+            []数组
+
+        JSON.parse：把JSON转为JS数据
+        JSON.stringify： 把JS数据转为JSON
+
+        PHP：
+            json_encode： 把PHP数据转为JSON
+            json_decode：把JSON转为PHP数据
+
+        同步&异步
+            同步：一堆任务一件一件完成，上一个没完成不会执行下一个
+            异步：一堆任务“同时”进行
+
+
+        
+        服务器的代码，后端开发人员写的，我们前端一般做的是html,css，页面布局做出来
+        还要做交互，比如说点一下按钮什么反应，或者说鼠标移上去又是什么反应
+
+        有些功能还需要找服务器要数据，还要写跟服务器发请求的代码，并且把服务器返回的响应体做一个处理（显示到界面）
+
+        我们发请求需要知道哪些东西？1.请求的方式 2.请求的路径 3.请求时要不要带参数，带哪些参数 4.响应体长什么样子
+
+        这些东西我们怎么知道呢？会有一个东西叫接口文档，文档里面会说明，请求方式是什么，请求路径又是什么，以及要不要参数，以及告诉你响应体长什么样子
+        你只要根据这个文档来发请求就可以了
+
+        data.php
+        name=jack&age=16
+
+        后端人员一般会把服务器的代码写好，然后还会写一个接口文档，告诉你应该怎么发请求
+
+        
+    -->
+</head>
+<body>
+    <input type="button" value="点我" id="btn">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('btn').onclick = function(){
+        
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('get','data.xml');
+
+        xhr.send();
+
+        xhr.onload = function(){
+
+            //如果请求的是xml，那么请用rensponseXML
+            //它打印出来的是document类型，但不是我们代码中的document对象
+            //它们都是类型，就好比它们都是人，是不同的个体，所以有共同的行为特点，比如都会吃饭、睡觉、打代码
+            //所以document这个对象有的方法，xml也有这些方法
+            console.log(xhr.responseXML);
+               // console.log(document);
+            
+
+            xhr.responseXML.getElementsByTagName('item');
+            
+         
+        }   
+    };
+</script>

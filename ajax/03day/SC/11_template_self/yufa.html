@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script src="../08_template/template-web.js"></script>
+
+<!-- 准备模板 -->
+<script type="text/html" id="tpl">
+
+{{ each list value key }}
+    <p> <span>key:{{ key }}</span>---<span>value: {{ value}} </span> </p>
+{{ /each }}
+
+</script>
+
+<script>
+
+    
+    var arr = [
+        {name:"jack",age:16},
+        {name:"rose",age:17},
+        {name:"andy",age:18}
+    ];
+
+    // console.log(arr);
+
+
+    document.body.innerHTML = template( 'tpl' ,{list: arr});
+    
+</script>

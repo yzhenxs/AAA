@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        sessionStorage和session没有半毛钱关系
+        雷锋 和 雷峰塔
+
+        session是存在服务器的，浏览器会存sessionid
+
+        但是sessionStorage不用经过服务器，它就是把数据存在浏览器
+        只是它无法永久保存，网页一关就没了
+
+        sessionStorage可以理解为是localStoraged的短命版本
+
+        因为存储、取值、删除都是一样一样的
+
+     -->
+</head>
+<body>
+    <input type="button" value="保存" id="btn1">
+    <input type="button" value="读取" id="btn2">
+    <input type="button" value="删除" id="btn3">
+    <input type="button" value="清空" id="btn4">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('btn1').onclick = function(){
+
+        sessionStorage.setItem('name','jack');
+    }
+
+    document.getElementById('btn2').onclick = function(){
+
+       var res =  sessionStorage.getItem('name');
+       console.log(res);
+       
+    }
+
+    document.getElementById('btn3').onclick = function(){
+
+        sessionStorage.removeItem('name');
+    }
+
+    document.getElementById('btn4').onclick = function(){
+
+        sessionStorage.clear();
+    }
+</script>

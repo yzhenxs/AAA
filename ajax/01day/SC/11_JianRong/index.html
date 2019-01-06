@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    XMLHttpRequest这个对象，在IE6和之前的浏览器不支持
+        IE6支持的是 ActiveXObject('Microsoft.XMLHTTP');
+
+
+    JSON.parse 和 JSON.stringify 在IE7和之前的浏览器不支持
+            1.使用eval函数来解决：不推荐使用！！因为容易被XSS攻击！
+                        XSS攻击：跨站脚本注入攻击技术
+
+            2.方案二：
+                    导入插件解决  json2.js
+
+                    还是用JSON.parse就可以了，它内部会自动把这个东西做兼容
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 耗流量 -->
+    <!-- IE7和之前的版本才导入，其他版本不需要导入 -->
+
+    <!-- css hack技术： 其实就是一段特殊的注释（本质上不是注释，而是按条件执行代码）
+        快捷键：cc:ie
+    -->
+
+
+    <!-- 
+        LT: 小于
+        LTE:小于或等于
+        GT：大于
+        GTE：大于或等于
+     -->
+    <!--[if IE 7]>
+            <script src="json2.js"></script>    
+    <![endif]-->
+
+
+
+
+</head>
+<body>
+
+    <!-- 
+        L：less
+        T: than
+        E: equal
+     -->
+        <!--[if LTE IE 7]>
+             <h1>我是h1</h1>    
+        <![endif]-->
+   
+</body>
+</html>
+
+<script>
+
+    //ie6之前支持的写法
+    // var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+
+/*
+    var xhr;
+
+    if(XMLHttpRequest){
+
+        xhr = new XMLHttpRequest();
+
+    }else{
+
+        //不支持
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+*/
+
+var str = '{"name":"jack","age":16}'; //从服务器请求下来的，换句话说就是从网络中请求下来的
+
+//返回的是一段恶意代码
+// var str = "alert('231')";
+
+var obj = JSON.parse(str);
+console.log(obj);
+
+
+//兼容方案一：使用eval函数
+// var obj = eval( "(" + str + ")" );
+// console.log(obj);
+
+
+
+</script>

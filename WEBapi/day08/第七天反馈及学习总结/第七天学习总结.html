@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /*1.三大家族
+    2.事件对象三大坐标系
+
+     */
+
+    /*三大家族：（1）不带单位，是number类型（2）只能获取，不能设置
+    1.offset家族：
+        * offsetWidth、offsetHeight:获取元素自身的真实宽高(width+padding+border),
+        * offsetParent：获取一个元素的定位父级
+        * offsetLeft、offsetTop:获取元素的外边框到定位父级的内边框的（左/上）距离
+    2.scroll家族：
+        * scrollWidth和scrollHeight：元素内容真实的宽高
+        * scrollLeft和scrollTop：元素在滚动时超出内容区域的部分
+        * onscroll:元素的滚动条事件，只要滚动就会触发
+    3.client家族：
+        * clientWidth/clientHeight：获取可视区域的宽高
+        * clientTop/clientLeft:不常用，其实就是左边框border-left和上边框border-top
+     */
+
+    /*页面的一些事件
+    1.页面的滚动事件：window.onscroll
+    2.页面大小改变的事件：window.onresize
+    3.页面鼠标移动：docuemnt.onmousemove
+
+     */
+
+    function getScroll (  ) {
+        //逻辑或运算符短路：找真，（左边为真，无条件返回左边式子的结果，反之无条件返回右边式子的结果）
+        return {
+            scrollLeft : window.pageXOffset  || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+            scrollTop : window.pageYOffset  || document.documentElement.scrollTop || document.body.scrollTop || 0
+        }
+    }
+
+    function getClientSize (  ) {
+        return {
+            clientWidth : window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
+            clientHeight : window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0
+        }
+    }
+
+    /*事件对象：存储了事件触发点相关的一些信息
+    获取事件对象： 给事件处理函数添加一个形参   e = e || window.event
+    三大坐标系：
+        e.screenX/Y:获取事件触发点到电脑屏幕左上角的距离（不常用）
+        e.clientX/Y：获取事件触发点到浏览器可视区域的左上角的距离（不常用）
+        e.pageX/Y: 获取事件触发点到浏览器左上角的距离（哪怕页面滚动走了，也是到页面左上角的距离）
+    */
+
+</script>
+</body>
+</html>

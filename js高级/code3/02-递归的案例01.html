@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.求1-n之间的整数的累加和.  例如n=5
+    //1+2+3+4+5
+    //1+2+3+4       +5
+    //1+2+3         +4
+    //1+2           +3
+    //1             +2
+    //如果我写一个函数,这个函数的意思就是  求1-n之间的累加和
+
+    // function getSum(n){
+    //   if(n == 1){
+    //     return 1;
+    //   }
+    //   return  getSum(n-1)  + n;
+    // }
+    // console.log(getSum(5));
+
+
+
+    //2.求n的阶乘.  n!   例如5!     1*2*3*4*5
+    //1*2*3*4*5
+    //1*2*3*4     *5
+    //1*2*3       *4
+    //1*2         *3
+    //1           *2
+    //如果写一个函数,这个函数就是求n的阶乘的.getJC();
+
+    // function getJC(n){
+    //   if(n == 1){
+    //     return 1;
+    //   }
+    //   return  getJC(n-1)  * n;
+    // }
+    // console.log(getJC(5));
+
+
+
+    //3.求斐波那契数列 中第n位的数是多少?
+    //斐波那契数列 1、1、2、3、5、8、13、21、34、……
+
+    //如果我写一个函数getFB()就是用来求斐波那契数列中第n位是多少的.
+    function getFB(n){
+      if(n == 1 || n == 2){
+        return 1;
+      }
+      return getFB(n-1) + getFB(n-2);
+    }
+    console.log(getFB(9));
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

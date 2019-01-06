@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    .map {
+      width: 800px;
+      height: 600px;
+      background-color: #cccccc;
+      position: relative;
+      top: 0px;
+      left: 0px;
+    }
+  </style>
+</head>
+<body>
+<div class="map" id="map"></div>
+
+<script>
+  //1.分析小方块,有宽,高,背景色,定位的xy坐标, 那他应该是一个对象,那就应该有实例化的构造函数.
+  function Food(width,height,bgColor,x,y){
+    this.width = width || 20;
+    this.height = height || 20;
+    this.bgColor = bgColor || "green";
+    this.x = x || 0;
+    this.y = y || 0;
+  }
+
+  //2.把食物对象显示在地图上的代码封装成一个函数.
+  //  这个函数应该写在食物构造函数的原型中比较好:a.写在原型中的方法实例化的对象可以直接调用 b.很多个食物都要显示在地图上.那这个共有的显示方法就应该写在原型中.
+  Food.prototype.render = function (map) {
+    //2.1 随机产生一个食物坐标x/y.
+    this.x = Math.floor(Math.random()* map.offsetWidth / this.width) * this.width;
+    this.y = Math.floor(Math.random()* map.offsetHeight / this.height) * this.height;
+    //2.2 怎么把这个食物显示在地图上?
+    //新建一个div,让这个div拥有这个食物对象的所有显示信息.
+    var div1 = document.createElement("div");
+    div1.style.position = "absolute";
+    div1.style.left = this.x + "px";
+    div1.style.top = this.y + "px";
+    div1.style.width = this.width + "px";
+    div1.style.height = this.height+"px";
+    div1.style.backgroundColor = this.bgColor;
+    //把这个新建的div添加到地图上.
+    map.appendChild(div1);
+  }
+
+
+
+
+  //3.获取地图.
+  var map = document.getElementById("map");
+  for(var i = 0 ; i < 10; i++){
+    //3.1 创建食物对象.
+    var f1 = new Food();
+    //3.2 把食物对象,显示在地图上.
+    f1.render(map);
+  }
+
+
+  var f2 = new Food(40,40,'red');
+  f2.render(map);
+
+
+
+</script>
+</body>
+</html>

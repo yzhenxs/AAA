@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .one {
+      width: 200px;
+      border: 10px solid red;
+      padding: 20px;
+      margin: 30px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+     //给按钮设置点击事件
+      $('#btn').on('click', function () {
+        //1.用css()方法获取设置元素的宽高.
+        // console.log($('#one').css('width')); //'200px'
+        // console.log($('#one').css('height')); //'200px'
+
+        //2.width()/height();
+        //获取  获取到的就是内容的宽高,不带px的number类型的值.
+        // console.log($('#one').width()); //200
+        // console.log($('#one').height()); //200
+        //设置  设置改变的是内容的宽高
+        // $('#one').width(100);
+        // $('#one').height(100);
+
+
+        //3.innerWidth()/innerHeight();
+        //获取  获取到的是内容+padding的宽高.
+        // console.log($('#one').innerWidth());
+        // console.log($('#one').innerHeight());
+        //设置  本质上还是改变的内容的宽高.
+        // $('#one').innerWidth(100);
+        // $('#one').innerHeight(100);
+
+
+        //4.outerWidth()/outerHeight();
+        //获取  获取到的是内容+padding+border 的宽高.
+        // console.log($('#one').outerWidth());
+        // console.log($('#one').outerHeight());
+
+
+        //5.outerWidth(true)/outerHeight(true)
+        //获取  获取到的是内容+padding+border+margin 的宽高.
+        // console.log($('#one').outerWidth(true));
+        // console.log($('#one').outerHeight(true));
+
+
+
+        //6.有些时候我们要获取页面可视区的宽高.
+        // 获取可视区宽度
+        console.log($(window).width());
+        // 获取可视区高度
+        console.log($(window).height());
+      });
+
+
+      //模拟响应式布局.
+      $(window).on('resize', function () {
+        if($(this).width() > 1200){
+          $('body').css('backgroundColor','red');
+        }else if($(this).width() > 900){
+          $('body').css('backgroundColor','yellow');
+        }
+        else if($(this).width() > 600){
+          $('body').css('backgroundColor','pink');
+        }else if($(this).width() > 400){
+          $('body').css('backgroundColor','green');
+        }else {
+          $('body').css('backgroundColor','white');
+        }
+      });
+
+
+
+
+    });
+  </script>
+
+
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<div id="one" class="one" style="height: 200px;"></div>
+</body>
+</html>

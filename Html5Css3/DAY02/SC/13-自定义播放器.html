@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        .player {
+            width: 600px;
+            height: 400px;
+            margin: 100px auto;
+            border: 1px solid #fff;
+        }
+
+        .player video {
+
+            width: 100%;
+            height: 90%;
+        }
+
+        .controls {
+            width: 100%;
+            height: 10%;
+            border-top: 1px solid white;
+        }
+
+        .controls a,
+        .controls div {
+
+            float: left;
+        }
+
+        .controls a {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .progress {
+
+            width: 520px;
+            height: 34px;
+            background-color: #fff;
+        }
+
+        .son {
+       
+            height: 100%;
+            width: 0%;
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 如果要放视频用video标签 -->
+    <!-- video默认不显示控件,谷歌5月的份的时候就出于用户体验的角度，不允许视频默认播放
+         因为默认情况下每个浏览器控制条是不一样的，如果你希望一样，就要自己自定义播放条
+    -->
+    <div class="player">
+        <video src="video/movie01.mp4"></video>
+        <div class="controls">
+            <a id="play" href="javascript:" class="fa fa-play"></a>
+            <div class="progress">
+                <div class="son"></div>
+            </div>
+            <a id="full" href="javascript:" class="fa fa-arrows-alt"></a>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    //找到video标签
+    var video = document.querySelector('video');
+
+    //找到son
+    var son = document.querySelector('.son');
+
+    //找到整个进度条
+    var progress = document.querySelector('.progress');
+
+    //播放加点击事件
+    document.getElementById('play').onclick = function () {
+
+        //让视频播放器
+        //indexOf查找字符串有没有某个字符，如果有返回的是下标，如果没有返回的是-1
+        //不等于-1就代表有
+        if (this.className.indexOf('fa-play') != -1) {
+            //如果是播放的图标被点击，那么就要执行播放的逻辑
+            video.play();
+            this.classList.remove('fa-play');
+            this.classList.add('fa-pause');
+
+        }else{
+
+            //如果是暂停图标就执行暂停的逻辑
+            video.pause();
+            this.classList.remove('fa-pause');
+            this.classList.add('fa-play');
+        }
+    }
+
+    //全屏的点击事件
+    document.getElementById('full').onclick = function(){
+
+        // 此方法是实验室中的方法，意思就是说目前只是提出了标准，但是还没有正式启用
+        // 各大浏览器还在测试这个方法阶段，没有正式发布，这种就叫实验室中的方法
+        // 实验室中的方法，要加浏览器的前缀
+        // video.requestFullscreen();
+
+        // video.webkitRequestFullscreen();
+
+        //能力检测的时候不要加括号
+        if(video.webkitEnterFullScreen){
+
+            video.webkitRequestFullScreen();
+
+        }else if (video.mozRequestFullScreen ){
+
+            video.mozRequestFullScreen();
+
+        }else{
+
+            video.msRequestFullscreen();
+        }
+    }
+
+    //视频的事件
+    //更新视频时间，理解为人话：视频在播放时就不断调用的事件
+    video.ontimeupdate = function(){
+
+        //怎么更新进度条？更新进度条本质上改变son的宽度，但是给多少？？
+        //假如说视频已经放了10%，那么进度条也应该是10%（宽度）
+        //视频已经放了75%，那么进度条也是75%
+        //所以关键是 算出 视频播放了多少
+        //用视频已经播放的时间 / 视频的总时长 就得到播放了多少
+        // currentTime获得当前播放时间   duration 总时长
+        
+        // 30 / 60 = 0.5 * 100 = 50 %
+        son.style.width = video.currentTime / video.duration * 100 + "%";
+    }
+
+    //进度条的点击事件
+    progress.onclick = function(e){
+
+        e = e || window.event;
+        //用被点击的位置除以总宽度得到比例，再用这个比例乘以视频总时长，就得到了视频应该到的当前时间
+        video.currentTime =  e.offsetX / progress.offsetWidth  * video.duration;
+    }
+</script>

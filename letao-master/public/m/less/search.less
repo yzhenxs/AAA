@@ -1,0 +1,69 @@
+/* 引入公共样式 */
+
+@import 'base.less';
+body {
+    background-color: #fff;
+}
+
+
+/* 中间主体内容样式 */
+
+#main {
+    /* 搜索表单样式 */
+    .search-form {
+        display: flex;
+        padding: 10px;
+        input {
+            flex: 1;
+            height: 30px;
+            background-color: #fff;
+            border: 1px solid @main-color;
+            font-size: 12px;
+            text-align: left;
+            border-radius: 6px 0px 0px 6px;
+            margin-bottom: 0;
+        }
+        button {
+            width: 60px;
+            height: 30px;
+            background-color: @main-color;
+            border-color: @main-color;
+            border-radius: 0px 6px 6px 0px;
+        }
+    }
+    /* 搜索历史样式 */
+    .search-history {
+        padding: 0 10px;
+        .title {
+            font-size: 12px;
+            a {
+                font-size: 12px;
+            }
+        }
+        .content {
+            ul {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                li {
+                	  position: relative;
+                    >a {
+                        height: 40px;
+                        line-height: 40px;
+                        padding-left: 10px;
+                        display: block;
+                        font-size: 14px;
+                    }
+                    .btn-delete{
+                    	position: absolute;
+                    	right: 10px;
+                    	top: 12px;
+                    }
+                    /* 给从第二个以后的li添加上边框 */
+                    &+li {
+                        border-top: 1px solid #ccc;
+                    }
+                }
+            }
+        }
+    }
+}

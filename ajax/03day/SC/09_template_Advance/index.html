@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<!-- 1. 导入模板  -->
+<script src="../08_template/template-web.js"></script>
+<!-- 2. 准备模板 
+    <% %> 不加等于的一般都是写语法（循环或者判断语法）
+    <%= %> 就是要输出的语法
+-->
+<script type="text/html" id="tpl">
+
+<% for(var i = 0; i < list.length; i++){ %>
+
+    <p>大家好，我叫<%= list[i].name %>，今年<%= list[i].age %>岁</p>
+
+<% } %>
+
+</script>
+
+<script>
+    var arr = [
+        { name: "jack", age: 16 },
+        { name: "rose", age: 17 },
+        { name: "andy", age: 18 },
+        { name: "james", age: 19 }
+    ];
+
+    //你要告诉它，模板里面的list用我的arr来填充
+    var html = template('tpl', { list : arr  } );
+    // console.log(html);
+    
+ 
+
+    // 需要给一个div也生成这10个p标签
+    var arr2 = [
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+        { name: "jack", age: 16 },
+    ];
+
+    var html = template('tpl',{ list : arr2});
+
+    console.log(html);
+    
+
+
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            left: 50px;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="缓动移到400" id="move400"/>
+<input type="button" value="缓动移到800" id="move800"/>
+
+<div id="box1"></div>
+
+<div id="box2"></div>
+
+</body>
+
+<script>
+    /*本小节解决问题：移动元素不限（函数参数）
+
+     */
+    var box1 = document.getElementById('box1');//红色
+    var box2 = document.getElementById('box2');//绿色
+    //红色盒子移动到400
+    document.getElementById('move400').onclick = function (  ) {
+        animationSlow(box1,400);
+    }
+
+    //绿色盒子移动到800
+    document.getElementById('move800').onclick = function (  ) {
+        animationSlow(box2,800);
+    }
+
+
+    function animationSlow ( obj,target) {
+        //1.清除当前定时器
+        clearInterval(obj.timeID);
+        //2.开启本次定时器:将该元素本次移动的定时器作为属性保存
+        obj.timeID = setInterval(function (  ) {
+            //2.1 获取元素当前位置
+            var currentLeft = obj.offsetLeft;
+            //2.2  计算本次移动距离: 核心公式：  (目标距离-当前距离)/10
+            var step = (target-currentLeft)/10;
+            //2.3 取整：  从左往右step>0: 向上取整     从右往左step<0: 向下取整
+            step =  step>0?Math.ceil(step):Math.floor(step);
+            //2.4 开始移动
+            currentLeft += step;
+            obj.style.left = currentLeft + 'px';
+            //2.5 到达终点清除定时器
+            if(currentLeft == target){
+                clearInterval(obj.timeID);
+            }
+        },50);
+    }
+</script>
+</html>

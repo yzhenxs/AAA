@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="请输入你的姓名"><span id="span"></span>
+    <br>
+    <input type="password" id="pwd" placeholder="请输入你的密码">
+</body>
+<script>
+//给名字输入框一个失去焦点事件,如果失去焦点了,需要访问数据库,查看输入的内容在数据库中是否存在,如果存在,则提示名字已经有了
+document.getElementById('name').onblur=function(){
+    if(this.value==""){
+        return;//如果检测到没有输入信息,则不会去访问数据库
+    }
+// 不空的情况下会去访问数据库
+//创建访问对象
+var xhr=new XMLHttpRequest();
+//设置访问行
+xhr.open('get','data.php?username='+this.value);
+//设置访问头
+xhr.onload=function(){
+    document.getElementById('span').innerHTML=xhr.responseText;
+}
+//设置访问体
+xhr.send();
+
+}
+
+
+
+
+</script>
+</html>

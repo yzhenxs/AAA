@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //给按钮设置单击事件.
+      $('#btn1').on('click', function () {
+        //1.获取id为ckb1的checked值. 不管当前这个多选框有没有选中,用attr()这个方法获取checked值都是undefined.
+        //console.log($('#ckb1').attr('checked'));
+
+        //2.在jQuery1.6之后，对于checked、selected、disabled这类boolean类型的属性来说，不能用attr方法，只能用prop方法。
+        //console.log($('#ckb1').prop('checked'));
+
+
+        //3.给按钮设置点击事件,让多选框们,如果他选中就取消选中,如果没有选中就选中.
+        var $ckbs = $('input[type="checkbox"]'); //获取到多选框们.
+        //遍历出每一个多选框,看checked是否 判断他们是否被选中.
+        for(var i = 0 ; i < $ckbs.length ; i++){
+//          if($($ckbs[i]).prop('checked')){
+//            $($ckbs[i]).prop('checked',false);
+//          }else {
+//            $($ckbs[i]).prop('checked',true);
+//          }
+
+          $($ckbs[i]).prop('checked',!$($ckbs[i]).prop('checked'));
+
+        }
+
+      });;
+
+    });
+  </script>
+
+</head>
+<body>
+<input type="button" value="按钮" id="btn1"/> <br/> <br/>
+<input type="checkbox" id="ckb1" /><br/>
+<input type="checkbox"/>
+<input type="checkbox"/>
+<input type="checkbox"/>
+</body>
+</html>

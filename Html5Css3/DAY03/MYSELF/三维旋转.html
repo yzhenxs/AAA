@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            width: 700px;
+            margin: 50px auto;
+        }
+
+        li {
+            width: 200px;
+            height: 200px;
+            background-color: greenyellow;
+            float: left;
+            margin-left: 20px;
+            transition: all 1s;
+            transform: perspective(1000px);
+        }
+
+        li:nth-child(1):hover {
+            transform: rotateX(60deg);
+            /* 如果不添加perspective(1000px)这句话,给人的感觉就是改变的高度,没有视觉效果 */
+        }
+
+        li:nth-child(2):hover {
+            transform: rotateY(60deg);
+            /* 如果不添加perspective(1000px)这句话,给人的感觉就是改变的宽度,没有视觉效果 */
+        }
+
+        li:nth-child(3):hover {
+            transform: rotateZ(60deg);
+            transform: rotate(60deg);
+            /* 上面这俩句话的作用是一样的 */
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>沿X轴旋转</li>
+        <li>沿Y轴旋转</li>
+        <li>沿Z轴旋转</li>
+    </ul>
+</body>
+
+</html>

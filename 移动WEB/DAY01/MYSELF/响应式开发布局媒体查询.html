@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		.row .col{
+			height: 100px;
+			border: 1px solid red;
+			font-size: 20px;
+			text-align: center;
+			line-height: 100px;
+			float: left;
+		}
+		/* 这次要写的是尺寸从大到小,小的条件的样式会把大的条件样式给覆盖掉 */
+		/* @media(min-width: 1200px){
+          .col{
+	            width: 25%;
+            }
+		}
+        @media(max-width: 1200px){
+          .col{
+	            width: 33.3%;
+            }
+		}
+        @media(max-width: 992px){
+          .col{
+	            width: 50%;
+            }
+		}
+		@media(max-width: 768px){
+          .col{
+	            width: 100%;
+            }
+		} */
+
+
+		/* 这次写尺寸是从小到大写,大的条件的尺寸样式会把小的尺寸的样式给覆盖掉 */
+		@media (max-width: 768px) {
+			.col{
+				width: 100%;
+			}
+		}
+		@media (min-width: 768px) {
+			.col{
+				width: 50%;
+			}
+		}
+		@media (min-width: 992px) {
+			.col{
+				width: 33.3%;
+			}
+		}
+		@media (min-width: 1200px) {
+			.col{
+				width: 25%;
+			}
+		}
+
+		/* 以上俩种写法所获得效果是一样的,平时需要注意用min-width和max-width的用法 */
+		/* 大屏幕的时候可以放4个div,中屏幕的时候放三个div,小屏幕的时候放俩个div,超小屏幕的时候,放一个div */
+
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col">1</div>
+		<div class="col">2</div>
+		<div class="col">3</div>
+		<div class="col">4</div>
+	</div>
+
+</body>
+</html>

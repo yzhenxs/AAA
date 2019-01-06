@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 2000px;
+      height: 2000px;
+
+    }
+    .one {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      /*margin-top: 10px;*/
+      position: relative;
+      top: 100px;
+      left: 100px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //1.事件对象:不管哪个事件被触发,都会生成一个对象来记录这个事件触发时候的一些信息. 比如按住某个键没有啊,比如事件触发的坐标啊....
+      // document.getElementById("one").onclick = function (e) {
+      //   e = e || window.event;
+      //   console.log(e);
+      // };
+
+
+      //2.jQuery中的事件对象.
+      //jQuery事件对象其实就是js事件对象的一个封装，处理了兼容性。
+      $('#one').on('click', function (e) {
+        //2.1 就是用事件参数e来获取就ok.
+        //console.log(e);
+
+        //2.2 事件对象中的常用的三个坐标
+        // console.log("screenX :"+e.screenX + "-" + e.screenY); //屏幕左上角 距离触发事件的那一点的距离
+        // console.log("clientX :"+e.clientX + "-" + e.clientY); //页面可视区左上角 距离触发事件的那一点之间的距离.
+        // console.log("pageX :"+e.pageX + "-" + e.pageY);//页面左上角 距离触发事件那一点之间的距离.
+
+        //2.3
+        //alert('我是div的单击事件');
+        //console.log(e.target);
+
+
+      });
+
+
+      //给a标签注册单击事件.
+      $('a').on('click', function (e) {
+        alert('我是a标签的单击事件.');
+
+        //2.4 阻止默认行为,比如a标签的默认跳转.
+         e.preventDefault();
+        //2.5 阻止冒泡.
+        // e.stopPropagation();
+        //2.6 return false 既能阻止默认行为,又能阻止事件冒泡
+        //return false;
+      });
+
+
+      //2.7 keyCode获取键盘按键.
+      $(document).on('keydown', function (e) {
+        console.log(e.keyCode);
+      });
+
+
+
+
+      //2.8  第三个参数：data，传递给处理函数的数据，事件触发的时候通过event.data来使用（不常使用）
+      // $('body').on('click','div','我是传递进来的data数据', function (e) {
+      //   //存储绑定事件时传递的附加数据
+      //   console.log(e.data);
+      // });
+
+
+    });
+  </script>
+</head>
+<body>
+<div id="one" class="one">
+  <a href="https://www.baidu.com">百度一下，你就知道</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        浏览器默认就有一个拖拽的行为：就是打开被拖拽进来的文件
+
+        要阻止这个默认行为。    怎么阻止呢？
+        
+        
+        现在你是不是想给整个见面加drop事件，但是整个页面有默认drop的实现，所以换句话说
+        我们需要给页面加一个drop事件，并且阻止它的默认实现
+    
+     -->
+
+    <style>
+        html,body{
+    
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body{
+
+            border:5px dashed black;
+        }
+    </style>
+</head>
+<body>
+    <h1>拖拽文件到虚线内</h1>
+</body>
+</html>
+
+<script>
+
+    //这个事件只是为了让ondrop可以被触发
+    document.ondragover = function(e){
+
+        e = e || window.event;
+        e.preventDefault();
+    }
+
+
+    //这个事件默认不会触发
+    document.ondrop = function(e){
+
+        e = e || window.event;
+        e.preventDefault();
+
+        // console.log(e.dataTransfer.files[0]);
+        
+        //把拖进来的文件转成临时路径
+        var url = URL.createObjectURL(e.dataTransfer.files[0]);
+
+        //你自己要写代码拿到拖拽进来的图片
+        //并显示在页面上
+        document.body.style.background = "url(" + url + ") no-repeat";
+
+    }
+</script>

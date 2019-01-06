@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            background: url(images/2.jpg) repeat;
+        }
+
+        div {
+            width: 800px;
+            margin: 50px auto;
+
+        }
+
+        a {
+            display: block;
+            float: left;
+            width: 150px;
+            margin-right: 5px;
+        }
+
+        img {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="box">
+        <a href="images/1.jpg">
+            <img src="images/1.jpg" alt="">
+        </a>
+
+        <a href="images/2.jpg">
+            <img src="images/2.jpg" alt="">
+        </a>
+
+        <a href="images/3.jpg">
+            <img src="images/3.jpg" alt="">
+        </a>
+
+        <a href="images/4.jpg">
+            <img src="images/4.jpg" alt="">
+        </a>
+
+        <a href="images/5.jpg">
+            <img src="images/5.jpg" alt="">
+        </a>
+    </div>
+</body>
+
+</html>
+
+<script>
+    //如果本地存储有值,才设置
+    var url=localStorage.getItem('url')
+if(url){
+    document.body.style.background = "url(" + url + ") no-repeat";
+}
+//找到所有的a标签
+    var alist = document.getElementsByTagName('a');
+    for (var i = 0; i < alist.length; i++) {
+        alist[i].onclick = function () {
+            document.body.style.background = "url(" + this.href + ") no-repeat";
+           //需要把本次换肤的路径保存起来,页面再次打开时候方便显示
+           localStorage.setItem('url', this.href);
+            return false;
+        }
+    }
+</script>

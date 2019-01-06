@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        //如果在页面内容加载之前使用api去获取不到
+        var box = document.getElementById('box');
+        console.log ( box );
+        //1.页面所有内容加载完毕之后自动执行
+        window.onload = function (  ) {
+            //作用：script代码可以写在body的前面，因为这个方法只有在body的内容全部加载完毕之后才会执行
+            var box = document.getElementById('box');
+            console.log ( box );
+        }
+
+        //2.窗口在关闭之前会执行
+        window.onbeforeunload = function (  ) {
+            /*作用：
+            1.用于保存页面一些重要的数据
+            2.阻止网页的关闭(只有IE才支持)
+             */
+            console.log ( "有sb想要关闭我,我马上要关闭了" );
+            //可以在用户点击关闭的时候出现弹窗留住用户
+            //谷歌火狐会拦截这种骚扰用户的行为，只有IE支持
+            // for(var i = 0;i<Infinity;i++){
+            //     window.open();//关闭时写一个死循环无限打开新窗口可以让IE浏览器瘫痪
+            // }
+
+             return '哥哥，你真的要离开我吗?';
+        }
+
+        //3.窗口在关闭的一瞬间会执行
+        window.onunload = function (  ) {
+            //此时页面正在关闭
+            console.log ( "我正在关闭" );
+        }
+    </script>
+</head>
+<body>
+
+
+<div id="box">我是div</div>
+</body>
+
+
+</html>

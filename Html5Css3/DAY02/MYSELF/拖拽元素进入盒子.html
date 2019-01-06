@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .smallbox{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .bigbox{
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            position: absolute;
+            right: 10px;
+        }
+/* 事实证明了,如果想让盒子正常的可以被拖拽,需要给盒子添加draggable="true"这个属性 */
+/* 如果想让盒子在被拖拽到容器内,松手后盒子可以留在容器内,需要添加 e.preventDefault()这句话,并且这句话必须写在ondragover所生成的函数中 */
+    </style>
+</head>
+<body>
+    <div class="smallbox" draggable="true"></div>
+    <div class="bigbox"></div>
+</body>
+</html>
+
+<script>
+    //首先找到盒子
+    var smallbox=document.getElementsByClassName('smallbox')[0];
+    //再找到容器
+    var bigbox=document.getElementsByClassName('bigbox')[0];
+
+    bigbox.ondragenter=function(){
+        console.log('有东西进入我身体了');   
+    }
+    bigbox.ondragleave=function(){
+        console.log('有东西从我身体出去了');   
+    }
+    bigbox.ondragover=function(e){
+        //这个位置不要忘记在小括号里面添加e
+        console.log('有东西在我身体里');  
+         //只要盒子进入容器内,这个响应就一直存在,直到盒子离开容器
+        e.preventDefault(); 
+        //只有上面这句话写了,把盒子拖拽到容器内并松手,盒子才可以留下来
+       //并且这句话必须写在ondragover所响应的函数中
+    }
+    bigbox.ondrop=function(){
+        bigbox.appendChild(smallbox);
+    }
+
+</script>
+

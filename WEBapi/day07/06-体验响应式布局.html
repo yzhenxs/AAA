@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script src="common.js"></script>
+<script>
+    /*响应式布局：一个页面可以兼容多个终端（不同的电脑，手机浏览器窗口大小不一一样，根据不同的窗口变化
+    来改变页面的布局）
+     */
+
+    window.onresize = function (  ) {
+       //根据网页可视区域的大小改变网页的布局
+        //if-else if-else语句：所有的大括号代码最多只会执行一次
+        //在写if-else if语句的时候，每一个条件都先思考它的隐藏条件，可以避免bug
+        if(getClient().clientWidth >= 1000){
+            //改变页面的布局
+            document.body.style.backgroundColor = 'red';
+        }else if(getClient().clientWidth >= 600){//这里有一个隐藏条件<1000
+            document.body.style.backgroundColor = 'green';
+        }else{// 隐藏条件  < 600
+            document.body.style.backgroundColor = 'yellow';
+        }
+    }
+
+
+</script>
+</html>

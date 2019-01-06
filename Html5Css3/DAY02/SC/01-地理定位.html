@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        地理定位：获取到你当前设备所在的经纬度
+
+        经纬度才能确定在地球上的某一个具体位置
+
+
+        怎样获取到位置？
+            GPS定位：你的设备必须要有GPS模块，连接卫星可以定位到
+                     这种定位是最精确，越精确越耗电
+
+            wifi定位：其实本质上查的是你当前使用软件的服务器，服务器上去查数据库看你现在的wifi注册在哪个位置
+                    A这个人在星巴克连接wifi了，刚好又打开了百度地图，百度地图会拿到这个星巴克wifi的路由器mac地址（设备的身份证）和当前这个手机定位到的地址，存到服务器上
+                    下一次B来到星巴克连wifi，哪怕它没有GPS模块，百度地图也能知道它在哪
+
+                wifi定位还可以辅助让你的定位更精确，你关掉wifi打开地图软件会提示你开启wifi能更精确的获得位置
+                哪怕你不连wifi，你只要开启wifi，也能让位置更精确
+
+
+            网络基站定位：至少你的设备要上网
+                        上网后会有个IP地址，通过IP地址去查你这个设备在哪
+                        这种精度是最低的（查的不是电信，而是查的某些软件的服务器）
+
+                        获取的是基站的地址，所以误差会有，比较大
+                        
+                电影里面只要知道IP地址就能抓到你，警察直接找运营商
+                    运营商知道我给某个设备分的IP地址是什么
+                    每一天给你分配IP的时候都有记录， 分配到哪个人的账户上
+     -->
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    //H5中新增的高级API，专门用来获取地理位置
+    //这个方法就能获取到当前的地理位置
+    //当获取到地理位置后，这个传入的回调函数就会被调用
+    //位置信息会在这个回调函数的形参里面
+    navigator.geolocation.getCurrentPosition(function (loc) {
+
+        // console.log(loc);
+        console.log("纬度是：" + loc.coords.latitude + "经度是："+ loc.coords.longitude);
+        
+        
+    });
+</script>

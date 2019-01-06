@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" id="btn" value="点我啊">
+</body>
+
+</html>
+
+
+<script src="../07_Jquery_Ajax/jquery-1.12.4.js"></script>
+
+<script>
+
+    //ajaxSetup
+    //设置jquery发ajax请求的默认值
+    $.ajaxSetup({
+        url: "data.php",
+        type: 'get',
+        data: "age=16",
+    });
+
+
+    // $.ajax({
+
+    //     url: "test.php",
+    //     data: "name=jack",
+    //     success: function (obj) {
+
+    //         console.log(obj);
+
+    //     }
+    // });
+
+
+    //当我这个网页里有一次ajax请求时，会来调用这个函数
+    //当网页里面刚刚发起ajax请求的时候，会来调用这个函数
+    $(document).ajaxStart(function (xhr) {
+        // 全局有任意一次 AJAX 请求开始（必须是 jQuery 发起的请求）
+        console.log('有请求了')
+    })
+
+    
+    $(document).ajaxStop(function (xhr) {
+ 
+        console.log('结束了！')
+    })
+
+
+    document.getElementById('btn').onclick = function(){
+
+        $.ajax({
+            url:"data.php",
+            type:"get",
+            success:function(){
+
+                console.log('响应完成');
+                
+            }
+        });
+    }
+
+
+</script>

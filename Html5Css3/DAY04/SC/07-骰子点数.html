@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        ul {
+            padding: 0;
+            list-style: none;
+            width: 260px;
+            height: 260px;
+            background-color: #d3d3d3;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+
+        li {
+            width: 60px;
+            height: 60px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .one {
+            display: flex;
+            /* 主轴和副轴居中就在整个盒子的最中间 */
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .two {
+            display: flex;
+
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .three {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .three li:first-child {
+            margin-top: 10px;
+        }
+
+        .three li:nth-child(2) {
+
+            align-self: center;
+        }
+
+        .three li:nth-child(3) {
+
+            align-self: flex-end;
+            margin-bottom: 10px;
+        }
+
+        /* ul>div{
+            width: 100%;
+            height: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        } */
+
+        ul:nth-child(n+4){
+
+            display: flex;
+        
+        }
+
+        ul:nth-child(n+4)>div{
+
+            flex:1;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- 古代用来投掷，音“投”  以前的这个是用骨头做的 -->
+
+    <ul class="one">
+        <li></li>
+    </ul>
+
+    <ul class="two">
+        <li></li>
+        <li></li>
+    </ul>
+
+    <ul class="three">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <ul class="four">
+        <div>
+            <li></li>
+            <li></li>
+        </div>
+        <div>
+            <li></li>
+            <li></li>
+        </div>
+    </ul>
+
+    <ul class="five">
+        <div>
+            <li></li>
+            <li></li>
+        </div>
+
+        <div>
+            <li></li>
+        </div>
+
+        <div>
+            <li></li>
+            <li></li>
+        </div>
+
+    </ul>
+
+    <ul class="six">
+        <div>
+            <li></li>
+            <li></li>
+            <li></li>
+        </div>
+
+        <div>
+                <li></li>
+                <li></li>
+                <li></li>
+            </div>
+    </ul>
+
+</body>
+
+</html>

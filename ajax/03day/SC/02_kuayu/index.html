@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    同源：
+        协议头、域名、端口三个都相同的网址，就叫同源
+
+    跨域：
+        协议头、域名、端口只要有一个不一样，就叫跨域（也叫不同源）
+
+
+    如果跨域访问资源，会有影响。浏览器默认不允许使用XMLHttpRequest访问跨域资源
+    如果访问跨域资源会报错
+
+    不管你域名最终表示哪个IP，它只是看域名、协议头、端口有一个不一样就跨域
+    
+
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','http://www.zll.com/Day03/data.php');
+    xhr.send();
+</script>

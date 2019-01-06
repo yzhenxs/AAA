@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            
+            /* 
+                默认情况下，动画执行完毕都会恢复原样
+                参数1：动画名
+                参数2：动画持续时间
+                参数3：延迟时间
+                参数4：动画曲线 steps linear这些
+                参数5：动画次数
+                参数6：是否恢复原样，默认为恢复，加一个forwards就代表不恢复(就变成动画最终的样子)
+                参数7：alternate：加这个东西就代表让元素恢复的时候也有动画效果
+                                  恢复的时候也算一次动画，所有如果为2，那么一次到动画目的一次返回就没了
+                      normal：默认值就是用动画效果到最终目的
+                      reverse：先闪现最终目的，再用动画效果回到最初的值
+                      alternate-rever：相当于就是reverse，只是比reverse多了一个动画恢复
+
+                这些顺序可以随便乱写，但是先写的时间一定是动画持续时间，后写的是动画延迟时间
+
+                不用刻意去记顺序，以后需要用什么效果，想到什么就写什么
+             */
+            /* animation: scale 1s .1s linear 2 forwards alternate; */
+
+            /* animation: alternate 1s scale linear .1s forwards 5; */
+            
+            /* 可以加多个动画，以逗号隔开 */
+            animation: scale 1s,move 2s;
+        }
+
+        
+        @keyframes move{
+
+            from{}
+
+            to{
+
+                transform: translateX(1000px);
+            }
+        }
+
+        @keyframes scale{
+        
+        /* 从什么状态开始，不写，就代表以这个元素本来的样子开始，一般这里不写，因为我们一般都需要从它原样开始  */
+            from{
+
+                /* width:500px;
+                height:500px; */
+            }
+        
+        /* 动画最终变成的样子 */
+            to{
+                width: 300px;
+                height: 300px;
+                background-color: #0f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

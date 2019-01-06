@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="forward">前进</button>
+<a href="14-history测试页.html">跳转</a>
+<script>
+    /*history:记录当前窗口的历史浏览记录
+    作用：控制浏览器窗口的前进与回退
+        * forward:前进网页
+        * back：回退网页
+     */
+
+    console.log ( history );
+
+    document.getElementById('forward').onclick = function (  ) {
+        //前进到下一页
+        //如果浏览器没有跳转过任何页面，前进无效
+        history.forward();
+    }
+</script>
+</body>
+</html>

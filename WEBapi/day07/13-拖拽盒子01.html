@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <style>
+        #father {
+            width: 200px;
+            height: 400px;
+            background-color: skyblue;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #son {
+            width: 200px;
+            height: 100px;
+            background-color: hotpink;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+    <div id="son"></div>
+</div>
+
+<script src="common.js"></script>
+<script>
+    /*复习鼠标所有的事件
+        * onclick:鼠标单击(先按下并松开才会触发)
+        * onmouseover:鼠标移入
+        * onmouseout：鼠标移出
+        * onmousemove：鼠标移动
+        * onmousedown:鼠标按下(鼠标只要按下就触发)
+        * onmouseup：鼠标松开
+
+    拖拽盒子思路分析
+            * 1.拖拽事件、 （1）鼠标按下  （2）鼠标移动  （3）鼠标松开
+                * a.给元素注册鼠标按下：onmousedown
+                * b.在鼠标按下的事件处理中，给页面注册鼠标移动：onmousemove
+                * c.给页面注册鼠标松开事件：onmouseup
+                    * 在松开事件处理中，应该移除页面鼠标移动事件
+                        * document.onmousemove = null
+            * 2.需要计算哪一个线的距离:需要计算元素左上角距离页面左上角距离
+                * 找出决定元素定位的那一根线
+     */
+
+    var box = id('son');
+    var father = id('father');
+
+    // //鼠标单击无法实现拖拽效果
+    // box.onclick = function (  ) {
+    //     console.log ( "单击：按下并松开" );
+    // }
+
+    //1.给元素注册鼠标按下事件
+    box.onmousedown = function ( e  ) {
+       // console.log ( "鼠标按下" );
+        e = e || window.event;
+        //求出蓝线的距离:
+        //本案例：子元素与父元素左边与上边完全对齐，求蓝线以父元素来求
+        var x = getPagePoint(e).pageX - father.offsetLeft;
+        var y = getPagePoint(e).pageY - father.offsetTop;
+        console.log ( x, y );
+
+        //2.给页面注册鼠标移动
+        document.onmousemove = function ( e ) {
+            //console.log ( "鼠标移动" );
+            e = e || window.event;
+            //求黑线距离：红线 - 蓝线
+             father.style.left = getPagePoint(e).pageX - x + 'px';
+           father.style.top = getPagePoint(e).pageY - y + 'px';
+        }
+    }
+
+    //3.给元素鼠标松开事件：（一定是先按下才会除法这个事件）
+    document.onmouseup = function (  ) {
+        console.log ( "鼠标松开" );
+        //停止移动事件
+        //注销事件：给元素事件类型赋值为空
+        document.onmousemove = null;
+    }
+
+
+
+</script>
+</body>
+</html>

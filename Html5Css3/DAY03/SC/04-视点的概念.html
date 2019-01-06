@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        视点：就是模拟出一个镜头到元素之间的具体，然后把这个元素形态拍下来再展现到屏幕上观看
+
+        此案例证明了视点果然是模拟一个镜头到元素的距离，所以近大远小
+     -->
+
+     <style>
+         img{
+             transform: perspective(500px) translateZ(50px);
+         }
+     </style>
+</head>
+<body>
+    <img src="img/dog2.jpg" alt="">
+</body>
+</html>

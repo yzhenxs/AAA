@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        input {
+
+            display: block;
+            margin: 50px auto;
+            width: 120px;
+            height: 65px;
+        }
+
+        table {
+            margin: 50px auto;
+            /* 合并单元格的边框 */
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            width: 80px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="加载数据" id="load">
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>成绩</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+</body>
+
+</html>
+
+<script>
+
+    //找到tbody
+    var tb = document.querySelector('tbody');
+    
+    document.getElementById('load').onclick = function () {
+
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //2. 设置请求行
+        xhr.open('get', 'data.xml');
+
+        //3. 发送请求
+        xhr.send();
+
+        //4. 监听响应完成事件
+        xhr.onload = function () {
+
+            // console.log(xhr.responseXML);
+            //找到所有item
+            var itemList = xhr.responseXML.getElementsByTagName('item');
+            console.log(xhr.responseXML);
+            
+
+            /*
+            for (var i = 0; i < itemList.length; i++) {
+
+                //创建tr
+                var tr = "<tr>";
+
+                for( var j = 0; j < itemList[i].children.length; j++){
+
+                    tr += "<td>";
+                    
+                    tr += itemList[i].children[j].innerHTML;
+
+                    tr += "</td>";
+                }
+
+                tr += "</tr>";
+
+                tb.innerHTML += tr;
+            }
+            */
+
+           for(var i =0; i < itemList.length; i++){
+
+               //有几个item,就创建几个tr
+               var tr = "<tr>";
+                
+                tr += "<td>";
+                tr += itemList[i].children[0].innerHTML;
+                tr += "</td>";
+
+                tr += "<td>";
+                tr += itemList[i].children[1].innerHTML;
+                tr += "</td>";
+
+                tr += "<td>";
+                tr += itemList[i].children[2].innerHTML;
+                tr += "</td>";
+
+                tr += "<td>";
+                tr += itemList[i].children[3].innerHTML;
+                tr += "</td>";
+
+                tr += "</tr>";
+
+                tb.innerHTML += tr;
+           }
+
+        }
+    }
+</script>

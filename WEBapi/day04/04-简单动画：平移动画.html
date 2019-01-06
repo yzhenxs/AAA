@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        .one {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 50px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="开始" id="start"/>
+<div class="one" id="box"></div>
+</body>
+
+<script>
+    /*需求：点击开始  div从0移动到800  动画效果
+    物体的运动：速度  v = s/t      现实世界：m/s    界面元素：px/s
+
+    思路： 1.定义一个变量存储元素当前的位置
+    2.开启定时器，每隔一段时间，元素的位置在自身的基础上加10px
+        * 时间间隔越小：越平缓
+    3.修改元素的位置
+    4.边界检测：如果元素到达目的地，清除定时器
+     */
+
+    var box = document.getElementById('box');
+    var currentLeft = 0;//1.定义变量存储元素当前位置
+    document.getElementById('start').onclick = function (  ) {
+        //2.开启定时器
+       var timeID =  setInterval(function (  ) {
+            //2.1 计算元素当前位置
+            currentLeft += 10;
+            //3. 修改元素的位置
+            box.style.left = currentLeft + 'px';
+            //4.边界检测：元素到达目的地，清除定时器
+           if(currentLeft > 800){
+               clearInterval(timeID);//清除定时器
+               //设置元素为终点位置，否则动画会有误差
+              box.style.left = '800px';
+           }
+        },50)
+    }
+
+
+</script>
+</html>

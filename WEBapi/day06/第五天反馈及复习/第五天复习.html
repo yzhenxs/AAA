@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .one{
+            top:50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            border: 10px solid red;
+            margin: 20px;
+            position: absolute;
+        }
+
+        .two{
+            top: 200px;
+            left: 200px;
+            width: 200px;
+            height: 200px;
+            background: cyan;
+            border: 20px solid purple;
+            padding: 10px;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<div class="two" id="box1">
+    <div class="one" id="box">1</div>
+</div>
+
+<input type="button" value="移动到400" id="move400"/>
+<input type="button" value="移动到800" id="move800"/>
+
+</body>
+
+<script>
+
+    /*1.offset家族：获取元素真实的宽高和位置
+    offsetWidth/offsetHeight:获取的是元素真实的宽高（width + border + padding）
+    offsetParent:获取元素最近的定位父级
+        特点：
+            1.如果一个元素是固定定位fixed，定位父级就是null
+            2.如果一个元素是非固定定位，并且有父级，但是所有的父级都没有定位,则定位父级是body
+            3.body自身的定位父级是null
+    offsetLeft/Top:获取自身左/上外边框到offsetParent的左/上内边框的距离
+
+     */
+
+    var box1 = document.getElementById('box1');
+    console.log ( box1.offsetWidth );
+    console.log ( box1.offsetLeft );
+
+    /*2.动画封装
+        * 移动距离不限
+        * 移动元素不限
+        * 移动方向不限
+     */
+
+
+
+    document.getElementById('move400').onclick = function (  ) {
+        animationMove(box1,400);
+    }
+
+    document.getElementById('move800').onclick = function (  ) {
+        animationMove(box1,800);
+    }
+
+
+
+    function animationMove ( obj,target ) {
+    //1.如果元素以前有定时器，则清除（以本次移动为准）
+        clearInterval(obj.timeID);
+        //2.开启定时器，将定时器id作为元素的属性来存储
+        obj.timeID = setInterval(function (  ) {
+            //(1)获取元素当前的位置
+            var currentLeft = obj.offsetLeft;
+            //（2)判断元素的移动方向(true:从左往右  false：从右往左)
+           var isLeft =  currentLeft < target?true:false;
+           //（3）开始移动
+            isLeft?currentLeft += 10:currentLeft-=10;
+            obj.style.left = currentLeft + 'px';
+            //(4)边界检测
+            /*如果isLeft是true，从左往右，边界检测  currentLeft > target   停止
+            如果isLeft是false，从右往左，边界检测  currentLeft < target   停止
+
+
+            isLeft?currentLeft > target:currentLeft < target  表达式作用
+                * ifLeft为true，就判断currentLeft > target这个条件成立不成立
+                * ifLeft为false，就判断currentLeft < target这个条件成立不成立
+             */
+            if(isLeft?currentLeft > target:currentLeft < target){
+                    clearInterval(obj.timeID);//清除定时器
+                    obj.style.left = target + 'px';//修改元素位置为目标位置（防止动画细微误差）
+            }
+        },50);
+    }
+</script>
+</html>

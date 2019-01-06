@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.关系运算符-比较运算符.
+    //> < >= <= == != === !==
+
+
+    //2. ==  !=
+    //比较的是 非严格的,允许类型转换.
+    // var num1 = 100;
+    // var str1 = "100";
+    // console.log(num1 == str1); //true
+    // console.log(undefined == undefined); //true
+    // console.log(undefined == null); //true
+    // console.log(undefined == NaN); //false
+    // console.log(NaN == NaN); //false  NaN永远不等于其他值,包括他自身.
+    // console.log(true == 1); //true
+    // console.log(false == 0); //true
+    // //哪些值可以转换成布尔类型的false:  0  -0  null  undefined  false  ""  NaN  document.all()
+
+
+    //3. === !==  全等 不全等
+    //比较的是严格的匹配. 值和数据类型都要相等.===才是true.
+    var num1 = 100;
+    var str1 = "100";
+    console.log(num1 === str1); //false
+    console.log(undefined === undefined); //true
+    console.log(undefined === null); //false
+    console.log(undefined === NaN); //false
+    console.log(NaN === NaN); //false  NaN永远不等于其他值,包括他自身.
+    console.log(true === 1); //false
+    console.log(false === 0); //false
+
+    var obj1 = {
+      name:'丽群',
+      age : 18
+    };
+    var obj2 = {
+      name:'丽群',
+      age : 18
+    };
+    console.log(obj1 === obj2); //false
+
+
+    var obj3 = {
+      name:'欧阳冬萍',
+      age :19
+    };
+    var obj4 = obj3;
+    console.log(obj3 === obj4); //true
+
+
+    var arr1 = [10,20,30];
+    var arr2 = [10,20,30];
+    console.log(arr1 === arr2); //flase
+
+
+    var arr3 = new Array(100,200,300);
+    var arr4 = arr3;
+    console.log(arr3 === arr4); // true
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

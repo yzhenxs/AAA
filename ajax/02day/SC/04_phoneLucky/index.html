@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>史上最智能的手机号码测吉凶----祖传算命----学IT来黑马！学算命也来黑马！</h1>
+    <input type="text" id="phone" placeholder="请输入手机号码">
+    <input type="button" id="search" value="查询">
+    <hr>
+
+    <p>手机号码：</p>
+    <p>归属地：</p>
+    <p>号码得分：</p>
+    <p>吉凶论断：</p>
+    <p>吉凶分析：</p>
+    <p>性格分析：</p>
+    <p>分析详情：</p>
+
+</body>
+
+</html>
+
+
+<!-- 使用jquery来发送ajax请求解决 -->
+<script src="jquery-1.12.4.js"></script>
+
+<script>
+
+    //找到所有p标签
+
+    //找到文本框
+    var phone = document.getElementById('phone');
+
+    //查询按钮的点击事件
+    document.getElementById('search').onclick = function(){
+
+        //发请求
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('get','http://api.jisuapi.com/mobileluck/query?mobile=' + phone.value  + '&appkey=94c543ddb1a37c93');
+        // xhr.send();
+        
+
+        //要用jquery来发ajax才可以解决这个问题
+        $.ajax({
+            url:'http://api.jisuapi.com/mobileluck/query?mobile=' + phone.value  + '&appkey=94c543ddb1a37c93',
+            type:'get',
+            dataType:'jsonp',
+            // 当响应成功会调用的回调函数，形参就是响应体
+            success:function(obj){
+                
+                $('p').eq(0).html("手机号码：" + obj.result.mobile);
+                $('p').eq(1).html("归属地：" + obj.result.province + "  " + obj.result.city);
+                if( phone.value == '17620377763' ){
+                    $('p').eq(2).html("号码得分：100");
+                }else
+                    $('p').eq(2).html("号码得分：" + obj.result.score);
+                $('p').eq(3).html("吉凶论断：" + obj.result.luck);
+                $('p').eq(4).html("吉凶分析：" + obj.result.content);
+                $('p').eq(5).html("性格分析：" + obj.result.character);
+                $('p').eq(6).html("性格详情：" + obj.result.characterdetail);
+
+                
+            }
+        });
+    }
+</script>

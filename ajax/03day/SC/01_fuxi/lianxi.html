@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        select {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="" id="sheng"></select>
+    <select name="" id="shi"></select>
+    <select name="" id="qu"></select>
+</body>
+
+</html>
+
+<script>
+    //找到省
+    var sheng = document.getElementById('sheng');
+    //找到市
+    var shi = document.getElementById('shi');
+    //找到区
+    var qu = document.getElementById('qu');
+
+    //页面一打开,就应该找到省
+
+//这里封装成一个函数
+function f1(pId,ele){
+//创建访问体
+    var xhr = new XMLHttpRequest();
+    //设置访问行
+    xhr.open('get', 'region.php?parentID='+pId);
+    //设置访问体
+    xhr.send();
+    //监听对象
+    xhr.onload = function () {
+        var obj = JSON.parse(xhr.responseText);
+        for (var i = 0; i < obj.length; i++) {
+            //新建option标签
+            var opt = document.createElement('option');
+            opt.value = obj[i].REGION_ID;
+            opt.innerHTML = obj[i].REGION_NAME;
+            //显示在需要显示的位置
+            ele.appendChild(opt);
+        }
+        ele.onchange();
+    }
+}
+
+ f1(1,sheng);
+
+sheng.onchange=function(){
+    shi.innerHTML="";
+    f1(sheng.value,shi);
+}
+
+shi.onchange=function(){
+    qu.innerHTML="";
+    f1(shi.value,qu);
+}
+
+ qu.onchange = function(){
+        
+    }
+ 
+
+</script>

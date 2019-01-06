@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.原型链.
+    //每一个对象都有原型, 原型又是对象, 原型又有原型,这样就成为了一个链式结构,成为原型链.
+
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    Person.prototype.type = "哺乳动物";
+    Person.prototype.sayHi = function () {
+      console.log("你好,我是人...");
+    }
+    //根据Person构造函数实例化一个人对象.
+    var p1 = new Person('王成',18);
+    p1.gender = "男";
+    p1.swimming = function () {
+      console.log("啦啦啦,我会游泳,喝了一肚子水...");
+    }
+
+    console.log(p1.name); //p1对象中有name属性,不报错.
+    console.log(p1.type);//p1指向的原型中有,能够访问,也不报错.
+    p1.sayHi(); //p1指向的原型中有,能够访问,也不报错.
+    console.log(p1.gender);//p1对象后来添加的,也是属于p1对象的,也不报错.
+    p1.swimming();//p1对象后来添加的,也是属于p1对象的,也不报错.
+    //p1.sing();//报错了, 原因是自己没有,自己指向的原型也没有.
+    //console.log(p1.height);//undefiend 原因是自己没有,自己指向的原型也没有.
+    p1.toString(); //为什么自己没有toString.原型中也米有toSting,而他没有报错. 原因是原型的原型中有toString方法.
+    console.log(p1);
+
+
+    console.log(p1.__proto__.__proto__.constructor); //Object
+    console.log(p1.__proto__.__proto__ === Object.prototype); //true
+    console.log(p1.__proto__.__proto__.__proto__); //null
+    console.log(Object.prototype);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

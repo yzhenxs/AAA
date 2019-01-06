@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1{
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+
+        .one{
+            border: 10px solid green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1" class="one" >我是box1</div>
+
+<div id="box2" class="one" >我是box2</div>
+</body>
+
+<script>
+    /*本小节知识点：根据选择器获取元素
+    querySelector:找到满足条件的第一个元素
+    querySelectorAll：找到满足条件的所有元素
+     */
+    /**
+     * 1.找到满足选择器的第一个元素
+     * @param 选择器字符串
+     * @return 元素/null
+     */
+    var one1 = document.querySelector('.one');
+    console.log ( one1 );
+
+    /**
+     * 2.找到满足选择器的所有元素
+     * @param 选择器字符串
+     * @return 一定是数组
+     */
+    var one2 = document.querySelectorAll('.one');
+    console.log ( one2 );
+</script>
+</html>

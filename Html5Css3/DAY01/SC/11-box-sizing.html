@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .box{
+
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            padding: 20px;
+            border: 10px solid black;
+
+            /* 内边距和边框是外扩的，所以会增大盒子实际占用的空间 */
+
+            /* 给一个border-box代表内聚，也就是说宽高给的是多少就是多少，边框和内边距都是往盒子里面加 */
+            box-sizing: border-box;
+            
+            /* 下面这个就是外扩，默认就是外扩 */
+            /* box-sizing: content-box; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

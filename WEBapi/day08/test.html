@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    //所有的全局函数都是window的属性
+
+    console.log ( window.alert );
+    alert('111');//不会有弹窗，而是打印6666
+
+    //我们自己写全局函数的时候，函数名不要和默认函数重名，否则会覆盖系统默认函数
+    function alert (  ) {
+        console.log ( "66666" );
+    }
+
+    //window有一个name属性只能是字符串
+    var name = [1,2,3];
+    console.log ( name );
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 引入swiper的css文件 -->
+    <link rel="stylesheet" href="jd/lib/swiper/css/swiper.css">
+    <style>
+    /*4. 修改轮播图的样式*/
+    
+    .swiper-container {
+        width: 100%;
+    }
+    
+    .swiper-slide a {
+        display: block;
+    }
+    
+    .swiper-slide a img {
+        width: 100%;
+    }
+    
+    .swiper-pagination-bullet {
+        background-color: transparent;
+        opacity: 1;
+        border: 1px solid #fff;
+        width: 8px;
+        height: 8px;
+        box-sizing: border-box;
+    }
+    
+    .swiper-pagination-bullet-active {
+        background-color: #fff;
+    }
+      .swiper-pagination-bullet {
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+      color:#000;
+      opacity: 1;
+      background: rgba(0,0,0,0.2);
+    }
+    .swiper-pagination-bullet-active {
+      color:#fff;
+      background: #007aff;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 3. 写轮播图结构 -->
+    <!-- 轮播图的大容器 装了所有内容图片小圆点按钮等 -->
+    <div class="swiper-container" id="slide1">
+        <!-- 轮播图的图片容器 装的是所有的轮播图项(一般是图片) -->
+        <div class="swiper-wrapper">
+            <!-- swiper-slide 每一个轮播项 -->
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l1.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l2.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l3.jpg" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- 小圆点容器 -->
+        <div class="swiper-pagination"></div>
+        <!-- 左右箭头 -->
+        <!-- <div class="swiper-button-prev"></div> -->
+        <!-- <div class="swiper-button-next"></div> -->
+        <!-- 滚动条容器 -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+    <div class="swiper-container" id="slide2">
+        <!-- 轮播图的图片容器 装的是所有的轮播图项(一般是图片) -->
+        <div class="swiper-wrapper">
+            <!-- swiper-slide 每一个轮播项 -->
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l1.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l2.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l3.jpg" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- 小圆点容器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper-container" id="slide3">
+        <!-- 轮播图的图片容器 装的是所有的轮播图项(一般是图片) -->
+        <div class="swiper-wrapper">
+            <!-- swiper-slide 每一个轮播项 -->
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l1.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l2.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="jd/images/l3.jpg" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- 小圆点容器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <!-- 2. 引入swiper的js文件 -->
+    <script src="jd/lib/swiper/js/swiper.js"></script>
+    <script>
+    // 5. 调用JS函数去初始化轮播图 初始化的时候调用Swiper构造函数
+    //同时需要传入2个参数  第一个参数是轮播图的大容器 是一字符串选择器
+    //第二个参数是轮播图一些配置项是一个对象 轮播图方向 小圆点 自动轮播图等
+    var mySwiper = new Swiper('#slide1', {
+        direction: 'horizontal', // 垂直切换选项
+        autoplay: {
+            delay: 100000, //轮播图的延迟
+            stopOnLastSlide: false, // 如果设置为true，当切换到最后一个slide时停止自动切换。（loop模式下无效）
+            disableOnInteraction: false //当用户滑动的时候禁止自动轮播图 不需要禁止就为false
+        },
+        loop: true, // 是否开启无缝轮播图 开启无轮播图  如果不开 刷回去倒退回去
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+    var mySwiper = new Swiper('#slide2', {
+        direction: 'vertical', // 垂直切换选项
+        autoplay: {
+            delay: 100000, //轮播图的延迟
+            stopOnLastSlide: false, // 如果设置为true，当切换到最后一个slide时停止自动切换。（loop模式下无效）
+            disableOnInteraction: false //当用户滑动的时候禁止自动轮播图 不需要禁止就为false
+        },
+        loop: true, // 是否开启无缝轮播图 开启无轮播图  如果不开 刷回去倒退回去
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+
+    var swiper = new Swiper('#slide3', {
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+        },
+      },
+    });
+    </script>
+</body>
+
+</html>

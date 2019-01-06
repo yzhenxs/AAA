@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.原型链的尽头都是Object.prototype.
+    //意味着Object.prototype.这个原型对象里面的成员,所有的对象都可以访问.
+
+    //2. Object.prototype.这个原型对象里面的成员 有哪些.
+    //2.1  hasOwnProperty();
+    //判断一个对象中是否存在某个属性.
+    // function Person(name,age){
+    //   this.name = name;
+    //   this.age = age;
+    // }
+    // Person.prototype.sayHi = function () {
+    //   console.log("哈哈哈");
+    // }
+    // var p1 = new Person("社会龙",18);
+    // console.log(p1.hasOwnProperty('name')); //true
+    // console.log(p1.hasOwnProperty('age')); //true
+    // console.log(p1.hasOwnProperty('gender'));//false
+    // console.log(p1.hasOwnProperty('sayHi'));//false
+
+
+    //2.2 isPrototypeOf();
+    //判断一个对象是否是另外一个对象的原型.
+    // var obj1 = {name:"张三"};
+    // var obj2 = {name:"李四"};
+    // //把obj2的 原型修改成obj1.
+    // obj2.__proto__ = obj1;
+    // console.log(obj1.isPrototypeOf(obj2)); //true
+
+
+    //3.propertyIsEnumerable()
+    //判断2点:
+    //判断属性是否是属于自己的.
+    //判断属性是否是可以遍历的.
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    Person.prototype.type = "人类";
+    //实例化一个对象.
+    var p1 = new Person('涩会龙',20);
+    //可以遍历的有:属于自己的属性,还有原型中自定义的属性.
+    for(var key in p1){
+      console.log(key);
+    }
+
+
+    console.log(p1.propertyIsEnumerable('name'));//true
+    console.log(p1.propertyIsEnumerable('age'));//true
+    console.log(p1.propertyIsEnumerable('type'));//false
+    console.log(p1.propertyIsEnumerable('gender'));//false
+
+
+
+    //definedProperty();
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

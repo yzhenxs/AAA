@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+      //入口函数
+      $(function () {
+        //1.先获取到按钮们
+        var $btns = $('button');
+        //关灯
+        //把jQuery对象转换成了dom对象.
+        $btns[1].onclick = function () {
+          //设置body的背景色为黑色.
+          $('body').css('backgroundColor','black');
+        }
+
+        //开灯
+        //把jQuery对象转换成了dom对象.
+        $btns[0].onclick = function () {
+          //设置body的背景色为白色
+          $('body')[0].style.backgroundColor = "white";  //把jQuery对象转换成了dom对象.
+        }
+
+
+
+      });
+    </script>
+</head>
+<body>
+
+    <button>开灯</button>
+    <button>关灯</button>
+    <img src="images/coder.jpg"/>
+
+</body>
+</html>

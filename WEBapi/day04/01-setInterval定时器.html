@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="start">开启</button>
+<button id="end">关闭</button>
+
+<p id="p1">1</p>
+<script>
+    /*定时器（计时器）：每隔一段时间自动执行一件事（一段代码）
+    setInterval(一段代码，时间间隔)
+    特点：
+        1.一旦开启，自动永久重复执行，不会停止
+        2.要想停止定时器，只能清除定时器（clearInterval(定时器id)）
+
+     */
+
+    var p = document.getElementById('p1');
+    var text = p.innerText;//获取p元素当前文本
+
+    var timeID = null;//定义一个全局变量存储定时器id
+
+    //开启
+    document.getElementById('start').onclick = function (  ) {
+        /*1.定时器：每隔一段时间就自动执行这一段代码
+        @prama handle:一段代码
+        @prama timeout:时间间隔  单位：毫秒
+        @return timeID:定时器id
+            * 一个页面可以开启多个定时器，编译器为了识别每一个定时器会有一个编号timeID
+     */
+        //开启定时器
+      timeID =  setInterval(function (  ) {
+            console.log ( "我是班长社会龙" );
+            text++;//自增运算符可以隐式转换（将string转成number）
+            console.log ( text );
+            p.innerText = text;
+        },1000);
+    }
+
+    //关闭
+    document.getElementById('end').onclick = function (  ) {
+        //清除定时器
+        clearInterval(timeID);
+    }
+
+</script>
+</body>
+</html>

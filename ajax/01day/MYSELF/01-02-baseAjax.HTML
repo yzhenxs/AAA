@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 要求是点击按钮后,div中出现ok -->
+<input type="button" value="点我啊" id="btn">
+
+<div id="div"></div>
+</body>
+
+<script>
+document.getElementById('btn').onclick=function(){
+//首先是创建请求对象
+var xhr=new XMLHttpRequest();
+//设置请求行
+xhr.open('get','data.php');
+//设置请求头
+xhr.onload=function(){
+document.getElementById('div').innerHTML=xhr.responseText;
+}
+//设置请求体
+xhr.send();
+
+
+
+
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</html>

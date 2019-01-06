@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //回忆一下:原生js中如何获取表单元素文本框的输入的值,value.
+
+      //jQuery中获取设置表单元素的值用val();
+      $('#btn').on('click', function () {
+        //获取值
+        //console.log($('#txt').val());
+        //设置值
+        $('#txt').val('设置的值');
+      });
+
+
+
+      //--------------------------------------------------------
+      //模拟京东搜索框.
+
+      //给文本输入框设置获得焦点事件. focus
+      //this.defaultValue
+      $('#txt').on('focus', function () {
+        //如果内容为默认值,获得焦点才应该变为空.
+        if( $(this).val() == this.defaultValue){
+          $(this).val("");
+        }
+      });
+
+      //给文本输入框设置失去焦点事件. blur
+      $('#txt').on('blur', function () {
+        //如果内容为空,失去焦点才应该变为默认值
+        if($(this).val() == ""){
+          $(this).val(this.defaultValue);
+        }
+      });
+
+
+
+    });
+  </script>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/> <br/><br/>
+<input type="text" id="txt" value="请输入密码"/>
+</body>
+</html>

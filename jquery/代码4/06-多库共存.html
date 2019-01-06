@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+
+  <script src="sb.js"></script>
+  <script src="jquery-1.12.4.js"></script>
+  <script src="jquery-3.0.0.js"></script>
+
+
+  <script>
+
+    jQuery(function () {
+      //以前讲jQuery的版本
+      //1.x 支持ie678
+      //2.x 不支持ie678
+      //3.x 不支持ie678 更新中
+
+
+      //补充:如何查看$的版本.
+      //console.log($.prototype.jquery);
+      //console.log($.fn.jquery);
+      //console.log(jQuery.fn.jquery);
+
+
+
+      //现在我想我们的项目支持ie678,然后又想使用3.x的新方法,那就应该引入2个jQuery文件,一个1.x,一个3.x的.
+      //有个问题,这2个jQuery文件中都有$符号,那现在使用$符号使用的是哪一个文件中的$.
+      //得出结论: 那个文件后引入,使用的这个$就是那个文件中的.
+
+
+
+      //又有一个问题:
+      //a.现在我这里想调用3.x版本里面的方法.
+//      var _$ = $.noConflict(); //释放对$的控制权. ,返回一个返回值,可以理解成返回值就是$的替身.
+//      console.log(jQuery.fn.jquery); //虽然把$的控制权给释放了,但是jQuery还在啊.
+//      console.log(_$.fn.jquery);
+//
+//      (function ($) {
+//        //这里就可以继续使用$.
+//
+//      }(_$));
+//
+//      //b.那这里想用1.x里面的方法.怎么办?
+//      console.log($.fn.jquery);
+
+
+
+
+
+
+      //那引入的三个文件都有$,怎么办?
+      var _$3_0 = $.noConflict();
+      var _$1_0 = $.noConflict();
+      console.log($);
+
+
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>

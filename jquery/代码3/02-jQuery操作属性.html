@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+       //回忆一下:
+       //原生js中操作属性: setAttribute(属性名,属性值); getAttribute(属性名); removeAttribute(属性名);
+
+       //jQuery中操作属性:  attr();  removeAttr();
+
+       //1.获取属性
+       $('#btn1').on('click', function () {
+         console.log($('img').attr('src'));
+         console.log($('img').attr('aaa'));
+
+         //原来没有bbb这个属性,获取到的值就是undefined. 用attr设置上这个bbb属性了,那就可以获取对应的值.
+         console.log($('img').attr('bbb'));
+       });
+
+       //2.设置属性
+       $('#btn2').on('click', function () {
+         //2.1 如果原来有这个属性,修改.
+         // $('img').attr('src','992.gif');
+         // $('img').attr('title','帅哥喝水');
+         //2.2 原来没有这个属性,就是添加.
+         // $('img').attr('bbb','bbb2');
+
+         //2.3 如果要设置多属性,就可以给一个对象
+         $('img').attr({
+           'src':'992.gif',
+           'title':'帅哥喝水'
+         });
+       });
+
+
+        //3.移除属性.
+        $('#btn3').on('click', function () {
+          //一定要指定 要移除的属性名.
+          $('img').removeAttr('aaa');
+        });
+
+
+    });
+  </script>
+</head>
+<body>
+<input type="button" value="获取属性" id="btn1"/>
+<input type="button" value="设置属性" id="btn2"/>
+<input type="button" value="移除属性" id="btn3"/> <br/><br/>
+<img src="991.gif" alt="周五晚睡1" title="周五晚睡" aaa='aaa1'/>
+<!--<img src="991.gif" alt="" title="周五晚睡" aaa='aaa'/>-->
+
+
+</body>
+</html>

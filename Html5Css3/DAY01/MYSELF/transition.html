@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            /* transition: all 2s 2s linear; */
+            /* 在hover之外写着的,鼠标移走后是不会还原到以前状态的 */
+        }
+
+        .box:hover{
+            transition: all 2s 2s linear;
+            /* 写在hover内部的,鼠标移走瞬间还原 */
+            width: 400px;
+            height: 400px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

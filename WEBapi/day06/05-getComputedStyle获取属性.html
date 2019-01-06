@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        .one {
+            width: 100px;
+            background-color: pink;
+            border: 10px solid green;
+            padding: 10px;
+            margin: 0 auto;
+            position: relative;
+            left: 0px;
+            top: 50px;
+        }
+        .one::after {
+            content: "哈哈哈";
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+
+<div class="one" id="box" style="height: 100px"></div>
+</body>
+
+<script>
+    //属性几种形态： （1）行内标准属性  （2）行内自定义属性  （3）行外属性  （4）点语法动态添加属性
+
+    /*获取样式属性几种方式
+    1.点语法
+        * a.只能获取行内，不能获取行外
+        * b.获取字符串，带单位
+        * c.可以获取，也可以设置
+    2.offset家族
+        * a.可以获取行内，也可以获取行外
+        * b.获取number，不带单位
+        * c.只能读取，不能设置
+        * d.offset家族只能获取宽高位置，无法获取其他属性
+    3.window.getComputedStyle(元素,null);
+        * a.行内行外都可以获取，获取任意css样式属性
+        * b.获取的字符串，带单位
+        * c.只能读取，不能设置
+     */
+
+    var box = document.getElementById('box');
+    //1.点语法获取属性
+    console.log ( box.style.width );//只能获取行内，不能行外
+    console.log ( box.style.height );//100px
+    box.style.height = '200px';//可以读取也可以修改
+
+    //2.offset家族
+    console.log ( box.offsetWidth );//真实宽度
+    console.log ( box.offsetLeft );//真实的与定位父级的位置
+
+    //3.getComputedStyle:获取元素一切的样式属性
+
+    /**作用：获取元素一切的样式属性
+     *第一个参数：元素
+     * 第二个参数：伪元素  通常null
+     * @return CSSStyleDeclaration （样式对象：包含元素一切的属性）
+     */
+   var style =  window.getComputedStyle(box,null);
+    console.log ( style );
+    //对象的取值语法：
+    //点语法
+    console.log ( style.padding );
+    console.log ( style.backgroundColor );
+    //字符串语法
+    console.log ( style[ "padding" ] );
+    //字符串语法获取样式属性，不需要转成驼峰命名，css样式属性叫什么，字符串就是什么
+    console.log ( style[ "background-color" ] );
+
+    // style.width = '500px';//只能获取不能修改
+
+    //4.第二个参数：获取伪元素样式
+    var weiStyle = window.getComputedStyle(box,'::after');//获取box中after伪元素样式
+    console.log ( weiStyle.backgroundColor );
+    console.log ( weiStyle.content );
+
+    // 5.IE8不支持：window.getComputedStyle语法
+    // IE8：  元素.currentStyle
+    // 只有IE8支持，谷歌火狐不支持
+    //console.log ( box.currentStyle );
+
+    console.log ( getStyle ( box, "padding" ) )
+
+    //6.获取元素样式属性兼容性处理
+
+    /**获取元素样式属性
+     *
+     * @param ele  要获取的元素
+     * @param attr   要获取的属性（字符串）
+     * @return {*}
+     */
+    function getStyle (  ele,attr) {
+        if(ele.currentStyle){//IE8浏览器
+            return ele.currentStyle[attr];
+        }else{//非IE8浏览器
+            return window.getComputedStyle(ele,null)[attr];
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.闭包的一种使用场景-沙箱/沙盒
+   (function (w) {
+      function Food(){
+
+      }
+
+     //疑惑:为什么要传参数window进来赋值,而不是直接用window赋值.
+     //a.为了封装性.
+     //b.代码上线之前有代码压缩.如果直接使用window就有可能会取不到window的值.
+     //所以要通过实参和形参 把window传过来.把沙箱里面的局部变量或者函数,暴露在外面使用.
+     w.Food = Food;
+     // w.xx = xx;
+     // w.yy = yy;
+
+
+    }(window));
+
+
+    //
+    window.Food();
+
+
+
+
+
+    //------------------------------------------
+    //复习  自执行函数.
+    // (function (){
+    //   console.log("哈哈");
+    // })();
+
+    // (function () {
+    //   console.log("呵呵");
+    // }());
+
+    // !function test1(){
+    //   console.log("嘿嘿");
+    // }();
+
+    // +function test1(){
+    //   console.log("嘻嘻");
+    // }();
+
+
+    // (function test1(){
+    //   console.log("哈哈");
+    // }());
+
+    // (function (){
+    //   console.log("呵呵");
+    // }());
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

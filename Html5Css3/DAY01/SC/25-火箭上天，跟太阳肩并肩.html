@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        /* 给body设置跟屏幕一样大的高度 */
+        html,body{
+
+            height:100%;
+        }
+        
+        body{
+
+            background-image: radial-gradient(300px at right top,orangered 30%,orange,skyblue);
+            overflow: hidden;
+        }
+
+        img{
+
+            position: absolute;
+            bottom:-190px;
+        }
+
+        /* 当body被移入的时候修改它里面的img */
+        body:hover img{
+            transition: all 2.5s;
+            transform: translate(1200px,-700px) rotate(90deg) scale(.1);
+        }
+    </style>
+</head>
+<body>
+    <img src="img/rocket.png" alt="">
+</body>
+</html>

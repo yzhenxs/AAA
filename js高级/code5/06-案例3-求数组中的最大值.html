@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.需求: 求数组中的最大值.
+    var arr = [1190,120,220,215,210,500,400,110];
+
+    //以前的做法:
+    // var max = -Infinity;
+    // for(var i = 0 ; i < arr.length; i++){
+    // 	if(arr[i] > max){
+    //       max = arr[i]
+    //     }
+    // }
+    // console.log(max);
+
+
+
+
+    //2. 上下文调用模式求数组的最大值.
+    var max = Math.max.apply(Math,arr);
+    console.log(max);
+
+
+
+
+
+    //可以求最大值.
+    //var max = Math.max(10,20,40,50); //他的语法要求是把要求的数都放进来.
+    //console.log(max);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

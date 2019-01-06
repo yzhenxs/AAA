@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 插件基本使用三大步
+    1.导入文件
+    2.准备html代码
+    3.调用初始化代码 -->
+    <!-- 首先导入jquery -->
+    <script src="./lib/jquery-1.8.3.min.js"></script>
+    <!-- 导入插件 -->
+    <script src="./lib/jquery.fullpage.min.js"></script>
+    <!-- 导入css -->
+    <link rel="stylesheet" href="./css/jquery.fullpage.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <div id="hm">
+        <div class="section section1">
+                <img class="logo" src="./images/logo.png" alt="">
+            <div class="text">
+                <img src="images/text_1.png" alt="">
+                <img src="images/text_2.png" alt="">
+                <img src="images/text_3.png" alt="">
+                <img src="images/text_4.png" alt="">
+                <img src="images/text_5.png" alt="">
+                <img src="images/text_6.png" alt="">
+                <img src="images/text_7.png" alt="">
+                <img src="images/text_8.png" alt="">
+            </div>
+        </div>
+        <div class="section section1">
+            <h3>第二屏</h3>
+        </div>
+        <div class="section section1">
+            <h3>第三屏</h3>
+        </div>
+        <div class="section section1">
+            <h3>第四屏</h3>
+        </div>
+        <div class="section section1">
+            <h3>第五屏</h3>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $('#hm').fullpage({
+
+        // 设置显示出导航（分页指示器）
+        navigation: true,
+        // 设置每一屏的颜色，传入一个数组，数组中每个元素会依次给每一屏
+        sectionsColor: ['#00bfff', '#9acd32', '#ffa500', '#008000', '#87ceeb'],
+    });
+</script>

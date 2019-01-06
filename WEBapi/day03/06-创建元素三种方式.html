@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>我是div</div>
+<button id="btn">我是按钮</button>
+</body>
+
+<script>
+    //1.document.write():往页面加内容
+    //少用：因为可能会覆盖网页的内容
+    /*原理：当HTML文件被加载的时候，会形成一个文档流，HTML文件加载完毕之后文档流自动关闭
+    不会覆盖情况：在文档流关闭之前添加
+    会覆盖情况：文档流关闭之后再使用，会形成一个新的文档流
+    */
+
+    //这行代码会在html文件被加载的时候执行，此时文档流没有关闭,所以不会覆盖
+//    document.write('<h1>标题</h1>');
+//    var btn = document.getElementById('btn');
+//    btn.onclick = function (  ) {
+//        document.write('<p>我是pp</p>')
+//    }
+
+    //2.innerHTML:元素内容
+    //常用： 如果添加元素较少（100之内）可以用，添加元素过多不推荐使用(字符串恒定性)
+    //直接对innerHTML属性赋值会替换原本的内容
+    //document.body.innerHTML = '<a>我是a标签</a><p>我是p标签</p>';
+    //如果不想替换，只想添加可以使用字符串拼接
+   // document.body.innerHTML += '<a>我是a标签</a><p>我是p标签</p>';
+
+    // //模拟使用这种方式添加1000个
+    // for(var i = 1;i<=1000;i++){
+    //     //字符串恒定性：每一次拼接的时候都会在内存中产生一个新的字符串，不会修改原有字符串
+    //     document.body.innerHTML += '<p>我是第' + i + '个p标签</p>';
+    // }
+
+
+    //3.dom推荐使用：document.createElement()
+    /*document.createElement('标签名')
+    a.创建一个空标签
+    b.只是在内存中创建，不会添加到页面，需要使用appendChild()添加
+     */
+   var p = document.createElement('p');
+   p.innerText = '我是班长';
+   //只会创建在内存中，不会主动添加到页面，需要使用appendChild来显示到页面
+   document.body.appendChild(p);
+    console.log ( p );
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color: #000;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border: 1px solid #000;
+            margin: 50px auto;
+            /* 
+                参数1：水平偏移
+                参数2：垂直偏移
+                参数3：阴影模糊度
+                参数4：阴影的大小 0是代表没有大小吗？0是代表跟盒子一样大，给其他大于0的值，代表在原来的基础上加多少
+                inset：如果写了，就是内阴影 可以写在最前面也可以写在最后，但是不能写在中间
+
+                也可以写多个阴影，多个阴影之间用逗号隔开，先写的会盖住后写的
+            */
+            box-shadow:  0px 0px 10px  10px orange inset;
+        }
+
+        img{
+            width: 250px;
+            box-shadow: 0px 0px 10px 10px hotpink,0px 0px 10px 10px red;
+            margin-left: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <img src="img/1.jpg" alt="">
+</body>
+</html>

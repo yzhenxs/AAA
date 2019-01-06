@@ -1,0 +1,138 @@
+
+/* 引入引包 
+@import '包的路径'
+*/
+
+//JS注释 会被删除的less注释
+/*CSS注释 不会被删除的 */
+@import 'base.less';
+
+body{
+	color: red;
+}
+
+/* 1. 定义变量 */
+
+/* 主题色
+边框颜色
+字体颜色
+背景颜色
+比较常见宽高等
+字体大小等 */
+/* less定义变量使用 @变量名:值; 
+在CSS里面能写的值 在less里面都能写
+
+var 变量名 = 值;
+*/
+
+@mainColor:green;
+@bgColor:#ccc;
+
+div{
+	color:@mainColor;
+	height: 100px;
+	background-color: @bgColor;
+}
+
+/* 2. 混入 自定义函数   
+把一些重复使用的CSS代码封装到函数里面 方便调用
+*/
+
+/* 
+.函数名{
+	函数里面需要重复执行的代码
+}
+.函数名(@参数名1,@参数名2){
+	函数里面需要重复执行的
+.函数名(@参数名1:red,@参数名2:green){
+	函数里面需要重复执行的代码
+} 
+一般定义函数的时候都要确保这个类名不存在 不然函数名会和类名冲突
+而且函数一般都会带参数 体现函数灵活性
+*/
+
+/* .bordertb{
+	border-top: 5px solid red;
+	border-bottom: 5px solid yellow;
+}  */
+/* 函数如果带了参数不再是普通类名 一般函数都会带参数  参数可以带默认值 多个参数用,隔开 */
+.bordertb(@size:5px,@color:red){
+	/* 使用参数的值 */
+	border-top: @size solid @color;
+	border-bottom: @size solid @color;
+}
+
+div{
+	//如果在less里面的选择器里面写类名 叫调用函数
+	/* .bordertb; */
+	/* 调用带参数的函数 传递参数的10px  如果定义了函数有参数是必须传入 除非函数里面参数有默认值*/
+	.bordertb(10px,green);
+}
+
+
+/* 3. 嵌套 */
+
+
+/* 1.CSS嵌套  代码比较冗余 层次感不清晰 */
+/* .container{
+	width: 1170px;
+	margin: 0px auto;
+	padding:0 15px;
+}
+.container > .row{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.container > .row > .col-xs-4{
+	width:33.33%;
+	float: left;
+	height: 100px;
+}
+.container > .row > .col-xs-4 > a{
+	text-decoration: none;
+}
+.container > .row > .col-xs-4 > a > span{
+	color:red;
+} */
+
+/* 2. less嵌套 让less嵌套和标签一样 层次清晰 选择器也不会冗余
+&写在谁里面 就表示谁  伪类 伪元素 交集选择器(相邻兄弟选择器)的时候会使用到&
+ */
+
+.container{
+	width: 1170px;
+	margin: 0px auto;
+	padding:0 15px;
+	> .row{
+		margin-left: -15px;
+		margin-right: -15px;
+		>.col-xs-4{
+			width:33.33%;
+			float: left;
+			height: 100px;
+			>a{
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+				}
+				&::before{
+					content:'伪元素';
+				}
+				&.active{
+					>span{
+						color:yellow;
+					}
+				}
+				>span{
+					color:red;
+					&:hover{
+						color:#000;
+					}
+				}
+			}
+		}
+	}
+}
+
+

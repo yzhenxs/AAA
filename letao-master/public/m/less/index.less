@@ -1,0 +1,97 @@
+/* 在主页的样式文件要引入公共的样式 */
+@import 'base.less';
+body{
+	background-color: #fff;
+}
+/* 导航条样式 */
+#nav{
+	padding: 10px;
+	a{
+		display: block;
+		img{
+			width: 100%;
+		}
+	}
+}
+
+#banner{
+	padding: 0 10px;
+	.mui-col-xs-8{
+		a{
+			img{
+				height: 110px;
+			}
+		}
+	}
+	.mui-col-xs-4{
+		a{
+			img{
+				height: 220px;
+			}
+		}
+	}
+	a{
+		display: block;
+		>img{
+			width: 100%;
+		}
+	}
+}
+
+#brand{
+	padding: 10px;
+	a{
+		display: block;
+		img{
+			width: 100%;
+		}
+	}
+}
+
+/* 专区商品布局 */
+
+#sport,#women,#man{
+	padding: 10px;
+	.title{
+		a{
+			display: block;
+			img{
+				width: 100%;
+			}
+		}
+	}
+	.content{
+		.mui-col-xs-6{
+			&:nth-child(odd){
+				.product{
+					margin-right: 5px;
+				}
+			}
+			&:nth-child(even){
+				.product{
+					margin-left: 5px;
+				}
+			}
+		}
+		.product{
+			display: block;
+			text-align: center;
+			box-shadow: 0px 0px 2px #ccc;
+			padding-bottom: 10px;
+			margin-top: 10px;
+			.product-img{
+				width: 100%;
+			}
+			.product-price{
+				font-size: 12px;
+				span{
+					color:red;
+					font-weight: 600;
+				}
+				del{
+					color:#ccc;
+				}
+			}
+		}
+	}
+}

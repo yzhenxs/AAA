@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+        伪类选择器，前面都加一个冒号
+        
+        before和after是伪元素选择器
+
+        伪类选择器：
+                :link   设置未点击前的样式
+                :hover  鼠标悬停的样式
+                :active 正在点击时的样式
+                :visited 点击后的样式
+
+        上面这四个一般是给a标签用的
+
+        hover一般其他元素也会用
+
+        xxx-child
+            first-child
+            nth-child
+            last-child
+
+        这个写法是：必须满足是第几个子元素
+        nth-child(n) ： 代表所有
+        nth-child(2n) 或者 nth-child(even) 代表所有偶数
+        nth-child(2n-1) 或者 nth-child(odd) 代表所有奇数
+        nth-child(3n) 代表3的倍数
+        nth-child(n+6) 代表从6开始到最后
+     -->
+
+     <style>
+
+         /* 是说既要满足是li标签，也要满足是第一个子元素 */
+         li:first-child{
+
+             color:red;
+         }
+         
+         /* 是指既要是li，也要是第三个子元素，而不是下标3 */
+         li:nth-child(3){
+
+             color:blue;
+         }
+         
+
+         li:last-child{
+
+             color:green;
+         }
+         
+         /* 代表所有的li都加一个边框 */
+         li:nth-child(n){
+
+             border: 1px solid #000;
+         }
+         
+         /* 找到所有在子元素中是偶数位置的li */
+         /* li:nth-child(2n){
+
+             background-color: hotpink;
+         } */
+
+         li:nth-child(even){
+
+              background-color: hotpink;
+         }
+
+         /* li:nth-child(2n-1){
+             background-color: skyblue;
+         } */
+
+         li:nth-child(odd){
+
+             background-color: skyblue;
+         }
+
+         li:nth-child(3n){
+             font-size: 30px;
+         }
+
+         /* 从6开始，因为n是从0开始的*/
+         li:nth-child(n+6){
+
+             font-weight: bold;
+
+         }
+    </style>
+</head>
+<body>
+    
+    <ul>
+        <!-- <span>我是span</span> -->
+        <li>隔壁老王1</li>
+        <li>隔壁老王2</li>
+        <li>隔壁老王3</li>
+        <li>隔壁老王4</li>
+        <li>隔壁老王5</li>
+        <li>隔壁老王6</li>
+        <li>隔壁老王7</li>
+        <li>隔壁老王8</li>
+        <li>隔壁老王9</li>
+        <li>隔壁老王10</li>
+        <li>隔壁老王11</li>
+        <!-- <span>我是最后一个span</span> -->
+    </ul>
+</body>
+</html>

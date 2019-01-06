@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        知识点：
+                1.document.creatElement除了可以创建浏览器自带的标签外，也可以创建自定义标签
+                    如果创建的是自定义标签，那么默认是行内元素
+
+                2.插件解决标签兼容的问题核心原理：就是用document.creatElement去创建一个header或者footer或者main等标签，再转成块级元素
+
+     -->
+
+    <style>
+        /* header{
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        } */
+    </style>
+</head>
+<body>
+    <!-- 如果浏览器不支持这个标签，那么会当做一个普通的行内元素，类似于span -->
+    <!-- <xxoo>这是xxoo</xxoo> -->
+
+    <header></header>
+
+</body>
+</html>
+
+<script>
+    //用JS怎样创建一个元素：creatElement
+    // var h1 = document.createElement('h1');
+    // h1.innerHTML = "我是标题";
+    // document.body.appendChild(h1);
+
+
+    // var a = document.createElement('a');
+    // a.innerHTML = "点我跳转";
+    // a.href = "#";
+    // document.body.appendChild(a);
+
+    //上面是创建本来就有的标签，那么标签是什么特点，到网页中就是什么特点
+
+    //那它可不可以创建网页中没有存在过的标签
+    //证明：此方法也可以创建一个自定义的标签
+    //如果你创建的是自定义标签，那么它是行内元素，可以改，通过display属性可以改
+    // var xxoo = document.createElement('xxoo');
+    // xxoo.innerHTML = "这是xxoo";
+    // xxoo.style.border = "1px solid black";
+    // xxoo.style.width = "200px";
+    // xxoo.style.height = "200px";
+    // xxoo.style.display = "block";
+    // document.body.appendChild(xxoo);
+
+
+    //对于IE8而言，它是行内元素
+    //它本质就是用JS创建一个名字叫header的自定义元素，然后再转成块级元素
+    //就能起到跟支持header标签的浏览器一样的效果了
+    // var header = document.createElement('header');
+    // header.innerHTML ="我是JS创建出来的";
+    // header.style.display = "block";
+    // document.body.appendChild(header);
+
+    var xxoo=document.createElement('xxoo');
+    xxoo.innerHTML="我是xxoo";
+    document.body.appendChild(xxoo);
+    xxoo.style.width='100px';
+    xxoo.style.height='100px';
+    xxoo.style.backgroundColor='red';
+    xxoo.style.display='block';
+
+
+</script>
+
+<!--[if lte IE 8]>
+    
+    <script>
+ var header = document.createElement('header');
+    header.innerHTML ="我是JS创建出来的";
+    header.style.display = "block";
+    document.body.appendChild(header);
+</script>
+
+<![endif]-->

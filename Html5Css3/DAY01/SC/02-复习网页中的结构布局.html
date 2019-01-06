@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .header{
+
+            height:200px;
+            background: red;
+        }
+
+        .nav{
+
+            height:80px;
+            background-color: blue;
+        }
+
+        .main{
+            margin-top: 20px;
+            height:800px;
+            background-color: orange;
+        }
+
+        .section{
+
+            margin-bottom: 10px;
+            background-color: orangered;
+            height:260px;
+        }
+
+        .aside{
+            background-color: hotpink;
+            height: 100%;
+            width:30%;
+            float: left;
+        }
+
+        .article{
+            background-color: brown;
+            height:100%;
+            width:70%;
+            float: left;
+        }
+
+        .footer{
+
+            margin-top: 20px;
+            height:100px;
+            background-color: skyblue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- 
+        做网页中的布局结构，用div做的
+        div的缺陷：没有语义，不利于SEO（搜素引擎优化）
+        因为每个部分都是用的div，我们怎么哪个区域？用类区分的
+        但是类名可以随便乱写，如果乱写的话，就易读性差
+
+        能不能有个东西：可以让它有语义，而且不能乱写
+
+        要有语义和不能乱写：标签
+    -->
+
+
+    <div class="header">
+        <div class="nav"></div>
+    </div>
+
+    <div class="main">
+        <div class="section">
+            <div class="aside"></div>
+            <div class="article"></div>
+        </div>
+
+        <div class="section">
+            <div class="aside"></div>
+            <div class="article"></div>
+        </div>
+
+        <div class="section">
+            <div class="aside"></div>
+            <div class="article"></div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- 
+
+        onreadystatechange 这个事件没有兼容性问题
+
+                所以如果要解决兼容性问题就在这个事件里拿响应体
+
+        但是这个事件会被调用3次，只有最后一次才能保证一定能拿到响应体
+
+                所以记得在事件里做一个判断
+                    if( xhr.readyState == 4 ){
+
+                        在这里拿响应体
+                    }
+
+        但是xhr.readyState只能代表响应完成，但不一定是正确的响应
+
+        所以，为了正确拿到我们想要的响应体，还需要再多加一个判断
+
+        xhr.readyState == 4 && xhr.status == 200
+
+        说明：xhr.readyState 代表请求状态
+             xhr.status 代表的是获得服务器返回的响应状态码， 200代表响应正常  404代表找不到请求的文件 
+     -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="btn" value="点我">
+</body>
+</html>
+
+<script>
+
+    document.getElementById('btn').onclick = function(){
+
+        //创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        // console.log(xhr.readyState); //0 : 0代表请求未初始化，也就是说还没开始任何设置
+        
+
+        //设置请求行
+        xhr.open('get','data.php');
+
+        // console.log(xhr.readyState);//1  代表开始连接
+        
+
+        //发送请求
+        xhr.send();
+        
+        //监听响应完成 IE8和之前浏览器不支持onload事件 
+        //IE8和所有浏览器都支持一个事件onreadystatechange事件
+        // xhr.onload = function(){
+
+        //     console.log(xhr.responseText);
+        // }
+            
+        // 所有浏览器都支持，调用了3次
+        // 为什么调用3次？以及为什么最后一次一定能拿到响应体？
+        // 使用ajax发请求后，它会经历一系列的状态改变，一共有5种状态变化
+        // 这是一个请求状态!    改变就会调用的事件
+        xhr.onreadystatechange = function(){
+
+          //这一个判断只能保证响应完成了，但是不能保证得到了正确的响应
+        //    if(xhr.readyState == 4){
+            //所以为了保险，还要加一个判断，响应状态码为200（代表正常响应）
+
+            if(xhr.readyState == 4 && xhr.status == 200){
+
+                console.log(xhr.responseText);
+           }
+        }
+    }
+</script>

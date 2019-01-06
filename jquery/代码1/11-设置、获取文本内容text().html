@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+       //text方法();
+
+      //1.获取 text(); 不给参数就是获取文本.
+      //获取到的是这个标签里面的所有的文本(包括后代的文本);
+      //如果是包含了多个dom对象的jQuery对象来获取文本,那获取到的是每一个dom对象的文本.
+      $('#getBtn').click(function () {
+        console.log($('div').text());
+      });
+
+      //2.设置 text(); 要给参数,参数就是要设置的文本
+      //会覆盖原来的内容. 隐式迭代(偷偷的遍历.)
+      //设置的文本中包含了标签,是不会被解析出来的,会当做文本来处理.
+      $('#setBtn').click(function () {
+        $('div').text('我是text()设置的文本<a href="">哈哈</a>');
+      });
+
+
+
+    });
+  </script>
+</head>
+<body>
+<input type="button" value="获取" id="getBtn"/>
+<input type="button" value="设置" id="setBtn"/>
+
+<div>我是一个div标签
+  <p>我是一个p标签 <span>span1</span></p>
+</div>
+
+
+
+<div>我是一个div2标签
+  <p>我是一个p2标签 <span>span2</span></p>
+</div>
+
+</body>
+</html>

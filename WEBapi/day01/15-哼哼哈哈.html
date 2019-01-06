@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" value="哼哼">
+<input type="button" value="哼哼">
+<input type="button" value="哼哼">
+<input type="button" value="哼哼">
+<input type="button" value="哼哼">
+
+</body>
+
+<script>
+    /*需求分析
+        * 1.界面所有的input元素都有点击事件
+        * 2.点击input按钮，改变样式（文字变成哈哈，颜色变成粉色）
+        * 3.只有当前点击的按钮才改变样式，其他的input元素的样式都恢复默认
+      思路分析
+        * 1.获取元素（获取页面所有的input）
+        * 2.注册事件(给所有的input注册事件)
+        * 3.事件处理
+            * 3.1  改变自己的样式
+            * 3.2 恢复其他按钮的样式为默认样式
+
+     */
+
+    // 1.获取元素（获取页面所有的input）
+    var inputList = document.getElementsByTagName('input');
+    //2.注册事件(给所有的input注册事件)
+    for(var i = 0;i<inputList.length;i++){
+        //循环数组给每一个元素添加点击事件
+        inputList[i].onclick = function (  ) {
+            /*如果得知是哪一个按钮触发的这个事件
+            1.能不能通过 inputList[i]来获取？
+                * 不能：循环结构只是添加事件代码的简写，事件处理函数不会执行
+                * 循环执行结束之后，全局变量i的值是数组的长度  5
+            2.只能用this来获取当前点击的元素
+                * this：谁调用这个方法，this就代表谁
+
+             */
+            console.log ( inputList[ i ] );//undefined
+            //3.事件处理
+            //3.1  改变自己的样式
+            this.style.backgroundColor = 'hotpink';
+            this.value = '哈哈';
+            //3.2 恢复其他按钮的样式为默认样式
+            /*排他思想
+            * 遍历元素数组，如果数组中的元素不是this，则修改样式为默认值
+             */
+            for(var j = 0;j<inputList.length;j++){
+                if(inputList[j] != this){//表示数组中的input不是当前点击的这一个
+                    inputList[j].style.backgroundColor = '';
+                    inputList[j].value = '哼哼';
+                }
+            }
+        }
+    }
+
+    console.log ( i );//5
+
+    // inputList[0].onclick = function (  ) {
+    //
+    // }
+    // inputList[1].onclick = function (  ) {
+    //
+    // }
+    // inputList[2].onclick = function (  ) {
+    //
+    // }
+    // inputList[3].onclick = function (  ) {
+    //
+    // }
+    // inputList[4].onclick = function (  ) {
+    //
+    // }
+
+
+</script>
+</html>

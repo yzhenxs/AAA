@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //1.为什么可以链式编程,因为之前设置的方法会返回jQuery对象,jQuery对象是可以点出jQuery的方法,所以才可以一直点下去.
+      //$('div').width(100).height(100).css('backgroundColor','red');
+
+      //2.只有jQuery对象才能点出jQuery的方法,下面的这句话获取的是一个数值,是没有css方法的,所以报错了.
+      //console.log($('div').width(100).height(100).width()); //100
+      //$('div').width(100).height(100).width().css('backgroundColor','red'); //报错了. 100这个数值点不出css的方法.
+
+
+      //3.有些时候,设置方法返回的不是你想要的那个对象,一定要注意返回的是什么?
+      //end()方法. 筛选选择器会改变jQuery对象的DOM对象，想要回复到上一次的状态，并且返回匹配元素之前的状态。
+      //console.log($(this).text(sx_wjx).prevAll().text(sx_wjx).end());
+      //$(this).text(sx_wjx).prevAll().text(sx_wjx).end().nextAll().text(kx_wjx);
+
+
+      //4.end()方法也是jQuery的方法,只能由jQuery对象点出来,width()获取的是数值,点不出end()方法.
+      //$('div').width(100).height(100).width().end().css('backgroundColor','red'); //不行
+
+
+    });
+  </script>
+
+</head>
+<body>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width: 3000px;
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+    /*本小节：获取网页滚动出去的距离
+
+    1.获取网页的body
+        * document.body
+        * document.documentElement
+    2.获取网页滚动条事件（body,HTML都有浏览器兼容性问题）
+        * window.onscroll：没有浏览器兼容性
+    3.获取网页滚动出去的距离
+     */
+
+    //1.给网页注册一个滚动条事件
+    window.onscroll = function (  ) {
+        console.log ( "网页滚动了" );
+        /*目前所有浏览器中，网页内容
+        有的浏览器认为是：window
+        有的浏览器认为是：HTML
+        有的浏览器认为是：Body
+
+         */
+        // //谷歌火狐:window.pageXOffset  pageXOffset
+        // console.log ( window.pageXOffset, window.pageYOffset );
+        // //IE8:document.documentElement.scrollLeft
+        // console.log ( document.documentElement.scrollLeft, document.documentElement.scrollTop );
+        // //某些特殊情况：document.body
+        // console.log ( document.body.scrollLeft, document.body.scrollTop );
+
+        console.log ( getScroll ().scrollLeft,getScroll().scrollTop );
+    }
+
+    //2.获取网页滚动出去距离兼容性封装
+    function getScroll (  ) {
+        /*思路：
+        如果 window.pageXOffset获取不到就用
+        document.documentElement.scrollLeft，如果这个属性也拿不到，就用
+        document.body.scrollLeft，如果这个属性还不到，就返回0（提到易读性）
+         */
+        //逻辑或表达式：一真则真，短路运算
+        //找真：如果左边的结果可以转成true，返回左边式子的结果，否则返回右边式子的结果
+        var x = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+        var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        return {
+            scrollLeft : x,
+            scrollTop : y
+        }
+    }
+</script>
+</body>
+</html>

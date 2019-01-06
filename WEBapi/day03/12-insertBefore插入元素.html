@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>隔壁老王1</li>
+    <li>隔壁老王2</li>
+    <li id="li3">隔壁老王3</li>
+    <li>隔壁老王4</li>
+    <li id="li5">隔壁老王5</li>
+</ul>
+
+<ul id="ul2">
+    <li>隔壁老张1</li>
+    <li>隔壁老张2</li>
+    <li >隔壁老张3</li>
+    <li id="li4">隔壁老张4</li>
+    <li>隔壁老张5</li>
+</ul>
+</body>
+
+<script>
+    /*insertBefore:添加元素到指定位置
+    语法： 父元素.insertBefore(要插入的元素，要插入哪一个元素前面)
+        * 只有插入到前面的api，没有插入到后面的api
+    1.新创建元素： 插入到指定位置
+    2.已存在的元素：移动到指定位置
+    3.元素有子元素： 所有子元素一起移动到指定位置
+
+    总结：insertBefore与appendChild都是添加元素，且特点一致
+        * 唯一区别：appendChild只会加到最后面，insertBefore可以加到指定位置
+
+     */
+
+    var ul1 =document.getElementById('ul1');//隔壁老王ul
+    var ul2 =document.getElementById('ul2');//隔壁老张ul
+    var li3 = document.getElementById('li3');//隔壁老王3
+    var li4 = document.getElementById('li4');//隔壁老张4
+
+    //1.新创建元素
+    var li = document.createElement('li');
+    li.innerText = '我是班长刘龙明';
+    ul1.insertBefore(li,li3);
+
+    //2.插入已存在元素
+    ul1.insertBefore(li4,li);
+
+    //3.元素有子元素
+    ul1.insertBefore(ul2,li);
+</script>
+</html>

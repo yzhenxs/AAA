@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    #div1 {
+      height: 200px;
+      background-color: pink;
+      border: 1px solid red;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    //入口函数
+    $(function () {
+      //1.获取样式
+      $('#getBtn').click(function () {
+        //1.1 带有一个dom对象的jQuery对象.
+        // console.log($('#div1').css('width')); //'200px'
+        // console.log($('#div1').css('height'));//'200px'
+        // console.log($('#div1').css('background-color'));//'rgb(255, 192, 203)'
+        // console.log($('#div1').css('backgroundColor'));//'rgb(255, 192, 203)'
+        // console.log($('#div1').css('border'));//'1px solid rgb(255, 0, 0)'
+        // console.log($('#div1').css('border-top-width')); //在ie里面一定要写全获取的是那个样式.
+
+
+        //1.2 带有多个dom对象的jQuery对象.
+        //只能获取到第一个dom对象的相对应的样式值.
+        //console.log($('div').css('width')); //'200px'
+
+      });
+
+
+      //2.设置
+      //用css(); 设置的样式是设置在元素的行内的.
+      $('#setBtn').click(function () {
+        //1.带有一个dom对象的jQuery对象. 设置单样式
+        //$('#div1').css('backgroundColor','red');
+
+        //2.带有一个dom对象的jQuery对象. 设置多样式
+        // $('#div1').css({
+        //   backgroundColor:'yellow',
+        //   'width':100,
+        //   height:'100px'
+        // });
+
+        //3.带有多dom对象的jQuery对象,设置样式.
+        $('div').css({
+          backgroundColor:'yellow',
+          'width':100,
+          height:'100px'
+        });
+
+      });
+
+
+
+
+    });
+  </script>
+
+
+</head>
+<body>
+  <input type="button" value="获取" id="getBtn"/>
+  <input type="button" value="设置" id="setBtn"/>
+  <div id="div1" style="width:200px"></div>
+  <div id="div2" style="width:300px"></div>
+  <div id="div3" style="width:400px"></div>
+</body>
+</html>

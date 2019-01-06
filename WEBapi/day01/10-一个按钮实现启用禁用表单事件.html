@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <input type="text"><br>
+    <input type="button" value="我是表单按钮"><br>
+    <input type="radio"><br>
+</div>
+
+<button id="qy">禁用</button>
+
+<script>
+    /*需求分析：如果按钮文字是禁用/启用，点击禁用/启用所有表单元素
+    思路分析：
+        1.获取元素
+        2.注册事件
+        3.事件处理
+            * 3.1  如果按钮文字是禁用
+                * 禁用所有的表单元素
+                * 自己的文字变成来启用
+            * 3.2 如果按钮文字是启用
+                * 启用所有的表单元素
+                * 自己的文字变成来禁用
+     */
+
+
+    //1.获取元素
+    var btn1 = document.getElementById('qy');
+    //获取按钮的文字 innerText
+    console.log ( btn1.innerText );
+    var inputList = document.getElementsByTagName('input');
+
+    //2.注册事件
+    btn1.onclick = function (  ) {
+        //this:谁调用这个方法this就代表谁
+
+        //3.事件处理
+        //3.1  如果按钮文字是禁用
+        if(this.innerText == '禁用'){
+            switchInput(false);
+            // //禁用所有的表单元素
+            // for(var i = 0;i<inputList.length;i++){
+            //     inputList[i].disabled = true;
+            // }
+            // //自己的文字变成启用
+             this.innerText = '启用';
+        }else if(this.innerText == '启用'){//3.2 如果按钮文字是启用
+            switchInput(true);
+            // //启用所有的表单元素
+            // for(var i = 0;i<inputList.length;i++){
+            //     inputList[i].disabled = false;
+            // }
+            // //自己的文字变成禁用
+             this.innerText = '禁用';
+        }
+
+//函数：让一段代码可以在多个地方执行，实现代码的复用
+        //参数：布尔类型  true:启用   false：禁用
+        function switchInput ( isQiyong ) {
+
+            //如果isQiyong是true，设置所有表单元素的disable为false
+            //如果isQiyong是false，设置所有表单元素的disable为true
+            for(var i = 0;i<inputList.length;i++){
+                inputList[i].disabled = !isQiyong;//取反
+            }
+
+            // if(isQiyong){//启用
+            //     //启用所有的表单元素
+            //     for(var i = 0;i<inputList.length;i++){
+            //         inputList[i].disabled = false;
+            //     }
+            // }else{
+            //     //禁用所有的表单元素
+            //     for(var i = 0;i<inputList.length;i++){
+            //         inputList[i].disabled = true;
+            //     }
+            // }
+        }
+
+    }
+
+</script>
+</body>
+</html>

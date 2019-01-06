@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    .row div {
+        height: 100px;
+        border: 1px solid red;
+        float: left;
+    }
+    /*媒体查询语法  CSS3的
+        @media(条件){
+            条件成立执行的代码
+        }
+        条件只有3种条件
+            1. width:1200px 屏幕宽度 == 1200px 成立
+            2. min-width:1200px 屏幕宽度 >= 1200px成立
+            3. max-width:1200px 屏幕宽度 <= 1200px成立
+        条件成立执行的代码
+            所有代码都是CSS里面的代码 需要写
+            选择器{
+                    属性:值;
+            }
+        类似于JS的if
+        if(条件){
+                条件成立执行的代码
+        }*/
+    /*条件的顺序
+        1. 如果使用min-width作为条件要从小到到大写： 要满足向下覆盖（大的条件要把小的条件的样式覆盖）
+        2. 使用max-width作为条件的时候 要从大到小写 ： 要满足向上覆盖的（小的条件要把大的条件的样式覆盖）*/
+    /*宽度 》 1200px 大屏幕*/
+    
+    @media(min-width:1200px) {
+        .col {
+            width: 25%;
+        }
+    }
+    /*宽度 《 1200px 中屏幕*/
+    
+    @media(max-width:1200px) {
+        .col {
+            width: 33.33%;
+        }
+    }
+    /*宽度< 992px 小屏幕*/
+    
+    @media(max-width:992px) {
+        .col {
+            width: 50%;
+        }
+    }
+    /*w<768 超小屏幕*/
+    
+    @media(max-width:768px) {
+        .col {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!--  1. 大屏幕的时候 一行放4个div 屏幕宽度>=1200  现代电脑
+    2. 中屏幕的时候 一行放3个div 992 <= 屏幕宽度 < 1200  老款台式机
+    3. 小屏幕的时候 一行放2个div 768 <= 屏幕宽度 < 992  ipad
+    4. 超小屏幕的时候 一行放1个div 屏幕宽度<768  手机 -->
+    <div class="row">
+        <div class="col">1</div>
+        <div class="col">2</div>
+        <div class="col">3</div>
+        <div class="col">4</div>
+    </div>
+</body>
+
+</html>

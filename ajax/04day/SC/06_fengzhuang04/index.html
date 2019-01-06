@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="请求A接口" id="btn1">
+    <input type="button" value="请求B接口" id="btn2">
+    <input type="button" value="请求C接口" id="btn3">
+</body>
+
+</html>
+
+<script>
+
+    /*
+        一坨代码在不同的地方都要使用，可以封装成函数，在需要的地方调用这个函数就行了
+
+        初级封装：
+                直接把相同的代码作为函数体，写在函数里
+
+
+        第一重封装：
+                不同的值不能写死，要当做参数传递进来
+        
+        解决了：可以发不同方式的请求，和不同的路径
+
+        存在问题：没有发请求提交的参数的问题
+
+        第二重封装：
+                要解决参数的问题
+
+        解决步骤：多一个参数data
+            然后在函数里做判断，如果是get，那么要拼接url
+
+            并且在设置完请求行后面还要判断，是不是get，如果是get,直接发送请求
+            否则，先设置请求头，再发送请求，发送请求里面要带参数（多写一个请求体）
+
+            有可能接口不需要参数，所以在判断的时候还要多加一个data!=undefined 才给你拼接
+
+            另外有可能别人写请求方式的时候写的是大写，所以你干脆统一转成小写再来判断
+
+        存在的问题：拿到响应体后，仅仅只是打印响应体，写死了
+
+        解决： 
+            把处理响应体的代码当做回调函数传进来，拿到响应体后调用这个回调函数，并且传入响应体就行了
+
+
+        目前存在的问题：
+                形参太多了，万一以后还想再加一个形参又得多一个
+
+        解决思路：
+                不管你有多少个参数，我只让你传一个参数就够了
+                怎样才能一个参数保存多个参数的值？
+                    1.用数组
+                    2.用对象
+
+                用对象好，因为用数组是通过下标取值 例：arr[0]，那么你能知道下标0一定是请求方式或者是请求路径
+                因为如果对象 obj.type   obj.url这样取值，那样的话，一看就知道是什么
+
+        解决办法：
+            把所有参数当做一个对象传进来，各种参数是对象的属性
+
+
+    现在存在的问题：如果你想多封装几个函数，就多占用了几个变量名
+
+    那么能不能让这些名字少占用一些
+
+    当然可以！把所有的函数都当做一个对象的N个方法，那么就算占用变量名，也只占用一个变量，就是对象的变量名
+
+    */
+
+   var myJquery = {};
+
+   myJquery.ajax = function(params){
+
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //既要满足是get请求，又要满足data不为空，才给你拼接url
+        //type无论你给的是大写还是小写，我都统一转为小写来判断
+        if (params.type.toLowerCase() == 'get' && params.data != undefined) {
+
+            params.url += "?" + params.data;
+        }
+ 
+        //2. 设置请求行
+        xhr.open(params.type, params.url);
+
+        if (params.type.toLowerCase() == "get") {
+            //4. 发送请求
+            xhr.send();
+
+        } else {
+            //肯定是post请求
+
+            //3. 设置请求头（get不用设置）
+            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+            //4. 发送请求
+            xhr.send(params.data);
+        }
+
+        //5. 监听响应完成
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                //只是打印了响应体
+                //你这个函数私下里把响应体给打印了
+                //而我拿到响应体可能是为了做其他操作
+                //能不能私下打印？肯定不能
+                // console.log(xhr.responseText);
+                //每个调用者的需求是不一样的
+                //调用者A：想把响应体展现到table上
+                //调用者B：想把响应体展现到p标签上
+                //调用者C：想把响应体只是打印出来
+
+                //每个调用者拿到响应体后要执行的代码是不一样的
+                //能在这里把处理响应体的代码写死吗？不能
+                //封装的思想：不一样的东西当做参数传递进来
+                //要把代码传进来！那么怎么传递代码？？传递一个函数，因为函数里面就保存了代码
+                //只要别人把函数传进来，你在这调用，就行了
+                params.success( xhr.responseText );
+            }
+        }
+
+   }
+
+
+
+    myJquery.get = function (params){
+
+    }
+
+    myJquery.post =  function (params){
+
+
+    }
+
+    //只污染了一个myJquery
+
+    //因为jquery帮我们封装好了，而且功能更加强大！
+    //因为让你知道jquery是怎样封装起来
+
+    myJquery.ajax();
+
+
+
+    document.getElementById('btn1').onclick = function () {
+
+       ajax({
+           type:"get",
+           url:"a.php",
+           data:"name=jack",
+           success:function(obj){
+
+               alert(obj);
+           }
+       });
+    }
+
+    document.getElementById('btn2').onclick = function () {
+
+        ajax({
+            type:"post",
+            url:"b.php",
+            data:"name=rose",
+            success:function(obj){
+
+                console.log(obj);
+                
+            }
+        });
+
+        // ajax('post', 'b.php',"name=rose",function(obj){
+
+        //     console.log(obj);
+            
+        // });
+
+        // //1. 创建请求对象
+        // var xhr = new XMLHttpRequest();
+
+        // //2. 设置请求行
+        // xhr.open('post', 'b.php');
+
+        // //3. 设置请求头（get不用设置）
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // //4. 发送请求
+        // xhr.send('name=rose');
+
+        // //5. 监听响应完成
+        // xhr.onreadystatechange = function () {
+
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+
+        //         console.log(xhr.responseText);
+
+        //     }
+        // }
+    }
+
+    document.getElementById('btn3').onclick = function(){
+
+        ajax('post','c.php');
+    }
+</script>

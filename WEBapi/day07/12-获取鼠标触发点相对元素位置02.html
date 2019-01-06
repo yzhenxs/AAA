@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        .father {
+            width: 300px;
+            height: 300px;
+            border: 20px solid #000;
+            background-color: green;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+        .one {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="father" id="father">
+    <div class="one" id="box"></div>
+</div>
+<script src="common.js"></script>
+
+<script>
+    var box = id('box');
+
+    box.onclick = function ( e ) {
+        e = e || window.event;
+
+        //蓝线（鼠标触发点相对于元素的位置） = e.pageX - father.offsetLeft - father.clientLeft - box.offsetLeft
+        var x = getPagePoint(e).pageX - this.parentNode.offsetLeft - this.parentNode.clientLeft - this.offsetLeft;
+        var y = getPagePoint(e).pageY - this.parentNode.offsetTop - this.parentNode.clientTop - this.offsetTop;
+
+        this.innerText = 'x: ' + x + '   y:' + y;
+    }
+
+    function getPagePoint ( e ) {
+
+        if ( e.pageX ) {//非IE8浏览器
+            return {
+                pageX : e.pageX, pageY : e.pageY
+            }
+        } else {//IE8浏览器
+            return {
+                pageX: e.clientX + getScroll().scrollLeft,
+                pageY: e.clientY + getScroll().scrollTop
+            }
+        }
+    }
+</script>
+</body>
+
+
+
+</html>

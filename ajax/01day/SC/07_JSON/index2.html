@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+
+        记住：JSON格式的字符串中的Key必须用双引号包起来，否则不会转换成功
+
+        JSON.parse转换后的结果到底是数组还是对象，根据JSON字符串的开始符号，开始符号是[]那么就是数组，开始符号是{}那么就是对象
+
+
+        总结：JS中
+                JSON.parse( JSON字符串 )：  能把JSON字符串转换为JS数据
+
+                JSON.stringify( JS数据 );  能把JS数据转换为JSON字符串
+
+     -->
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+    // var str = '{ "name":"jack","age":16 }';
+    //开始符号
+    // var str2 = "{ 'name':'jack','age':16 }";
+
+    // // 把字符串转成JS对象
+    // var obj1 = JSON.parse(str);
+
+    // var obj2 = JSON.parse(str2);
+
+    // var str = '[10,20,30,40,50]';
+    // var arr =  JSON.parse(str);
+    // console.log(arr);
+
+    //上面是把JSON字符串转为JS数据
+
+    //能不能把JS数据转成JSON字符串？
+    var obj = { name:"jack",age:16 };
+    var str =  JSON.stringify(obj);
+    console.log(str);
+
+    var arr = [100,200,300];
+    var str2 = JSON.stringify(arr);
+    console.log(str2);
+    
+    
+    
+</script>

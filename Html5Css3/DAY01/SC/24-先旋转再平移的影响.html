@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 
+
+        先旋转会改变方向（原理是因为旋转的时候坐标轴也旋转了）        
+     -->
+
+
+    <style>
+        ul{
+            list-style: none;
+            padding: 0;
+
+            width: 460px;
+            height: 460px;
+            margin: 100px auto;
+        }
+
+        li{
+            background-color: yellowgreen;
+            width: 220px;
+            height: 220px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+            transition: all 1s;
+            
+            /* 设置旋转的固定点：哪个点固定不动的来旋转，默认是中间 
+                把它理解为在哪个地方钉一个钉子
+            */
+            transform-origin: left top;
+        }
+
+        li:first-child:hover{
+
+            /* 注意，如果是变换，那么要用空格隔开 */
+            /* transform: translate(400px) rotate(45deg) ; */
+            /* transform:rotate(45deg) translate(400px)  ; */
+            transform: rotate(90deg);
+        }
+
+    </style>
+
+</head>
+<body>
+    <ul>
+        <li>旋转</li>
+    </ul>
+</body>
+</html>

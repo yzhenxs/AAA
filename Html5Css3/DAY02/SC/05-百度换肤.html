@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度换肤</title>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            background: url(images/1.jpg) no-repeat;
+        }
+
+        .back {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.3);
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        .back img {
+            width: 200px;
+            height: 125px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="back">
+        <a href="images/1.jpg">
+            <img src="images/1.jpg" alt="">
+        </a>
+        <a href="images/2.jpg">
+            <img src="images/2.jpg" alt="">
+        </a>
+        <a href="images/3.jpg">
+            <img src="images/3.jpg" alt="">
+        </a>
+        <a href="images/4.jpg">
+            <img src="images/4.jpg" alt="">
+        </a>
+        <a href="images/5.jpg">
+            <img src="images/5.jpg" alt="">
+        </a>
+    </div>
+
+
+</body>
+
+</html>
+
+
+<script>
+
+    //如果本地存储有值，才设置
+    var url = localStorage.getItem('url');
+
+    if (url) {
+
+        //页面一打开先取出上次保存的皮肤
+        document.body.style.background = "url(" + localStorage.getItem('url') + ") no-repeat";
+    }
+
+    //找到所有的a标签
+    var aList = document.getElementsByTagName('a');
+
+    //遍历每个a标签
+    for (var i = 0; i < aList.length; i++) {
+
+        //给每个a标签加点击事件
+        aList[i].onclick = function () {
+
+            //拿到被点击的a标签中的href属性值，再给body去显示
+            document.body.style.background = "url(" + this.href + ") no-repeat";
+
+            //还要把路径保存到本地
+            localStorage.setItem('url', this.href);
+
+            return false;
+        }
+    }
+</script>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        div {
+            margin-top: 20px;
+            width: 1366px;
+        }
+
+        ul {
+            margin-top: 10px;
+            padding-top: 50px;
+            border: 2px solid #ddd;
+            height: 200px;
+        }
+
+        li {
+            text-align: center;
+            width: 180px;
+            background-color: #ccc;
+            margin-left: 12px;
+            float: left;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="city">
+    <button id="btn">查询天气</button>
+
+    <div>
+        <p id="cityname">城市名称：</p>
+        <ul id="weather">
+            <li>
+                <p class="date">20日星期五</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+            </li>
+            <li>
+                <p class="date">日期</p>
+                <p class="high">高温 25℃</p>
+                <p class="low">低温 14℃</p>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+
+    //找到5个li标签
+    var liList = document.getElementsByTagName('li');
+
+    //找到文本框
+    var city = document.getElementById('city');
+
+    document.getElementById('btn').onclick = function () {
+
+        //获取文本框输入的内容去发请求，并把你输入的内容当做参数传递
+        //1. 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        //2. 设置请求行
+        xhr.open('get', 'http://wthrcdn.etouch.cn/WeatherApi?city=' + city.value);
+        //3. 发送请求
+        xhr.send();
+
+        //4. 监听响应完成
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                //拿到五个weather
+                var weatherList = xhr.responseXML.getElementsByTagName('weather');
+
+                for (var i = 0; i < weatherList.length; i++) {
+
+                    liList[i].children[0].innerHTML = weatherList[i].children[0].innerHTML;
+                    liList[i].children[1].innerHTML = weatherList[i].children[1].innerHTML;
+                    liList[i].children[2].innerHTML = weatherList[i].children[2].innerHTML;
+
+                    // for(var j = 0; j <3; j++){
+
+                    //     liList[i].children[j].innerHTML = weatherList[i].children[j].innerHTML;
+                    // }
+                }
+            }
+        }
+    }
+
+    
+</script>

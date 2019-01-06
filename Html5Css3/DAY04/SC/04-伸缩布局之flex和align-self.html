@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        伸缩布局也叫弹性布局
+                1.在主轴方向上永远不会超出
+                2.如果没有设置副轴方向上的值，那么就默认用父元素的宽度或者高度
+
+
+        align-self: 单独设置某个元素在副轴的对齐方式
+                flex-start
+                center
+                flex-end
+
+        跟align-items取值一样，只不过align-items是统一设置所有元素在副轴的对齐方式
+     -->
+
+     <style>
+         ul{
+
+            padding: 0;
+            list-style: none;
+            /* 让里面的li使用伸缩布局 */
+            display: flex;
+
+            width: 400px;
+            height: 600px;
+            border: 1px solid #000;
+
+            /* 主轴方向对齐 */
+            justify-content: center;
+            /* 统一设置所有元素在副轴方向对齐 */
+            /* align-items: center; */
+         }
+
+         li{
+
+            /* width: 100px;
+            height: 100px; */
+            background-color: yellowgreen;
+         }
+
+         li:nth-child(1){
+
+            /* width: 100px; */
+
+            /* flex相当于设置它在父元素中主轴方向上的占比 */
+            /* 这个占1分 */
+            flex:2;
+         }
+
+         li:nth-child(2){
+            
+            /* 这个占2分 */
+            flex:3;
+            
+            /* width:200px; */
+            /* 单独设置某个元素在副轴的对齐方式 
+                flex-start
+                center
+                flex-end
+            */
+            /* align-self: center; */
+         }
+
+         li:nth-child(3){
+             /* 占3分 */
+             flex:3;
+
+             /* width:300px; */
+
+            /* align-self: flex-end; */
+         }
+     </style>
+
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

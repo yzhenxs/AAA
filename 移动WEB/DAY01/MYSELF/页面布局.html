@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
+.row .col{
+	height: 100px;
+	
+	border: 1px solid red;
+	font-size: 20px;
+	text-align: center;
+	line-height: 100px;
+	float: left;
+}
+
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col">1</div>
+		<div class="col">2</div>
+		<div class="col">3</div>
+		<div class="col">4</div>
+	</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	//如果需要屏幕改变布局,那么就需要监听屏幕
+	window.addEventListener("resize", response);
+	//页面加载马上调用
+	response();
+	function response(){
+		//首先是需要获取到所有的col
+		var cols=document.querySelectorAll('.col')
+		var windowwidth=document.documentElement.offsetWidth;
+		if(windowwidth>1200){
+             for(var i=0;i<cols.length;i++){
+             cols[i].style.width="25%";
+            }
+		}
+		 else if(windowwidth>992){
+             for(var i=0;i<cols.length;i++){
+             cols[i].style.width="33.3%";
+            }
+		}
+		 else if(windowwidth<768){
+             for(var i=0;i<cols.length;i++){
+             cols[i].style.width="100%";
+            }
+		}
+		 else if(windowwidth>768){
+             for(var i=0;i<cols.length;i++){
+             cols[i].style.width="50%";
+            }
+		}
+
+	}
+
+</script>

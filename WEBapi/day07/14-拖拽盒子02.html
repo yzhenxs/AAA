@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <style>
+        #father {
+            width: 200px;
+            height: 400px;
+            background-color: skyblue;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 50px;
+        }
+
+        #son {
+            width: 200px;
+            height: 100px;
+            background-color: hotpink;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+    <div id="son"></div>
+</div>
+
+<script src="common.js"></script>
+<script>
+    /*本小节知识点：如果拖拽的元素有margin则需要减去margin
+    原因：元素的定位是以margin的左上角来定位的
+     */
+
+    var box = id('son');
+    var father = id('father');
+
+    // //鼠标单击无法实现拖拽效果
+    // box.onclick = function (  ) {
+    //     console.log ( "单击：按下并松开" );
+    // }
+
+    //1.给元素注册鼠标按下事件
+    box.onmousedown = function ( e  ) {
+       // console.log ( "鼠标按下" );
+        e = e || window.event;
+        //求出蓝线的距离:
+        //本案例：子元素与父元素左边与上边完全对齐，求蓝线以父元素来求
+        var x = getPagePoint(e).pageX - father.offsetLeft;
+        var y = getPagePoint(e).pageY - father.offsetTop;
+        console.log ( x, y );
+
+        //2.给页面注册鼠标移动
+        document.onmousemove = function ( e ) {
+            //console.log ( "鼠标移动" );
+            e = e || window.event;
+            //求黑线距离：红线 - 蓝线
+             father.style.left = getPagePoint(e).pageX - x - 50 + 'px';
+           father.style.top = getPagePoint(e).pageY - y - 50 + 'px';
+        }
+    }
+
+    //3.给元素鼠标松开事件：（一定是先按下才会除法这个事件）
+    document.onmouseup = function (  ) {
+        console.log ( "鼠标松开" );
+        //停止移动事件
+        //注销事件：给元素事件类型赋值为空
+        document.onmousemove = null;
+    }
+
+
+
+</script>
+</body>
+</html>

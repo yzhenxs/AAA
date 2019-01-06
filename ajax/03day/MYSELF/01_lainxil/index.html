@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #btn {
+            display: block;
+            width: 150px;
+            margin: 30px auto;
+            font-size: 30px;
+        }
+
+        #table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            width: 120px;
+            height: 30px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="显示数据" id="btn">
+    <table id="table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>成绩</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <!-- 首先引入 -->
+    <script src="../template-web.js"></script>
+    <!-- 然后创立模板 -->
+    <script type="text/html" id="tpl">
+        <% for(var i = 0;i<list.length;i++) { %>
+        <tr>
+          <td><%= list[i].Id %></td>
+          <td><%= list[i].name %></td>
+          <td><%= list[i].age %></td>
+          <td><%= list[i].score %></td>
+        </tr>
+    <% } %>
+    </script>
+    <script>
+        var tb = document.querySelector('tbody');
+        document.getElementById('btn').onclick = function () {
+            //创建请求对象
+            var xhr =new XMLHttpRequest();
+            //设置请求行
+            xhr.open('get', 'data.php');
+            //设置请求头
+
+            //设置请求体
+            xhr.send();
+
+            xhr.onload = function () {
+                var arr = JSON.parse(xhr.responseText);
+                console.log(arr);
+                var html = template('tpl', { list: arr });
+                console.log(html);
+                tb.innerHTML = html;
+            }
+           
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

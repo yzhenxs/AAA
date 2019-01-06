@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        @-moz-keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        .wrap {
+            width: 1000px;
+            text-align: center;
+            margin: 100px auto 0;
+        }
+
+        .wrap h1 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+        }
+
+        .word {
+            font-weight: 700;
+        }
+
+        .typed-cursor {
+            opacity: 1;
+            -webkit-animation: blink .7s infinite;
+            -moz-animation: blink .7s infinite;
+            animation: blink .7s infinite;
+            display: none;
+        }
+
+        .saySection {
+            margin-top: 50px;
+        }
+
+        .saySection input {
+            font-size: 30px;
+        }
+
+        .saySection .txtSay {
+            padding-left: 10px;
+        }
+
+        .saySection .btnSay {
+            display: inline-block;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+      $(function () {
+          //声明一个变量,用来保存计时器id
+          var timerID = null;
+
+          //需求2:页面一打开就要显示打字效果(红鲤鱼与绿鲤鱼与驴)
+          showWord('红鲤鱼与绿鲤鱼与驴');
+
+
+         //需求1:点击say按钮,获取文本输入框中的文本,一个一个的显示在class为word的span标签内容中.
+          //1.给say按钮设置点击事件
+         $('#btnSay').on('click', function () {
+             //1.1 获取文本框输入的内容.
+             var txtShow = $('#inValue').val(); //各个国家有各个国家的国歌
+             //console.log(txtShow);
+             //1.2 显示
+             //$('.word').text(txtShow); //不能这样直接设置.
+             //各
+             //各个
+             //各个国
+             //各个国家
+             //各个国家有
+             //间隔一段时间显示一个文本,想到了计时器.
+
+             showWord(txtShow);
+
+         });
+
+
+          //把打字效果这个代码封装成一个函数.
+          function showWord(txtShow){
+              clearInterval(timerID);
+              var str = ""; //用来拼接要显示的文本的.
+              var index = 0;
+              timerID =  setInterval(function () {
+                  if(txtShow[index] != undefined){
+                      str += txtShow[index];
+                      $('.word').text(str);
+                      $('.typed-cursor').show();
+                      index++;
+                  }else {
+                      //清空计时器.
+                      clearInterval(timerID);
+                      $('.typed-cursor').hide();
+                  }
+
+              },500);
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+          //字符串可以通过下标取到对应的字符.
+          // var str = "abcdefg";
+          // console.log(str[0]); //a
+          // console.log(str[1]); //b
+          // console.log(str[7]); //undefined
+
+
+      });
+    </script>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <h1>
+            You want to say ：
+            <span class="word"></span>
+            <span class="typed-cursor">|</span> ！
+        </h1>
+        <div class="saySection">
+            <input type="text" id="inValue" class="txtSay"/>
+            <input type="button" value="Say" id="btnSay" class="btnSay"/>
+        </div>
+    </div>
+
+</body>
+</html>

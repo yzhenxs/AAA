@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    // 'dfsfsdfdsf函'  有一个字符串,验证这个字符串里面有没有包含中文汉字,如何写正则表达式.
+
+    //1.验证汉字。
+    //js使用Unicode编码写的.每一个汉字都有对应的Unicode.
+
+
+    //用以下这个 简单类 来判断有米有包含中文汉字.
+    // console.log(/[\u4e00-\u9fa5]/.test('dfsfsdfdsf函')); //true
+    // console.log(/[\u4e00-\u9fa5]/.test('dfsfsdfdsf')); //false
+
+    // console.log(/[\u4e00-\u9fa5]/.test('区'));
+    // console.log(/[\u4e00-\u9fa5]/.test('鼜'));
+    // console.log(/[\u4e00-\u9fa5]/.test('龘'));
+    // console.log(/[\u4e00-\u9fa5]/.test('嬲'));
+
+
+    //2.判断是否是名字.
+    console.log(/[\u4e00-\u9fa5]{2,4}/.test('区志玲'));
+
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

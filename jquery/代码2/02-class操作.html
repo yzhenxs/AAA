@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      margin-top:10px;
+    }
+    .bgc {
+      background-color: green;
+    }
+    .fontSize30 {
+      font-size: 30px;
+    }
+    .width200 {
+      width: 200px;
+    }
+    .height200 {
+      height: 200px;
+    }
+
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //1.添加类
+      $('#addClass').on('click', function () {
+       $('div').addClass('fontSize30 width200');
+      });
+
+      //2.移除类
+      $('#removeClass').on('click', function () {
+        //如果不写参数,就会删除所有的类,但是class这个属性名还保留着.
+        // $('div').removeClass();
+        //如果要移除对应的类,就写对应的类名参数.
+        $('div').removeClass('fontSize30');
+      });
+
+      //3.判断类
+      $('#hasClass').on('click', function () {
+        console.log($('#div1').hasClass('fontSize30'));
+      });
+
+
+      //4.切换类.
+      //如果你有某个类,就移除这个类; 如果你没有某个类,就添加上这个类.
+      $('#toggleClass').on('click', function () {
+        $('#div1').toggleClass('fontSize30');
+      });
+
+    });
+  </script>
+</head>
+<body>
+<input type="button" value="添加类" id="addClass"/>
+<input type="button" value="移除类" id="removeClass"/>
+<input type="button" value="判断类" id="hasClass"/>
+<input type="button" value="切换类" id="toggleClass"/>
+<div id="div1" class="bgc ">div1</div>
+<div class="bgc fontSize30">div2</div>
+</body>
+</html>

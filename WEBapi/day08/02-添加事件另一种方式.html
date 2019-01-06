@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+
+<input type="button" value="点我" id="btn"/>
+
+</body>
+
+<script>
+    /*知识点：给同一元素注册多个同名事件
+
+     */
+    var btn = document.getElementById('btn');
+    /*1.点语法注册事件
+    如果给同一元素注册多个同名事件，后面会覆盖前面
+
+     */
+    // btn.onclick = function (  ) {
+    //     alert('哈哈哈哈');
+    // }
+    //
+    // btn.onclick = function (  ) {
+    //     alert('呵呵呵呵');
+    // }
+
+    /**2.addEventListener
+     * 特点：同一元素多个同名事件不会覆盖，而是依次执行
+     * 第一个参数：事件类型字符串   去掉on  例如：click  mouseover
+     * 第二个参数：事件处理函数
+     * 第三个参数：是一个布尔类型  默认是false(冒泡)
+     */
+    // btn.addEventListener('click',function (  ) {
+    //     alert('11111');
+    // },false);
+    //
+    // btn.addEventListener('click',function (  ) {
+    //     alert('2222');
+    // },false);
+    // //注意：如果事件处理函数是一个具名函数，则只需要写函数名即可
+    // btn.addEventListener('click',test,false);
+    //
+    function test (  ) {
+        alert('坤哥我爱你么么哒');
+    }
+
+    //3.IE8不支持addEventListener:倒着依次执行
+    //IE8使用
+    /*第一个参数：事件类型字符串  但是要加上on
+    第二个参数：事件处理函数
+
+     */
+    // btn.attachEvent('onclick',test);
+    // btn.attachEvent('onclick',function (  ) {
+    //     alert('1111');
+    // });
+
+    addEvent(btn,'click',test);
+    addEvent(btn,'click',function (  ) {
+        alert('111');
+    })
+
+    //4.addEventListener浏览器兼容
+    /**
+     * 给元素注册多个同名事件
+     * @param obj  元素
+     * @param type 事件类型  不要on
+     * @param fn  事件处理函数
+     */
+    function addEvent ( obj,type,fn ) {
+        if(obj.attachEvent){//IE8
+            obj.attachEvent('on' + type,fn);
+        }else if(obj.addEvent){//谷歌火狐
+            obj.addEventListener(type,fn);
+        }else{//有些浏览器两个方法都不支持，则使用点语法添加
+
+            obj['on' + type] = fn;
+        }
+    }
+</script>
+</html>

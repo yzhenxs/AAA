@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		html{
+			/* 使用rem可以实现统一变化 实现全局操控 */
+			font-size: 20px;
+		}
+		.box1{
+			font-size: 20px;
+			width: 10rem;
+			height: 10rem;
+			background-color: #ccc;
+		}
+		.box2{
+			font-size: 30px;
+			width: 10rem;
+			height: 10rem;
+			background-color: yellowgreen;
+		}
+		.box3{
+			font-size: 40px;
+			width: 10rem;
+			height: 10rem;
+			background-color: greenyellow;
+		}
+		.box1{
+			font-size: 20px;
+			/*300 / 20  15em*/
+			width: 15em;
+			height: 15em;
+			background-color: #ccc;
+		}
+		.box2{
+			font-size: 30px;
+			/*200px / 30px  =6.6667 */
+			width: 10em;
+			height: 10em;
+			background-color: yellowgreen;
+		}
+		.box3{
+			font-size: 40px;
+			/*200/ 40 = 5px*/
+			width: 7.5em;
+			height: 7.5em;
+			background-color: greenyellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">div1</div>
+	<div class="box2">div2</div>
+	<div class="box3">div3</div>
+</body>
+</html>

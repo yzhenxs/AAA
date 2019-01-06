@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <script>
+    //1.原型.
+//     function Teacher(name,age){
+//       this.name = name;
+//       this.age = age;
+//     }
+//     Teacher.prototype.sayHi = function () {
+//       console.log("我的名字是:"+this.name+",我的年龄是:"+this.age);
+//     }
+//     var t1 = new Teacher("黑群",38);
+//     t1.sayHi();
+//     var t2 = new Teacher('保健坤',48);
+//     t2.sayHi();
+
+
+    //2.使用原型需要注意的地方.
+    //2.1 什么样的东西应该写进原型中.  实例化的对象们共有的数据.
+//     function Teacher(name,age){
+//       this.name = name;
+//       this.age = age;
+//     }
+//     Teacher.prototype.gender = "男";//性别不能算共有的数据,每一个老师的性别是由差异的.
+//     var t3 = new Teacher("何qi",16);
+//     console.log(t3.gender);
+//     Teacher.prototype.type = "人类";
+//     Teacher.prototype.teach = function () {
+//       console.log("我是老师,我在苦口婆心的教呀教...");
+//     }
+//    t3.teach();
+
+
+    //2.2 对象访问成员的访问规则: 如果自己有,就访问自己的;如果自己没有,就访问原型的....
+     function Dog(name,pingZhong){
+       this.name = name;
+       this.pingZhong = pingZhong;
+       this.sayHi = function () {
+         console.log("我是声明在构造函数中的sayHi");
+       }
+     }
+     Dog.prototype.sayHi = function () {
+       console.log("汪汪汪...我的名字是"+this.name);
+     }
+     var d1 = new Dog('小黑群',"怼天怼地怼空气的泰迪");
+     d1.sayHi();
+    // console.log(d1);
+
+
+    //2.3 如果要修改原型中的成员., 必须要用 构造函数.prototype  这样的方式来访问原型.
+    // function Cat(name,pingZhong){
+    //   this.name = name;
+    //   this.pingZhong = pingZhong;
+    // }
+    // Cat.prototype.sayHi = function () {
+    //   console.log("喵喵喵...我的名字是"+this.name);
+    // }
+    // var c1 = new Cat('小坤坤','罗湖小夜猫');
+//
+    // //原型中叫的方法想修改一下.
+    // //下面这个代码,不是修改原型中的方法,而是给c1这个对象添加了一个sayHi方法.
+    // // c1.sayHi = function () {
+    // //   console.log("我是修改了之后的sayHi方法...");
+    // // }
+//
+    // Cat.prototype.sayHi = function () {
+    //   console.log("修改后的...");
+    // }
+    // c1.sayHi();
+    // var c2 = new Cat('小黑裙','懒猫');
+    // c2.sayHi();
+
+
+
+    //2.4 原型是一个对象, 对象可以修改的.
+    // 访问成员是访问修改对象之前的还是修改对象之后的: 取决于这个实例化的对象是修改之前创建的还是修改之后创建的.
+//    function Student(name,age){
+//      this.name = name;
+//      this.age = age;
+//    }
+//    Student.prototype.study = function () {
+//      console.log("我的名字是:"+this.name+",我在闭目养神...");
+//    }
+
+
+
+    //修改原型: 让原型指向另外一个对象.
+//    Student.prototype = {
+//      study: function () {
+//        console.log("我是另外一个对象里面的study.");
+//      }
+//    }
+//
+//    var s1 = new Student('何龙杰',37);
+//    s1.study();
+
+
+
+
+
+
+
+
+    //-对象可以修改的.----------------------------
+    // var age = 19;
+    // age = 29;
+    // var obj = {
+    //   name:"娜娜"
+    // };
+    // obj = {
+    //   name:'萍萍'
+    // }
+    // console.log(age);
+    // console.log(obj);
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

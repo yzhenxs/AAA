@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul1">
+    我是一个文本
+    <!-- 我是一个注释-->
+    <li>我是第1个li标签</li>
+    <li>我是第2个li标签</li>
+    <li>我是第3个li标签</li>
+    <li>我是第4个li标签</li>
+    <li>我是第5个li标签</li>
+</ul>
+
+</body>
+
+<script>
+    /*获取第一个子节点与第一个子元素（兼容性与兄弟节点/元素一致）
+    1.获取第一个子节点;：  元素.firstChild
+    2.获取第一个子元素： 元素.firstElementChild
+        * IE8不支持
+
+     */
+    var ul1 = document.getElementById('ul1');
+    //1.获取第一个子节点
+    console.log ( ul1.firstChild );//文本节点
+    //2.获取第一个子元素
+    console.log ( ul1.firstElementChild );//li1标签
+
+
+    console.log ( getfirstElementChild ( ul1 ) );
+
+
+    //3.IE兼容性封装
+    function getfirstElementChild ( ele ) {
+        var node = ele.firstChild;//获取第一个子节点
+        while(node != null && node.nodeType != 1){
+            node = node.nextSibling;//往下一个节点寻找
+        }
+        return node;
+    }
+</script>
+</html>

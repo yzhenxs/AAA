@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    #div1{
+      width: 300px;
+      height: 300px;
+      border: 1px solid red;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      //回忆一下原生js中如何创建元素的: document.write();  innerHTML;  document.createElement();
+
+      //jQuery中创建元素的方法: html();   $();
+
+      //1.html()
+      $('#btnHtml1').on('click', function () {
+        //1.1 获取内容,不给参数.
+        //获取到的是元素的所有内容,包含标签和文本.
+        //console.log($('#div1').html());
+
+        //1.2 设置内容,给参数
+        //设置的内容会把原来的内容给覆盖掉.
+        //如果设置的内容中有标签,会把标签给解析出来.
+        // $('#div1').html('我是设置的内容<a href="https://www.baidu.com">我是超链接</a>');
+        // $('#div1').html('<h1>我是标题</h1>');
+
+        $('#div1').html('我是设置的内容<a href="https://www.baidu.com">我是超链接</a><h1>我是标题</h1>');
+      });
+
+
+      //2.$();
+      //用这种方式创建出来的标签,也只会在内存中存在,如果要显示在页面上,就必须要追加到页面上的某个元素中.
+      $('#btn1').on('click', function () {
+        var $links = $('<a href="http://www.sina.com.cn">点击查看新闻</a>');
+        //console.log($links);
+
+        //把创建的a标签追加到div1中. append.
+        //不会覆盖原来的内容的.
+        $('#div1').append($links);
+      });
+
+
+
+    });
+  </script>
+
+</head>
+<body>
+<input type="button" value="html()" id="btnHtml1"/>
+<input type="button" value="$()" id="btn1"/> <br/><br/>
+
+<div id="div1">
+  <p>p1
+    <span>span1</span>
+  </p>
+</div>
+
+</body>
+</html>

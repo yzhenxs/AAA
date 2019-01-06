@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="button" value="存储" id="btn1">
+        <input type="button" value="读取" id="btn2">
+        <input type="button" value="删除" id="btn3">
+        <input type="button" value="存数组" id="btn4">
+        <input type="button" value="存对象" id="btn5">
+        <input type="button" value="取数组" id="btn6">
+        <input type="button" value="取对象" id="btn7">
+        <input type="button" value="清空" id="btn8">
+</body>
+</html>
+
+<script>
+//存储
+document.getElementById('btn1').onclick=function(){
+ localStorage.setItem('name','郑州');
+      
+}
+
+//读取
+document.getElementById('btn2').onclick=function(){
+ var cc=localStorage.getItem('name');
+     console.log(cc);    
+}
+
+//删除
+document.getElementById('btn3').onclick=function(){
+localStorage.removeItem('name');   
+}
+
+//存储数组
+document.getElementById('btn4').onclick=function(){
+  var num=[10,20,30,40,50];
+  //这里需要把数组转换成为json格式的字符串
+  var json=JSON.stringify(num)
+  localStorage.setItem('arr',json);
+}
+
+//存对象
+document.getElementById('btn5').onclick=function(){
+  var obj={name:'郑州',age:2000};
+  //这里需要把对象转换成为json格式
+  var json=JSON.stringify(obj)
+  localStorage.setItem('obj',json);
+}
+
+
+//获取数组
+document.getElementById('btn6').onclick=function(){
+  var num=localStorage.getItem('arr');
+  //这里需要把json格式的数据转换成为js格式的数组
+  var jsnum=JSON.parse(num);
+  console.log(jsnum);
+}
+
+//获取对象
+document.getElementById('btn7').onclick=function(){
+  var obj=localStorage.getItem('obj');
+  //这里需要把json格式的数据转换成为js格式的对象
+  var jsobj=JSON.parse(obj);
+  console.log(jsobj);
+}
+
+//清空数据
+document.getElementById('btn8').onclick=function(){
+  localStorage.clear();
+}
+
+</script>

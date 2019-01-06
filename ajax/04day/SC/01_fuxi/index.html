@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    function test(obj){
+
+        console.log('...');
+        console.log(obj);
+        
+    }
+</script>
+
+<!-- 会发请求，可以发跨域请求，并且会把响应体当JS代码来执行 -->
+<!-- <script src="data.php?callback=test"></script> -->
+<script src="http://api.douban.com/v2/movie/top250?callback=test"></script>
+
+<!-- 
+    JSONP：是一种利用script标签发送跨域请求的技术方案
+
+    只要是支持JSONP的接口，参数规范都叫callback
+
+    CORS：在服务端写一句代码：这句是告诉浏览器说：哥们，我这个接口不需要保护，所有网站都可以访问
+
+    //写一个响应头： 
+        header("Access-Control-Allow-Origin: *");
+
+    模板引擎
+        使用三大步：
+                1.导入模板
+                2.准备模板
+                    要用script标签，并且必须给type属性，且属性值不能为text/javascript
+                    给一个id属性，因为方便调用的时候找到它
+                3.调用模板
+                    template( 模板的id，告诉模板用什么数据来填充 );
+
+        <% %>： 这种语法可以写JS的语法，JS代码，这里还是怎么写，可以写循环，可以写判断，但是记得有{ 和结尾的 }
+
+            <% for(var i = 0; i < 10; i++) { %>
+                循环体
+            <% } %>
+
+        <%= %> ：输出
+
+        {{ }} ：这种语法写模板自带的语法
+                {{ each list  value  key}} 循环体   {{ /each }} 会自动遍历出list中的每个元素和它的key
+                {{ each list value }}:简写
+
+        {{ 内容 }}: 输出
+
+
+        {{ if 条件 }}
+
+        {{ /if }}
+
+        
+ -->
